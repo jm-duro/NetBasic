@@ -1,0 +1,6 @@
+{FUNC, "html_to_ascii", {SEQUENCE} },
+{FUNC, "html_to_utf8", {SEQUENCE} },
+{FUNC, "ascii_to_html", {SEQUENCE} },
+{FUNC, "utf8_to_html", {SEQUENCE} },
+{FUNC, "encode_url", {SEQUENCE, SEQUENCE} },
+{FUNC, "decode_url", {SEQUENCE, SEQUENCE} },

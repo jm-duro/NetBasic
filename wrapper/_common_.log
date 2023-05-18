@@ -1,0 +1,4 @@
+{PROC, "log_puts", {SEQUENCE} },
+{PROC, "log_printf", {SEQUENCE, OBJECT} },
+{PROC, "error_message", {SEQUENCE, ATOM} },
+{FUNC, "get_option", {SEQUENCE, SEQUENCE, OBJECT} },

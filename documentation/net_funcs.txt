@@ -1,0 +1,307 @@
+global constant
+  PROC=1, FUNC=2
+
+global constant
+  INTEGER=1, ATOM=2, SEQUENCE=3, OBJECT=4
+
+global constant NET_FUNCS = {
+-- Take a screenshot of the current page.
+  {FUNC, "wd_take_screenshot", {}},
+
+-- Get the current page source.
+  {FUNC, "wd_get_page_source", {}},
+
+-- Initializes CURL and sets proxy
+  {PROC, "wd_init", {OBJECT}},
+
+-- Starts a new Chrome session
+  {FUNC, "wd_new_session", {OBJECT}},
+
+-- Final cleanup
+  {PROC, "wd_cleanup", {ATOM}},
+
+-- Accepts the currently displayed alert dialog.
+  {PROC, "wd_accept_alert", {}},
+
+-- Set a cookie.
+  {PROC, "wd_add_cookie", {SEQUENCE}},
+
+-- Click and hold the left mouse button (set by moveto).
+  {PROC, "wd_button_down", {INTEGER}},
+
+-- Releases the mouse button previously held (set by moveto).
+  {PROC, "wd_button_up", {INTEGER}},
+
+-- Navigate to a new URL.
+  {FUNC, "wd_change_url", {SEQUENCE}},
+
+-- Clear a TEXTAREA or text INPUT element's value.
+  {PROC, "wd_clear_element", {SEQUENCE}},
+
+-- Click any mouse button (at the coordinates set by the last moveto command).
+  {PROC, "wd_click", {INTEGER}},
+
+-- Click on an element.
+  {PROC, "wd_click_element", {SEQUENCE}},
+
+-- Close the current window.
+  {PROC, "wd_close_current_window", {}},
+
+-- Delete all cookies visible to the current page.
+  {PROC, "wd_delete_all_cookies", {}},
+
+-- Delete the cookie with the given name.
+  {PROC, "wd_delete_cookie_by_name", {SEQUENCE}},
+
+-- Delete the session.
+  {PROC, "wd_delete_session", {}},
+
+-- Dismisses the currently displayed alert dialog.
+  {PROC, "wd_dismiss_alert", {}},
+
+-- Double-clicks at the current mouse coordinates (set by moveto).
+  {PROC, "wd_double_click", {}},
+
+-- Test if two element IDs refer to the same DOM element.
+  {FUNC, "wd_element_equals", {SEQUENCE, SEQUENCE}},
+
+-- Inject a snippet of asynchronous JavaScript into the page for execution.
+  {FUNC, "wd_execute_async_script", {SEQUENCE, SEQUENCE}},
+
+-- Inject a snippet of synchronous JavaScript into the page for execution.
+  {FUNC, "wd_execute_script", {SEQUENCE, SEQUENCE}},
+
+-- Get the element on the page that currently has focus.
+  {FUNC, "wd_get_active_element", {}},
+
+-- Gets the text of the currently displayed JavaScript dialog.
+  {FUNC, "wd_get_alert_text", {}},
+
+-- Retrieve all cookies visible to the current page.
+  {FUNC, "wd_get_cookies", {}},
+
+-- Query the value of an element's computed CSS property.
+  {FUNC, "wd_get_css_property", {SEQUENCE, SEQUENCE}},
+
+-- Describe the identified element.
+  {FUNC, "wd_get_element", {SEQUENCE}},
+
+-- Get the value of an element's attribute.
+  {FUNC, "wd_get_element_attribute", {SEQUENCE, SEQUENCE}},
+
+-- Determine an element's location on the page.
+  {FUNC, "wd_get_element_location", {SEQUENCE}},
+
+-- Determine an element's location on the screen once scrolled into view.
+  {FUNC, "wd_get_element_location_in_view", {SEQUENCE}},
+
+-- Query for an element's tag name.
+  {FUNC, "wd_get_element_name", {SEQUENCE}},
+
+-- Determine an element's size in pixels.
+  {FUNC, "wd_get_element_size", {SEQUENCE}},
+
+-- Returns the visible text for the element.
+  {FUNC, "wd_get_element_text", { SEQUENCE}},
+
+-- Get the current geo location.
+  {FUNC, "wd_get_geo_location", {}},
+
+-- Get the status of the html5 application cache.
+  {FUNC, "wd_get_html5_cache_status", {}},
+
+-- Get the log for a given log type.
+  {FUNC, "wd_get_log", {SEQUENCE}},
+
+-- Get available log types.
+  {FUNC, "wd_list_available_log_types", {}},
+
+-- Get the current browser orientation.
+  {FUNC, "wd_get_orientation", {}},
+
+-- Retrieve the capabilities of the specified session.
+  {FUNC, "wd_get_session_capabilities", {}},
+
+-- Get the current page title.
+  {FUNC, "wd_get_title", {}},
+
+-- Retrieve the URL of the current page.
+  {FUNC, "wd_get_current_url", {}},
+
+-- Retrieve the current window handle.
+  {FUNC, "wd_get_current_window_handle", {}},
+
+-- Retrieve the list of all window handles available to the session.
+  {FUNC, "wd_get_all_window_handles", {}},
+
+-- Get the position of the specified window.
+  {FUNC, "wd_get_window_position", {SEQUENCE}},
+
+-- Get the size of the specified window.
+  {FUNC, "wd_get_window_size", {SEQUENCE}},
+
+-- Make an engines that is available active.
+  {PROC, "wd_activate_ime", {SEQUENCE engine}},
+
+-- Get the name of the active IME engine.
+  {FUNC, "wd_get_ime_active_engine", {}},
+
+-- List all available engines on the machine.
+  {FUNC, "wd_list_ime_available_engines", {}},
+
+-- De-activates the currently-active IME engine.
+  {PROC, "wd_deactivate_ime", {}},
+
+-- Indicates whether IME input is active at the moment (not if it's available).
+  {FUNC, "wd_is_ime_activated", {}},
+
+-- Determine if an element is currently displayed.
+  {FUNC, "wd_is_element_displayed", {SEQUENCE}},
+
+-- Determine if an element is currently enabled.
+  {FUNC, "wd_is_element_enabled", {SEQUENCE}},
+
+-- Determine if an OPTION element, or an INPUT element is currently selected.
+  {FUNC, "wd_is_element_selected", {SEQUENCE}},
+
+-- Maximize the specified window if not already maximized.
+  {PROC, "wd_maximize_window", {SEQUENCE}},
+
+-- Move the mouse by an offset of the specificed element.
+  {PROC, "wd_move_mouse_to", {SEQUENCE, INTEGER, INTEGER}},
+
+-- Navigate backwards in the browser history, if possible.
+  {PROC, "wd_go_back", {}},
+
+-- Navigate forwards in the browser history, if possible.
+  {PROC, "wd_go_forward", {}},
+
+-- Refresh the current page.
+  {PROC, "wd_refresh", {}},
+
+-- Search for an element on the page, starting from document root.
+  {FUNC, "wd_search_element", {SEQUENCE, SEQUENCE}},
+
+-- Search for an element by ID, starting from document root.
+  {FUNC, "wd_select_element_by_id", {SEQUENCE}},
+
+-- Search for an element by NAME, starting from document root.
+  {FUNC, "wd_select_element_by_name", {SEQUENCE}},
+
+-- Search for an element on the page, starting from the identified element.
+  {FUNC, "wd_search_element_from", {SEQUENCE, SEQUENCE, SEQUENCE}},
+
+-- Search for multiple elements on the page, starting from the document root.
+  {FUNC, "wd_search_elements", {SEQUENCE, SEQUENCE}},
+
+-- Search for multiple elements on the page, starting from the identified element.
+  {FUNC, "wd_search_elements_from", {SEQUENCE, SEQUENCE, SEQUENCE}},
+
+-- Send a SEQUENCE of key strokes to an element.
+  {PROC, "wd_send_keys_to_element", {SEQUENCE, SEQUENCE}},
+
+-- Send a sequence of key strokes to an element.
+  {PROC, "wd_set_element", {SEQUENCE, SEQUENCE}},
+
+-- Send a SEQUENCE of key strokes to the active element.
+  {PROC, "wd_send_keys_to_active_element", {SEQUENCE}},
+
+-- Sends keystrokes to a JavaScript dialog.
+  {PROC, "wd_send_keys_to_alert", {SEQUENCE}},
+
+-- Set the current geo location.
+  {PROC, "wd_set_geo_location", {SEQUENCE}}, -- location GeoLocation
+
+-- Set the amount of time the driver should wait when searching for elements.
+  {PROC, "wd_set_implicit_wait", {INTEGER}},
+
+-- Set the browser orientation.
+  {PROC, "wd_set_orientation", {SEQUENCE}},
+
+-- Change the size of the specified window.
+  {PROC, "wd_set_window_size", {SEQUENCE, INTEGER, INTEGER}},
+
+-- Set the amount of time an operation can execute before timeout.
+  {PROC, "wd_set_timeout", {SEQUENCE, INTEGER}},
+
+-- Set the amount of timeasynchronous scripts can run before timeout.
+  {PROC, "wd_set_script_timeout", {INTEGER}},
+
+-- Change the position of the specified window.
+  {PROC, "wd_set_window_position", {SEQUENCE, INTEGER, INTEGER}},
+
+-- Clear the storage.
+  {PROC, "wd_clear_local_storage", {}},
+
+-- Get all keys of the storage.
+  {FUNC, "wd_get_local_storage_keys", {}},
+
+-- Set the storage item for the given key.
+  {PROC, "wd_set_local_storage_item", {SEQUENCE, SEQUENCE}},
+
+-- Get the storage item for the given key.
+  {FUNC, "wd_get_local_storage_item", {SEQUENCE}},
+
+-- Remove the storage item for the given key.
+  {PROC, "wd_remove_local_storage_item", {SEQUENCE}},
+
+-- Get the number of items in the storage.
+  {FUNC, "wd_get_local_storage_size", {}},
+
+-- Clear the storage.
+  {PROC, "wd_clear_session_storage", {}},
+
+-- Get all keys of the storage.
+  {FUNC, "wd_get_session_storage_key", {}},
+
+-- Set the storage item for the given key.
+  {PROC, "wd_set_session_storage_item", {SEQUENCE, SEQUENCE}},
+
+-- Get the storage item for the given key.
+  {FUNC, "wd_get_session_storage_item", {SEQUENCE}},
+
+-- Remove the storage item for the given key.
+  {PROC, "wd_remove_session_storage_item", {SEQUENCE}},
+
+-- Get the number of items in the storage.
+  {FUNC, "wd_get_session_storage_size", {}},
+
+-- Submit a FORM element.
+  {PROC, "wd_submit_form", {SEQUENCE}},
+
+-- Change focus to another frame on the page.
+  {PROC, "wd_switch_to_frame", {SEQUENCE}},
+
+-- Change focus to another window.
+  {PROC, "wd_switch_to_window", {SEQUENCE}},
+
+-- Change focus back to parent frame
+  {PROC, "wd_switch_to_parent_frame", {}},
+
+-- Single tap on the touch enabled device.
+  {PROC, "wd_touch_single_tap", {SEQUENCE}},
+
+-- Finger down on the screen.
+  {PROC, "wd_touch_down", {INTEGER, INTEGER}},
+
+-- Finger up on the screen.
+  {PROC, "wd_touch_up", {INTEGER, INTEGER}},
+
+-- Finger move on the screen.
+  {PROC, "wd_touch_move", {INTEGER, INTEGER}},
+
+-- Scroll on the touch screen using finger based motion events.
+  {PROC, "wd_touch_scroll", {SEQUENCE, INTEGER, INTEGER}},
+
+-- Double tap on the touch screen using finger motion events.
+  {PROC, "wd_touch_double_tap", {SEQUENCE}},
+
+-- Long press on the touch screen using finger motion events.
+  {PROC, "wd_touch_long_press", {SEQUENCE}},
+
+-- Flick on the touch screen at a particular screen location.
+  {PROC, "wd_touch_flick", {SEQUENCE, INTEGER, INTEGER, INTEGER}},
+
+-- Flick on the touch screen anywhere on the screen.
+  {PROC, "wd_touch_flick_anywhere", {INTEGER, INTEGER}}
+

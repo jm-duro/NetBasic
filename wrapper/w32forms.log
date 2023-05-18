@@ -1,0 +1,5 @@
+{PROC, "ResolveDeferredHandlers", {} },
+{PROC, "newUIObj", {OBJECT} },
+{PROC, "createForm", {SEQUENCE} },
+{FUNC, "getFormIds", {INTEGER} },
+{FUNC, "loadForm", {SEQUENCE} },

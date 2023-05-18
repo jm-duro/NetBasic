@@ -1,0 +1,3 @@
+{PROC, "nanosleep", {ATOM} },
+{PROC, "pause", {ATOM} },
+{PROC, "idletask", {ATOM} },

@@ -1,0 +1,1592 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_winhttp_constants_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_winhttp_constants_</div>
+    <div class="main">
+      <p>-- _winhttp_constants_.e<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>INTERNET_DEFAULT_PORT <span> &emsp; [ 0 ]</span></h3>
+          <p>use the protocol-specific default</p>
+        </li>
+        <li>
+          <h3>INTERNET_DEFAULT_HTTP_PORT <span> &emsp; [ 80 ]</span></h3>
+          <p>use the HTTP default</p>
+        </li>
+        <li>
+          <h3>INTERNET_DEFAULT_HTTPS_PORT <span> &emsp; [ 443 ]</span></h3>
+          <p>use the HTTPS default</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_ESCAPE_PERCENT <span> &emsp; [ #00000004 ]</span></h3>
+          <p>if escaping enabled, escape percent as well</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_NULL_CODEPAGE <span> &emsp; [ #00000008 ]</span></h3>
+          <p>assume all symbols are ASCII, use fast convertion</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_ESCAPE_DISABLE <span> &emsp; [ #00000040 ]</span></h3>
+          <p>disable escaping</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_ESCAPE_DISABLE_QUERY <span> &emsp; [ #00000080 ]</span></h3>
+          <p>if escaping enabled escape path part, but do not escape query</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_BYPASS_PROXY_CACHE <span> &emsp; [ #00000100 ]</span></h3>
+          <p>add "pragma: no-cache" request header</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_REFRESH <span> &emsp; [ WINHTTP_FLAG_BYPASS_PROXY_CACHE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE <span> &emsp; [ #00800000 ]</span></h3>
+          <p>use SSL if applicable (HTTPS)</p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_ASYNC <span> &emsp; [ #10000000 ]</span></h3>
+          <p>this session is asynchronous (where supported)</p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_IGNORE_UNKNOWN_CA <span> &emsp; [ #00000100 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_IGNORE_CERT_WRONG_USAGE <span> &emsp; [ #00000200 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_IGNORE_CERT_CN_INVALID <span> &emsp; [ #00001000 ]</span></h3>
+          <p>bad common name in X509 Cert.</p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_IGNORE_CERT_DATE_INVALID <span> &emsp; [ #00002000 ]</span></h3>
+          <p>expired X509 Cert.</p>
+        </li>
+        <li>
+          <h3>INTERNET_SCHEME_HTTP <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>INTERNET_SCHEME_HTTPS <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>INTERNET_SCHEME_FTP <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>INTERNET_SCHEME_SOCKS <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_AUTO_DETECT <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_CONFIG_URL <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_HOST_KEEPCASE <span> &emsp; [ #00000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_HOST_LOWERCASE <span> &emsp; [ #00000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_RUN_INPROCESS <span> &emsp; [ #00010000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_RUN_OUTPROCESS_ONLY <span> &emsp; [ #00020000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_NO_DIRECTACCESS <span> &emsp; [ #00040000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_NO_CACHE_CLIENT <span> &emsp; [ #00080000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_NO_CACHE_SVC <span> &emsp; [ #00100000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOPROXY_SORT_RESULTS <span> &emsp; [ #00400000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTO_DETECT_TYPE_DHCP <span> &emsp; [ #00000001 ]</span></h3>
+          <p>Flag for dwAutoDetectFlags</p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTO_DETECT_TYPE_DNS_A <span> &emsp; [ #00000002 ]</span></h3>
+          <p>Flag for dwAutoDetectFlags</p>
+        </li>
+        <li>
+          <h3>WINHTTP_TIME_FORMAT_BUFSIZE <span> &emsp; [ 62 ]</span></h3>
+          <p>constant for WinHttpTimeFromSystemTime</p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CALLBACK <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FIRST_OPTION <span> &emsp; [ WINHTTP_OPTION_CALLBACK ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_RESOLVE_TIMEOUT <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CONNECT_TIMEOUT <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CONNECT_RETRIES <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SEND_TIMEOUT <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_RECEIVE_TIMEOUT <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_RECEIVE_RESPONSE_TIMEOUT <span> &emsp; [ 7 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_HANDLE_TYPE <span> &emsp; [ 9 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_READ_BUFFER_SIZE <span> &emsp; [ 12 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_WRITE_BUFFER_SIZE <span> &emsp; [ 13 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PARENT_HANDLE <span> &emsp; [ 21 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_EXTENDED_ERROR <span> &emsp; [ 24 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SECURITY_FLAGS <span> &emsp; [ 31 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SECURITY_CERTIFICATE_STRUCT <span> &emsp; [ 32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_URL <span> &emsp; [ 34 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SECURITY_KEY_BITNESS <span> &emsp; [ 36 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PROXY <span> &emsp; [ 38 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PROXY_RESULT_ENTRY <span> &emsp; [ 39 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_USER_AGENT <span> &emsp; [ 41 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CONTEXT_VALUE <span> &emsp; [ 45 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CLIENT_CERT_CONTEXT <span> &emsp; [ 47 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REQUEST_PRIORITY <span> &emsp; [ 58 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_HTTP_VERSION <span> &emsp; [ 59 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_DISABLE_FEATURE <span> &emsp; [ 63 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CODEPAGE <span> &emsp; [ 68 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_MAX_CONNS_PER_SERVER <span> &emsp; [ 73 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_MAX_CONNS_PER_1_0_SERVER <span> &emsp; [ 74 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_AUTOLOGON_POLICY <span> &emsp; [ 77 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SERVER_CERT_CONTEXT <span> &emsp; [ 78 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_ENABLE_FEATURE <span> &emsp; [ 79 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_WORKER_THREAD_COUNT <span> &emsp; [ 80 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PASSPORT_COBRANDING_TEXT <span> &emsp; [ 81 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PASSPORT_COBRANDING_URL <span> &emsp; [ 82 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CONFIGURE_PASSPORT_AUTH <span> &emsp; [ 83 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SECURE_PROTOCOLS <span> &emsp; [ 84 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_ENABLETRACING <span> &emsp; [ 85 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PASSPORT_SIGN_OUT <span> &emsp; [ 86 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PASSPORT_RETURN_URL <span> &emsp; [ 87 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REDIRECT_POLICY <span> &emsp; [ 88 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_MAX_HTTP_AUTOMATIC_REDIRECTS <span> &emsp; [ 89 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_MAX_HTTP_STATUS_CONTINUE <span> &emsp; [ 90 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_MAX_RESPONSE_HEADER_SIZE <span> &emsp; [ 91 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_MAX_RESPONSE_DRAIN_SIZE <span> &emsp; [ 92 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CONNECTION_INFO <span> &emsp; [ 93 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CLIENT_CERT_ISSUER_LIST <span> &emsp; [ 94 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SPN <span> &emsp; [ 96 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_GLOBAL_PROXY_CREDS <span> &emsp; [ 97 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_GLOBAL_SERVER_CREDS <span> &emsp; [ 98 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_UNLOAD_NOTIFY_EVENT <span> &emsp; [ 99 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REJECT_USERPWD_IN_URL <span> &emsp; [ 100 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_USE_GLOBAL_SERVER_CREDENTIALS <span> &emsp; [ 101 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_RECEIVE_PROXY_CONNECT_RESPONSE <span> &emsp; [ 103 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_IS_PROXY_CONNECT_RESPONSE <span> &emsp; [ 104 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SERVER_SPN_USED <span> &emsp; [ 106 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PROXY_SPN_USED <span> &emsp; [ 107 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SERVER_CBT <span> &emsp; [ 108 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_UNSAFE_HEADER_PARSING <span> &emsp; [ 110 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_ASSURED_NON_BLOCKING_CALLBACKS <span> &emsp; [ 111 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_UPGRADE_TO_WEB_SOCKET <span> &emsp; [ 114 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_WEB_SOCKET_CLOSE_TIMEOUT <span> &emsp; [ 115 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_WEB_SOCKET_KEEPALIVE_INTERVAL <span> &emsp; [ 116 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_DECOMPRESSION <span> &emsp; [ 118 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_WEB_SOCKET_RECEIVE_BUFFER_SIZE <span> &emsp; [ 122 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_WEB_SOCKET_SEND_BUFFER_SIZE <span> &emsp; [ 123 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_CONNECTION_FILTER <span> &emsp; [ 131 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_LAST_OPTION <span> &emsp; [ WINHTTP_OPTION_CONNECTION_FILTER ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_USERNAME <span> &emsp; [ #1000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PASSWORD <span> &emsp; [ #1001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PROXY_USERNAME <span> &emsp; [ #1002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_PROXY_PASSWORD <span> &emsp; [ #1003 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CONNS_PER_SERVER_UNLIMITED <span> &emsp; [ #FFFFFFFF ]</span></h3>
+          <p>manifest value for WINHTTP_OPTION_MAX_CONNS_PER_SERVER and WINHTTP_OPTION_MAX_CONNS_PER_1_0_SERVER</p>
+        </li>
+        <li>
+          <h3>WINHTTP_DECOMPRESSION_FLAG_GZIP <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DECOMPRESSION_FLAG_DEFLATE <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DECOMPRESSION_FLAG_ALL <span> &emsp; [ or_bits(WINHTTP_DECOMPRESSION_FLAG_GZIP, WINHTTP_DECOMPRESSION_FLAG_DEFLATE) ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOLOGON_SECURITY_LEVEL_MEDIUM <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOLOGON_SECURITY_LEVEL_LOW <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOLOGON_SECURITY_LEVEL_HIGH <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTOLOGON_SECURITY_LEVEL_DEFAULT <span> &emsp; [ WINHTTP_AUTOLOGON_SECURITY_LEVEL_MEDIUM ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REDIRECT_POLICY_NEVER <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REDIRECT_POLICY_DISALLOW_HTTPS_TO_HTTP <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REDIRECT_POLICY_ALWAYS <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REDIRECT_POLICY_LAST <span> &emsp; [ WINHTTP_OPTION_REDIRECT_POLICY_ALWAYS ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_REDIRECT_POLICY_DEFAULT <span> &emsp; [ WINHTTP_OPTION_REDIRECT_POLICY_DISALLOW_HTTPS_TO_HTTP ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_PASSPORT_AUTH <span> &emsp; [ #00000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ENABLE_PASSPORT_AUTH <span> &emsp; [ #10000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_PASSPORT_KEYRING <span> &emsp; [ #20000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ENABLE_PASSPORT_KEYRING <span> &emsp; [ #40000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_COOKIES <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_REDIRECTS <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_AUTHENTICATION <span> &emsp; [ #00000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_KEEP_ALIVE <span> &emsp; [ #00000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ENABLE_SSL_REVOCATION <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ENABLE_SSL_REVERT_IMPERSONATION <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DISABLE_SPN_SERVER_PORT <span> &emsp; [ #00000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ENABLE_SPN_SERVER_PORT <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_OPTION_SPN_MASK <span> &emsp; [ WINHTTP_ENABLE_SPN_SERVER_PORT ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_HANDLE_TYPE_SESSION <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_HANDLE_TYPE_CONNECT <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_HANDLE_TYPE_REQUEST <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_SCHEME_BASIC <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_SCHEME_NTLM <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_SCHEME_PASSPORT <span> &emsp; [ #00000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_SCHEME_DIGEST <span> &emsp; [ #00000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_SCHEME_NEGOTIATE <span> &emsp; [ #00000010 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_TARGET_SERVER <span> &emsp; [ #00000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_AUTH_TARGET_PROXY <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_SECURE <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_STRENGTH_WEAK <span> &emsp; [ #10000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_STRENGTH_MEDIUM <span> &emsp; [ #40000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SECURITY_FLAG_STRENGTH_STRONG <span> &emsp; [ #20000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_CERT_REV_FAILED <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_INVALID_CERT <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_CERT_REVOKED <span> &emsp; [ #00000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_INVALID_CA <span> &emsp; [ #00000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_CERT_CN_INVALID <span> &emsp; [ #00000010 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_CERT_DATE_INVALID <span> &emsp; [ #00000020 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_CERT_WRONG_USAGE <span> &emsp; [ #00000040 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_FLAG_SECURITY_CHANNEL_ERROR <span> &emsp; [ #80000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_SSL2 <span> &emsp; [ #00000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_SSL3 <span> &emsp; [ #00000020 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_TLS1 <span> &emsp; [ #00000080 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_1 <span> &emsp; [ #00000200 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_TLS1_2 <span> &emsp; [ #00000800 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_ALL <span> &emsp; [ or_all({WINHTTP_FLAG_SECURE_PROTOCOL_SSL2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_SSL3</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_TLS1})</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_FLAG_SECURE_PROTOCOL_MODERN <span> &emsp; [ or_all({ ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_RESOLVING_NAME <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_NAME_RESOLVED <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CONNECTING_TO_SERVER <span> &emsp; [ #00000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CONNECTED_TO_SERVER <span> &emsp; [ #00000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_SENDING_REQUEST <span> &emsp; [ #00000010 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_REQUEST_SENT <span> &emsp; [ #00000020 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_RECEIVING_RESPONSE <span> &emsp; [ #00000040 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_RESPONSE_RECEIVED <span> &emsp; [ #00000080 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CLOSING_CONNECTION <span> &emsp; [ #00000100 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CONNECTION_CLOSED <span> &emsp; [ #00000200 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_HANDLE_CREATED <span> &emsp; [ #00000400 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_HANDLE_CLOSING <span> &emsp; [ #00000800 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_DETECTING_PROXY <span> &emsp; [ #00001000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_REDIRECT <span> &emsp; [ #00004000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_INTERMEDIATE_RESPONSE <span> &emsp; [ #00008000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_SECURE_FAILURE <span> &emsp; [ #00010000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_HEADERS_AVAILABLE <span> &emsp; [ #00020000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_DATA_AVAILABLE <span> &emsp; [ #00040000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_READ_COMPLETE <span> &emsp; [ #00080000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_WRITE_COMPLETE <span> &emsp; [ #00100000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_REQUEST_ERROR <span> &emsp; [ #00200000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_SENDREQUEST_COMPLETE <span> &emsp; [ #00400000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_GETPROXYFORURL_COMPLETE <span> &emsp; [ #01000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CLOSE_COMPLETE <span> &emsp; [ #02000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_SHUTDOWN_COMPLETE <span> &emsp; [ #04000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>API_RECEIVE_RESPONSE <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>API_QUERY_DATA_AVAILABLE <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>API_READ_DATA <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>API_WRITE_DATA <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>API_SEND_REQUEST <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>API_GET_PROXY_FOR_URL <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_RESOLVE_NAME <span> &emsp; [ or_bits(WINHTTP_CALLBACK_STATUS_RESOLVING_NAME ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_NAME_RESOLVED)</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_CONNECT_TO_SERVER <span> &emsp; [ or_bits(WINHTTP_CALLBACK_STATUS_CONNECTING_TO_SERVER ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CONNECTED_TO_SERVER)</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_SEND_REQUEST <span> &emsp; [ or_bits(WINHTTP_CALLBACK_STATUS_SENDING_REQUEST ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_REQUEST_SENT)</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_RECEIVE_RESPONSE <span> &emsp; [ or_bits(WINHTTP_CALLBACK_STATUS_RECEIVING_RESPONSE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_RESPONSE_RECEIVED)</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_CLOSE_CONNECTION <span> &emsp; [ or_bits(WINHTTP_CALLBACK_STATUS_CLOSING_CONNECTION ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_CONNECTION_CLOSED)</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_HANDLES <span> &emsp; [ or_bits(WINHTTP_CALLBACK_STATUS_HANDLE_CREATED ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_HANDLE_CLOSING)</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_DETECTING_PROXY <span> &emsp; [ WINHTTP_CALLBACK_STATUS_DETECTING_PROXY ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_REDIRECT <span> &emsp; [ WINHTTP_CALLBACK_STATUS_REDIRECT ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_INTERMEDIATE_RESPONSE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_INTERMEDIATE_RESPONSE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_SECURE_FAILURE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_SECURE_FAILURE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_SENDREQUEST_COMPLETE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_SENDREQUEST_COMPLETE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_HEADERS_AVAILABLE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_HEADERS_AVAILABLE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_DATA_AVAILABLE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_DATA_AVAILABLE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_READ_COMPLETE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_READ_COMPLETE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_WRITE_COMPLETE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_WRITE_COMPLETE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_REQUEST_ERROR <span> &emsp; [ WINHTTP_CALLBACK_STATUS_REQUEST_ERROR ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_GETPROXYFORURL_COMPLETE <span> &emsp; [ WINHTTP_CALLBACK_STATUS_GETPROXYFORURL_COMPLETE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_ALL_COMPLETIONS <span> &emsp; [ or_all({WINHTTP_CALLBACK_STATUS_SENDREQUEST_COMPLETE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_HEADERS_AVAILABLE</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_DATA_AVAILABLE</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_READ_COMPLETE</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_WRITE_COMPLETE</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_REQUEST_ERROR</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_STATUS_GETPROXYFORURL_COMPLETE})</h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_CALLBACK_FLAG_ALL_NOTIFICATIONS <span> &emsp; [ #FFFFFFFF ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_INVALID_STATUS_CALLBACK <span> &emsp; [ -1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_MIME_VERSION <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_TYPE <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_TRANSFER_ENCODING <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_ID <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_DESCRIPTION <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_LENGTH <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_LANGUAGE <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ALLOW <span> &emsp; [ 7 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PUBLIC <span> &emsp; [ 8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_DATE <span> &emsp; [ 9 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_EXPIRES <span> &emsp; [ 10 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_LAST_MODIFIED <span> &emsp; [ 11 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_MESSAGE_ID <span> &emsp; [ 12 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_URI <span> &emsp; [ 13 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_DERIVED_FROM <span> &emsp; [ 14 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_COST <span> &emsp; [ 15 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_LINK <span> &emsp; [ 16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PRAGMA <span> &emsp; [ 17 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_VERSION <span> &emsp; [ 18 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_STATUS_CODE <span> &emsp; [ 19 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_STATUS_TEXT <span> &emsp; [ 20 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_RAW_HEADERS <span> &emsp; [ 21 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_RAW_HEADERS_CRLF <span> &emsp; [ 22 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONNECTION <span> &emsp; [ 23 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ACCEPT <span> &emsp; [ 24 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ACCEPT_CHARSET <span> &emsp; [ 25 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ACCEPT_ENCODING <span> &emsp; [ 26 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ACCEPT_LANGUAGE <span> &emsp; [ 27 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_AUTHORIZATION <span> &emsp; [ 28 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_ENCODING <span> &emsp; [ 29 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_FORWARDED <span> &emsp; [ 30 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_FROM <span> &emsp; [ 31 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_IF_MODIFIED_SINCE <span> &emsp; [ 32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_LOCATION <span> &emsp; [ 33 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ORIG_URI <span> &emsp; [ 34 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_REFERER <span> &emsp; [ 35 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_RETRY_AFTER <span> &emsp; [ 36 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_SERVER <span> &emsp; [ 37 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_TITLE <span> &emsp; [ 38 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_USER_AGENT <span> &emsp; [ 39 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_WWW_AUTHENTICATE <span> &emsp; [ 40 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PROXY_AUTHENTICATE <span> &emsp; [ 41 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ACCEPT_RANGES <span> &emsp; [ 42 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_SET_COOKIE <span> &emsp; [ 43 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_COOKIE <span> &emsp; [ 44 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_REQUEST_METHOD <span> &emsp; [ 45 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_REFRESH <span> &emsp; [ 46 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_DISPOSITION <span> &emsp; [ 47 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_AGE <span> &emsp; [ 48 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CACHE_CONTROL <span> &emsp; [ 49 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_BASE <span> &emsp; [ 50 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_LOCATION <span> &emsp; [ 51 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_MD5 <span> &emsp; [ 52 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CONTENT_RANGE <span> &emsp; [ 53 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_ETAG <span> &emsp; [ 54 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_HOST <span> &emsp; [ 55 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_IF_MATCH <span> &emsp; [ 56 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_IF_NONE_MATCH <span> &emsp; [ 57 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_IF_RANGE <span> &emsp; [ 58 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_IF_UNMODIFIED_SINCE <span> &emsp; [ 59 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_MAX_FORWARDS <span> &emsp; [ 60 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PROXY_AUTHORIZATION <span> &emsp; [ 61 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_RANGE <span> &emsp; [ 62 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_TRANSFER_ENCODING <span> &emsp; [ 63 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_UPGRADE <span> &emsp; [ 64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_VARY <span> &emsp; [ 65 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_VIA <span> &emsp; [ 66 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_WARNING <span> &emsp; [ 67 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_EXPECT <span> &emsp; [ 68 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PROXY_CONNECTION <span> &emsp; [ 69 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_UNLESS_MODIFIED_SINCE <span> &emsp; [ 70 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PROXY_SUPPORT <span> &emsp; [ 75 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_AUTHENTICATION_INFO <span> &emsp; [ 76 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PASSPORT_URLS <span> &emsp; [ 77 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_PASSPORT_CONFIG <span> &emsp; [ 78 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_MAX <span> &emsp; [ 78 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_CUSTOM <span> &emsp; [ 65535 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_FLAG_REQUEST_HEADERS <span> &emsp; [ #80000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_FLAG_SYSTEMTIME <span> &emsp; [ #40000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_QUERY_FLAG_NUMBER <span> &emsp; [ #20000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_CONTINUE <span> &emsp; [ 100 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_SWITCH_PROTOCOLS <span> &emsp; [ 101 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_OK <span> &emsp; [ 200 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_CREATED <span> &emsp; [ 201 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_ACCEPTED <span> &emsp; [ 202 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_PARTIAL <span> &emsp; [ 203 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_NO_CONTENT <span> &emsp; [ 204 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_RESET_CONTENT <span> &emsp; [ 205 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_PARTIAL_CONTENT <span> &emsp; [ 206 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_WEBDAV_MULTI_STATUS <span> &emsp; [ 207 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_AMBIGUOUS <span> &emsp; [ 300 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_MOVED <span> &emsp; [ 301 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_REDIRECT <span> &emsp; [ 302 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_REDIRECT_METHOD <span> &emsp; [ 303 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_NOT_MODIFIED <span> &emsp; [ 304 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_USE_PROXY <span> &emsp; [ 305 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_REDIRECT_KEEP_VERB <span> &emsp; [ 307 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_PERMANENT_REDIRECT <span> &emsp; [ 308 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_BAD_REQUEST <span> &emsp; [ 400 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_DENIED <span> &emsp; [ 401 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_PAYMENT_REQ <span> &emsp; [ 402 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_FORBIDDEN <span> &emsp; [ 403 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_NOT_FOUND <span> &emsp; [ 404 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_BAD_METHOD <span> &emsp; [ 405 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_NONE_ACCEPTABLE <span> &emsp; [ 406 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_PROXY_AUTH_REQ <span> &emsp; [ 407 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_REQUEST_TIMEOUT <span> &emsp; [ 408 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_CONFLICT <span> &emsp; [ 409 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_GONE <span> &emsp; [ 410 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_LENGTH_REQUIRED <span> &emsp; [ 411 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_PRECOND_FAILED <span> &emsp; [ 412 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_REQUEST_TOO_LARGE <span> &emsp; [ 413 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_URI_TOO_LONG <span> &emsp; [ 414 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_UNSUPPORTED_MEDIA <span> &emsp; [ 415 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_RETRY_WITH <span> &emsp; [ 449 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_SERVER_ERROR <span> &emsp; [ 500 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_NOT_SUPPORTED <span> &emsp; [ 501 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_BAD_GATEWAY <span> &emsp; [ 502 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_SERVICE_UNAVAIL <span> &emsp; [ 503 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_GATEWAY_TIMEOUT <span> &emsp; [ 504 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_VERSION_NOT_SUP <span> &emsp; [ 505 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_FIRST <span> &emsp; [ HTTP_STATUS_CONTINUE ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HTTP_STATUS_LAST <span> &emsp; [ HTTP_STATUS_VERSION_NOT_SUP ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_NO_ENCODE <span> &emsp; [ #20000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_DECODE <span> &emsp; [ #10000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_NO_META <span> &emsp; [ #08000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_ENCODE_SPACES_ONLY <span> &emsp; [ #04000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_BROWSER_MODE <span> &emsp; [ #02000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_ENCODE_PERCENT <span> &emsp; [ #00001000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_ESCAPE <span> &emsp; [ #80000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_ESCAPE_AUTHORITY <span> &emsp; [ #00002000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ICU_REJECT_USERPWD <span> &emsp; [ #00004000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ACCESS_TYPE_DEFAULT_PROXY <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ACCESS_TYPE_NO_PROXY <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ACCESS_TYPE_NAMED_PROXY <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ACCESS_TYPE_AUTOMATIC_PROXY <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_NO_PROXY_NAME <span> &emsp; [ NULL ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_NO_PROXY_BYPASS <span> &emsp; [ NULL ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_NO_CLIENT_CERT_CONTEXT <span> &emsp; [ NULL ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_NO_REFERER <span> &emsp; [ NULL ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_DEFAULT_ACCEPT_TYPES <span> &emsp; [ NULL ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ADDREQ_INDEX_MASK <span> &emsp; [ #0000FFFF ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ADDREQ_FLAGS_MASK <span> &emsp; [ #FFFF0000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ADDREQ_FLAG_ADD_IF_NEW <span> &emsp; [ #10000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>WINHTTP_ADDREQ_FLAG_ADD <span> &emsp; [ #20000000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>-- "Accept: text</h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

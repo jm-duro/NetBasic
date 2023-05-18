@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_conv_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_conv_</div>
+    <div class="main">
+      <p>-- _conv_.e<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>num_to_str <span>(atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom n          <p>atom to convert</p>
+        </li>
+        <li>
+atom b          <p>base: 2, 8, 10 or 16</p>
+        </li>
+        <li>
+atom d          <p>length of the resulting string</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: a formatted string<br></p>
+      <b>Description:</b>
+          <p>base can be 2, 8, 10 or 16<br>resulting string length has to be specified<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, num_to_str(10,  2, 4)) would display n in binary form: "1010"<br>puts(1, num_to_str(10,  8, 2)) would display n in octal form: "12"<br>puts(1, num_to_str(10, 10, 2)) would display n in decimal form: "10"<br>puts(1, num_to_str(10, 16, 2)) would display n in hexadecimal form: "0A"<br></code><br>
+      <b>See also:</b>
+          <p>str_to_num()</p>
+        </li>
+        <li>
+          <h3>str_to_num <span>(sequence, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+        <li>
+atom b          <p>base: 2, 8, 10 or 16</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>atom<br></p>
+      <b>Example:</b><br>
+          <code>printf(1, "%d", str_to_num("1010",  2)) would display 10<br>printf(1, "%d", str_to_num("12",  8)) would display 10<br>printf(1, "%d", str_to_num("10", 10)) would display 10<br>printf(1, "%d", str_to_num("0A", 16)) would display 10<br></code><br>
+      <b>See also:</b>
+          <p>num_to_str(), to_number()</p>
+        </li>
+        <li>
+          <h3>hex_string <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, hex_string({1,2,3,4,5,6}) & "\n")<br>010203040506<br></code><br>
+      <b>See also:</b>
+          <p>hex_sequence(), num_to_str()</p>
+        </li>
+        <li>
+          <h3>hex_sequence <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>sequence to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, hex_sequence({1,2,3,4,5,6}) & "\n")<br>{#1, #2, #3, #4, #5, #6}<br></code><br>
+      <b>See also:</b>
+          <p>hex_string()</p>
+        </li>
+        <li>
+          <h3>bytes_to_uint <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>sequence to convert</p>
+        </li>
+        <li>
+integer direction          <p>direction is NORMAL or REVERSE (default).<br>when direction is REVERSE (usual), lowest byte is first<br>when direction is NORMAL (telecom frames), highest byte is first<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer<br></p>
+      <b>Example:</b><br>
+          <code>bytes_to_uint({#1C,#0A,#00,#00}, NORMAL) = #1C0A0000<br>bytes_to_uint({#1C,#0A,#00,#00}) = #A1C<br></code><br>
+      <b>See also:</b>
+          <p>uint_to_bytes()</p>
+        </li>
+        <li>
+          <h3>uint_to_bytes <span>(atom, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom n          <p>atom to convert</p>
+        </li>
+        <li>
+integer digits          <p>length of the resulting sequence</p>
+        </li>
+        <li>
+integer direction          <p>direction is NORMAL or REVERSE (default).<br>when direction is REVERSE (usual), lowest byte is first<br>when direction is NORMAL (telecom frames), highest byte is first<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>uint_to_bytes(#1C0A0000, 4, NORMAL) = {#1C, #0A, #00, #00}<br>uint_to_bytes(#1C0A0000, 4, REVERSE) = {#00, #00, #0A, #1C}<br></code><br>
+      <b>See also:</b>
+          <p>bytes_to_uint()</p>
+        </li>
+        <li>
+          <h3>utf8_to_chr <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer c          <p>UTF-8 char to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>See also:</b>
+          <p>ascii_to_utf8()</p>
+        </li>
+        <li>
+          <h3>utf8_to_ascii <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>See also:</b>
+          <p>ascii_to_utf8()</p>
+        </li>
+        <li>
+          <h3>unicode <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer c          <p>integer to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(f_debug, unicode('A') & "\n")    --> A<br>puts(f_debug, unicode(#0152) & "\n")  --> &#x0152;<br>puts(f_debug, unicode(#0153) & "\n")  --> &#x0153;<br>puts(f_debug, unicode(#03C0) & "\n")  --> &#x03C0;<br></code><br>
+      <b>See also:</b>
+          <p>utf8_to_ascii()</p>
+        </li>
+        <li>
+          <h3>ascii_to_utf8 <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(f_debug, ascii_to_utf8({#0152, #0153, #03C0}) & "\n")<br>--> &#x0152;&#x0153;&#x03C0;<br></code><br>
+      <b>See also:</b>
+          <p>utf8_to_ascii()</p>
+        </li>
+        <li>
+          <h3>cp850_to_unicode <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer c          <p>integer to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, cp850_to_unicode(#82) & "\n")  --> #00E9 (&eacute;)<br></code><br>
+      <b>See also:</b>
+          <p>unicode_to_cp850()</p>
+        </li>
+        <li>
+          <h3>unicode <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer c          <p>integer to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(f_debug, unicode_to_cp850(#00E9) & "\n")  --> #82 (&eacute;)<br></code><br>
+      <b>See also:</b>
+          <p>cp850_to_unicode()</p>
+        </li>
+        <li>
+          <h3>dos_to_unix <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>dos_to_unix("message\r\n") --> "message\n"<br></code><br>
+      <b>See also:</b>
+          <p>unix_to_dos()</p>
+        </li>
+        <li>
+          <h3>unix_to_dos <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>See also:</b>
+          <p>dos_to_unix()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

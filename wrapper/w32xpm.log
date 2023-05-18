@@ -1,0 +1,2 @@
+{FUNC, "createXpm", {SEQUENCE, SEQUENCE} },
+{FUNC, "xpmToPixmap", {SEQUENCE} },

@@ -1,0 +1,6 @@
+{FUNC, "date_stamp", {SEQUENCE} },
+{PROC, "display_message", {SEQUENCE, INTEGER} },
+{FUNC, "show_printable", {OBJECT} },
+{PROC, "analyze_object", {OBJECT, SEQUENCE, SEQUENCE} },
+{FUNC, "object_dump", {OBJECT} },
+{PROC, "hex_dump", {SEQUENCE, INTEGER} },

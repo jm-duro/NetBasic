@@ -1,0 +1,7 @@
+{FUNC, "instance", {} },
+{PROC, "sleep", {INTEGER} },
+{FUNC, "reverse", {SEQUENCE} },
+{FUNC, "sprint", {OBJECT} },
+{PROC, "pretty_print", {INTEGER, OBJECT, SEQUENCE} },
+{FUNC, "arccos", {"trig_range"} },
+{FUNC, "arcsin", {"trig_range"} },

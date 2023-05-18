@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_ssh2_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_ssh2_</div>
+    <div class="main">
+      <p></p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>TCP_HOST <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TCP_PORT <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TCP_SOCKET <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_SESSION <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_STATE <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>BUFFER <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>DISCONNECTED <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>CONNECTED <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>variable</h2>
+      <p>Following global variables are defined:</p>
+      <ul>
+        <li>
+          <h3>sequence activeConnections</h3>
+          <p>list of active connections<br>active does not mean connected (see activeSockets for that)<br></p>
+        </li>
+        <li>
+          <h3>integer rtn_ident_cnx</h3>
+          <p>id of the routine that identifies items in activeConnections<br>to be used for debug with analyze_object<br>example:<br>analyzeObject(activeConnections, "activeConnections", f_debug, rtn_ident_cnx)<br></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>ssh_exit <span>()</span></h3>
+          <p>Exit the libssh2 functions and free's all memory used internally.</p>
+      <b>Example:</b><br>
+          <code>ssh_exit()<br></code><br>
+      <b>See also:</b>
+          <p>ssh_init()</p>
+        </li>
+        <li>
+          <h3>ssh_close <span>(integer)</span></h3>
+          <p>close a SSH connection</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>updates activeConnections<br></p>
+      <b>Example:</b><br>
+          <code>ssh_close(1)<br></code><br>
+      <b>See also:</b>
+          <p>ssh_connect()</p>
+        </li>
+        <li>
+          <h3>ssh_exec <span>(integer, sequence, integer)</span></h3>
+          <p>run a command on the SSH session</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+sequence cmd          <p>command to run</p>
+        </li>
+        <li>
+integer terminal          <p>opens a terminal if 1 (true) (defaults to 0)</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>ssh_exec(1, "ls -l", 1)<br></code><br>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>check_link <span>(integer)</span></h3>
+          <p>check if a connection is valid</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>if not check_link(1) then puts(2, "Connection 1 failed!") end if<br></code><br>
+        </li>
+        <li>
+          <h3>get_buffer <span>(integer)</span></h3>
+          <p>reads connection buffer</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: buffer content<br></p>
+      <b>Example:</b><br>
+          <code>data = get_buffer(cnx)<br></code><br>
+        </li>
+        <li>
+          <h3>set_buffer <span>(integer, sequence)</span></h3>
+          <p>sets connection buffer</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+sequence data          <p>new buffer content</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>data = get_buffer(cnx)<br>ok = set_buffer(cnx, remove(data, 1, 7))<br></code><br>
+        </li>
+        <li>
+          <h3>clean_buffer <span>(integer)</span></h3>
+          <p>cleans connection buffer</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>ok = clean_buffer(cnx)<br></code><br>
+        </li>
+        <li>
+          <h3>find_connection <span>(sequence, integer)</span></h3>
+          <p>find a connection id from host and port used</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence host          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>i = find_connection("192.168.1.250", 23)<br></code><br>
+        </li>
+        <li>
+          <h3>ssh_init <span>()</span></h3>
+          <p>Initialize the libssh2 functions</p>
+      <b>Return:</b>
+          <p>Returns 1 if successful else returns 0<br></p>
+      <b>Example:</b><br>
+          <code>if not ssh_init() then abort(1) end if<br></code><br>
+      <b>See also:</b>
+          <p>ssh_exit()</p>
+        </li>
+        <li>
+          <h3>ssh_connect <span>(sequence, integer, sequence, sequence)</span></h3>
+          <p>open a SSH connection to a remote host</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence host          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+        <li>
+sequence username          <p></p>
+        </li>
+        <li>
+sequence password          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: connection id<br></p>
+      <b>Description:</b>
+          <p>updates activeConnections<br></p>
+      <b>Example:</b><br>
+          <code>cnx = ssh_connect("192.168.1.250", 22, "admin", "admin")<br></code><br>
+      <b>See also:</b>
+          <p>ssh_close()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

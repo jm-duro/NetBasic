@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_debug_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_debug_</div>
+    <div class="main">
+      <p>-- _debug_.e<br>
+-- debug controls<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>WARNING_MSG <span> &emsp; [ 1 ]</span></h3>
+          <p>to be used with display_message(): makes a warning appear</p>
+        </li>
+        <li>
+          <h3>ERROR_MSG <span> &emsp; [ 2 ]</span></h3>
+          <p>to be used with display_message(): makes an error message appear</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>display_message <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence msg          <p>message to display</p>
+        </li>
+        <li>
+integer msgType          <p>kind of message to display:<br>either WARNING_MSG, ERROR_MSG are whatever else<br></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>if given type is WARNING_MSG, displays a warning<br>if given type is ERROR_MSG, displays an error message<br>if given type is anything else, displays an information message<br><br>On Windows, message is displayed in a message_box.<br>On Linux, message is displayed on stderr<br></p>
+      <b>Example:</b><br>
+          <code>display_message("Information", 0)<br>display_message("Warning", WARNING_MSG)<br>display_message("Error", ERROR_MSG)<br></code><br>
+      <b>See also:</b>
+          <p>error_message()</p>
+        </li>
+        <li>
+          <h3>hex_dump <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>sequence to dump in hex form</p>
+        </li>
+        <li>
+integer output          <p>output stream</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>global integer <b>with_debug</b> has to be set to get a result<br></p>
+      <b>Example:</b><br>
+          <code>hex_dump("0123456789ABCDEF"&0&1&2&3&4, 1)<br>Addr   0  1  2  3  4  5  6  7  8  9  A  B  C  D  E  F  0123456789ABCDEF<br>0000  30 31 32 33 34 35 36 37 38 39 41 42 43 44 45 46  0123456789ABCDEF<br>0001  00 01 02 03 04                                   .....<br></code><br>
+        </li>
+        <li>
+          <h3>analyze_object <span>(object, sequence, integer, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object x          <p>object to dump in a tree view. Nested sequences are allowed.</p>
+        </li>
+        <li>
+sequence name          <p>name to display at the root of the tree view</p>
+        </li>
+        <li>
+integer output          <p>output stream<br>1 displays on the screen (default)<br>f_debug prints in the debug file if open<br></p>
+        </li>
+        <li>
+integer translator          <p>routine id that translates indexes in understandable names<br>defaults to -1 (no routine provided)<br></p>
+        </li>
+        <li>
+integer detailed          <p>shows strings as sequences of bytes<br>defaults to 0 (no details shown)<br></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>elements of the sequence are displayed in a tree view with numbered items<br>item numbers can be replaced by strings if a conversion routine is provided<br>global integer <b>with_debug</b> has to be set to get a result<br></p>
+      <b>Example:</b><br>
+          <code>example of a conversion routine:<br>function identifyInstruction(sequence path, integer level, integer n, object x)<br>printf(f_debug, "  path: '%s', level: %d, n: %d\n", {path, level, n, object_dump(x)})<br>if level = 1 then<br>if n = 1 then return "TARGET_DEVICE"<br>elsif n = 2 then return "OPERATION"<br>elsif n = 3 then return "INSTRUCTIONS"<br>elsif n = 4 then return "FILTER"<br>end if<br>elsif (level = 2) and ends("[4]", path) then<br>if n = 1 then return "FROM"<br>elsif n = 2 then return "TO"<br>end if<br>end if<br>return sprintf("%d",n)<br>end function<br>integer rtn_ident_instr<br>rtn_ident_instr = routine_id("identifyInstruction")<br><br>analyze_object(endCommands, "endCommands", 1, rtn_ident_instr)<br>would display<br>endCommands =<br>.  [1]<br>.  .  [TARGET_DEVICE] 1<br>.  .  [OPERATION] ""<br>.  .  [INSTRUCTIONS] "term len 0"<br>.  .  [FILTER] 0<br>.  [2]<br>.  .  [TARGET_DEVICE] 1<br>.  .  [OPERATION] ""<br>.  .  [INSTRUCTIONS] "sh run"<br>.  .  [FILTER]<br>.  .  .  [FROM] "interface 0"<br>.  .  .  [TO] "exit"<br><br>whereas<br>analyze_object(endCommands, "endCommands")<br>would display<br>endCommands =<br>.  [1]<br>.  .  [1] 1<br>.  .  [2] ""<br>.  .  [3] "term len 0"<br>.  .  [4] 0<br>.  [2]<br>.  .  [1] 1<br>.  .  [2] ""<br>.  .  [3] "debug cwmp"<br>.  .  [4]<br>.  .  .  [1] "interface 0"<br>.  .  .  [2] "exit"<br></code><br>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>date_stamp <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence msg          <p>string to prefix</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: given string prefixed by date and time<br></p>
+        </li>
+        <li>
+          <h3>show_printable <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object s          <p>object to display, either an atom, an integer or a string</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: a readable string<br></p>
+      <b>Description:</b>
+          <p>special characters are displayed within square brackets: [lf], [cr], [tab], ...<br>other non-printable characters are replaced by a dot.<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, show_printable("One\tTwo\r\n" & 253 & "abc") would display<br>"One[tab]Two[cr][lf].abc"<br></code><br>
+        </li>
+        <li>
+          <h3>object_dump <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object x          <p>object to dump</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>s = object_dump({12, "error", 36.8})<br>s takes value {12, 'error', 36.8}<br>s = object_dump({{1}}&"message"&10&"and"&{{8,2},4}&233)<br>s takes value {{1},109,101,115,115,97,103,101,10,97,110,100,{8,2},4,233}      '{}message[lf]and{}.Ú'<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

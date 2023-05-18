@@ -1,0 +1,3 @@
+{FUNC, "GetLastError", {} },
+{FUNC, "GetInternetError", {ATOM} },
+{FUNC, "FormatSystemError", {ATOM} },

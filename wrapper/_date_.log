@@ -1,0 +1,3 @@
+{FUNC, "getFactor", {INTEGER, INTEGER, INTEGER} },
+{FUNC, "dayOfWeek", {INTEGER, INTEGER, INTEGER} },
+{FUNC, "daysBetweenDates", {SEQUENCE, SEQUENCE} },

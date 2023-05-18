@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_libssh2_constants_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_libssh2_constants_</div>
+    <div class="main">
+      <p>-- Copyright (c) 2004-2009, Sara Golemon <sarag@libssh2.org><br>
+-- Copyright (c) 2009 by Daniel Stenberg<br>
+-- Copyright (c) 2010 Simon Josefsson <simon@josefsson.org><br>
+-- All rights reserved.<br>
+--<br>
+-- Redistribution and use in source and binary forms,<br>
+-- with or without modification, are permitted provided<br>
+-- that the following conditions are met:<br>
+--<br>
+-- Redistributions of source code must retain the above<br>
+-- copyright notice, this list of conditions and the<br>
+-- following disclaimer.<br>
+--<br>
+-- Redistributions in binary form must reproduce the above<br>
+-- copyright notice, this list of conditions and the following<br>
+-- disclaimer in the documentation and/or other materials<br>
+-- provided with the distribution.<br>
+--<br>
+-- Neither the name of the copyright holder nor the names<br>
+-- of any other contributors may be used to endorse or<br>
+-- promote products derived from this software without<br>
+-- specific prior written permission.<br>
+--<br>
+-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND<br>
+-- CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,<br>
+-- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES<br>
+-- OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE<br>
+-- ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR<br>
+-- CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br>
+-- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,<br>
+-- BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR<br>
+-- SERVICES LOSS OF USE, DATA, OR PROFITS OR BUSINESS<br>
+-- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,<br>
+-- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br>
+-- NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE<br>
+-- USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY<br>
+-- OF SUCH DAMAGE.<br>
+--<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>LIBSSH2_VERSION <span> &emsp; [ "1.2.9" ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_VERSION_MAJOR <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_VERSION_MINOR <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_VERSION_PATCH <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SHA_DIGEST_LENGTH <span> &emsp; [ 20 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>MD5_DIGEST_LENGTH <span> &emsp; [ 16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_VERSION_NUM <span> &emsp; [ #010206 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TIMESTAMP <span> &emsp; [ "Sat Aug 13 08:19:51 UTC 2011" ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SSH_BANNER <span> &emsp; [ "SSH-2.0-libssh2_1.2.9" ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SSH_DEFAULT_BANNER <span> &emsp; [ "SSH-2.0-libssh2_1.2.9" ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SSH_DEFAULT_BANNER_WITH_CRLF <span> &emsp; [ LIBSSH2_SSH_DEFAULT_BANNER & "\r\n" ]</span></h3>
+          <p>"SSH-2.0-libssh2_1.2.9\r\n"</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_DH_GEX_MINGROUP <span> &emsp; [ 1024 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_DH_GEX_OPTGROUP <span> &emsp; [ 1536 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_DH_GEX_MAXGROUP <span> &emsp; [ 2048 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TERM_WIDTH <span> &emsp; [ 80 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TERM_HEIGHT <span> &emsp; [ 24 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TERM_WIDTH_PX <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TERM_HEIGHT_PX <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SOCKET_POLL_UDELAY <span> &emsp; [ 250000 ]</span></h3>
+          <p>1/4 second</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SOCKET_POLL_MAXLOOPS <span> &emsp; [ 120 ]</span></h3>
+          <p>0.25 * 120 = 30 seconds</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_PACKET_MAXCOMP <span> &emsp; [ 32000 ]</span></h3>
+          <p>Maximum size to allow a payload to compress to, plays it safe by falling<br>short of spec limits<br></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_PACKET_MAXDECOMP <span> &emsp; [ 40000 ]</span></h3>
+          <p>Maximum size to allow a payload to deccompress to, plays it safe by<br>allowing more than spec requires<br></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_PACKET_MAXPAYLOAD <span> &emsp; [ 40000 ]</span></h3>
+          <p>Maximum size for an inbound compressed payload, plays it safe by<br>overshooting spec limits<br></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CALLBACK_IGNORE <span> &emsp; [ 0 ]</span></h3>
+          <p>Called when a SSH_MSG_IGNORE message is received</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CALLBACK_DEBUG <span> &emsp; [ 1 ]</span></h3>
+          <p>Called when a SSH_MSG_DEBUG message is received</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CALLBACK_DISCONNECT <span> &emsp; [ 2 ]</span></h3>
+          <p>Called when a SSH_MSG_DISCONNECT message is received</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CALLBACK_MACERROR <span> &emsp; [ 3 ]</span></h3>
+          <p>Called when a mismatched MAC has been detected in the transport layer. If the<br>function returns 0, the packet will be accepted nonetheless.<br></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CALLBACK_X11 <span> &emsp; [ 4 ]</span></h3>
+          <p>Called when an X11 connection has been accepted</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_KEX <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_HOSTKEY <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_CRYPT_CS <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_CRYPT_SC <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_MAC_CS <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_MAC_SC <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_COMP_CS <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_COMP_SC <span> &emsp; [ 7 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_LANG_CS <span> &emsp; [ 8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_METHOD_LANG_SC <span> &emsp; [ 9 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_FLAG_SIGPIPE <span> &emsp; [ #00000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_FLAG_COMPRESS <span> &emsp; [ #00000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_SOCKET <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_CHANNEL <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_LISTENER <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLIN <span> &emsp; [ #0001 ]</span></h3>
+          <p>Data available to be read</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLPRI <span> &emsp; [ #0002 ]</span></h3>
+          <p>Priority data available to be read, -- Socket only</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLEXT <span> &emsp; [ #0002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLOUT <span> &emsp; [ #0004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLERR <span> &emsp; [ #0008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLHUP <span> &emsp; [ #0010 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_SESSION_CLOSED <span> &emsp; [ #0010 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLNVAL <span> &emsp; [ #0020 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_POLLEX <span> &emsp; [ #0040 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_CHANNEL_CLOSED <span> &emsp; [ #0080 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_POLLFD_LISTENER_CLOSED <span> &emsp; [ #0080 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HAVE_LIBSSH2_SESSION_BLOCK_DIRECTION <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SESSION_BLOCK_INBOUND <span> &emsp; [ #0001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_SESSION_BLOCK_OUTBOUND <span> &emsp; [ #0002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_HOSTKEY_HASH_MD5 <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_HOSTKEY_HASH_SHA1 <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_HOSTKEY_TYPE_UNKNOWN <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_HOSTKEY_TYPE_RSA <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_HOSTKEY_TYPE_DSS <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_HOST_NOT_ALLOWED_TO_CONNECT <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_PROTOCOL_ERROR <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_KEY_EXCHANGE_FAILED <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_RESERVED <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_MAC_ERROR <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_COMPRESSION_ERROR <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_SERVICE_NOT_AVAILABLE <span> &emsp; [ 7 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_PROTOCOL_VERSION_NOT_SUPPORTED <span> &emsp; [ 8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_HOST_KEY_NOT_VERIFIABLE <span> &emsp; [ 9 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_CONNECTION_LOST <span> &emsp; [ 10 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_BY_APPLICATION <span> &emsp; [ 11 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_TOO_MANY_CONNECTIONS <span> &emsp; [ 12 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_AUTH_CANCELLED_BY_USER <span> &emsp; [ 13 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_NO_MORE_AUTH_METHODS_AVAILABLE <span> &emsp; [ 14 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_DISCONNECT_ILLEGAL_USER_NAME <span> &emsp; [ 15 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_NONE <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_SOCKET_NONE <span> &emsp; [ -1 ]</span></h3>
+          <p>The socket is invalid.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_BANNER_NONE <span> &emsp; [ -2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_BANNER_SEND <span> &emsp; [ -3 ]</span></h3>
+          <p>Unable to send banner to remote host.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_INVALID_MAC <span> &emsp; [ -4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_KEX_FAILURE <span> &emsp; [ -5 ]</span></h3>
+          <p>Encryption key exchange with the remote host failed.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_ALLOC <span> &emsp; [ -6 ]</span></h3>
+          <p>An internal memory allocation call failed.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_SOCKET_SEND <span> &emsp; [ -7 ]</span></h3>
+          <p>Unable to send data on socket.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_KEY_EXCHANGE_FAILURE <span> &emsp; [ -8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_TIMEOUT <span> &emsp; [ -9 ]</span></h3>
+          <p>timeout for blocking functions occured.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_HOSTKEY_INIT <span> &emsp; [ -10 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_HOSTKEY_SIGN <span> &emsp; [ -11 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_DECRYPT <span> &emsp; [ -12 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_SOCKET_DISCONNECT <span> &emsp; [ -13 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_PROTO <span> &emsp; [ -14 ]</span></h3>
+          <p>An invalid SSH protocol response was received on the socket.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_PASSWORD_EXPIRED <span> &emsp; [ -15 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_FILE <span> &emsp; [ -16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_METHOD_NONE <span> &emsp; [ -17 ]</span></h3>
+          <p>no method has been set</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_AUTHENTICATION_FAILED <span> &emsp; [ -18 ]</span></h3>
+          <p>Failed, Invalid username/password or public/private key.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_PUBLICKEY_UNRECOGNIZED <span> &emsp; [ LIBSSH2_ERROR_AUTHENTICATION_FAILED ]</span></h3>
+          <p>Authentication using the supplied public key was not accepted.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_PUBLICKEY_UNVERIFIED <span> &emsp; [ -19 ]</span></h3>
+          <p>The username/public key combination was invalid.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_OUTOFORDER <span> &emsp; [ -20 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_FAILURE <span> &emsp; [ -21 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_REQUEST_DENIED <span> &emsp; [ -22 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_UNKNOWN <span> &emsp; [ -23 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_WINDOW_EXCEEDED <span> &emsp; [ -24 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_PACKET_EXCEEDED <span> &emsp; [ -25 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_CLOSED <span> &emsp; [ -26 ]</span></h3>
+          <p>The channel has been closed.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_CHANNEL_EOF_SENT <span> &emsp; [ -27 ]</span></h3>
+          <p>The channel has been requested to be closed.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_SCP_PROTOCOL <span> &emsp; [ -28 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_ZLIB <span> &emsp; [ -29 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_SOCKET_TIMEOUT <span> &emsp; [ -30 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_SFTP_PROTOCOL <span> &emsp; [ -31 ]</span></h3>
+          <p>An invalid SFTP protocol response was received on the socket, or an SFTP operation caused an errorcode to be returned by the server.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_REQUEST_DENIED <span> &emsp; [ -32 ]</span></h3>
+          <p>The remote server refused the request.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_METHOD_NOT_SUPPORTED <span> &emsp; [ -33 ]</span></h3>
+          <p>The requested method is not supported.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_INVAL <span> &emsp; [ -34 ]</span></h3>
+          <p>The requested method type was invalid.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_INVALID_POLL_TYPE <span> &emsp; [ -35 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_PUBLICKEY_PROTOCOL <span> &emsp; [ -36 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_EAGAIN <span> &emsp; [ -37 ]</span></h3>
+          <p>Marked for non-blocking I/O but the call would block.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_BUFFER_TOO_SMALL <span> &emsp; [ -38 ]</span></h3>
+          <p>Any of the given 'buffer' or 'longentry' buffers are too small to fit the requested object name.</p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_BAD_USE <span> &emsp; [ -39 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_COMPRESS <span> &emsp; [ -40 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_OUT_OF_BOUNDARY <span> &emsp; [ -41 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_ERROR_AGENT_PROTOCOL <span> &emsp; [ -42 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_INIT_NO_CRYPTO <span> &emsp; [ #0001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_WINDOW_DEFAULT <span> &emsp; [ 65536 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_PACKET_DEFAULT <span> &emsp; [ 32768 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_MINADJUST <span> &emsp; [ 1024 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_EXTENDED_DATA_NORMAL <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_EXTENDED_DATA_IGNORE <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_EXTENDED_DATA_MERGE <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SSH_EXTENDED_DATA_STDERR <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2CHANNEL_EAGAIN <span> &emsp; [ LIBSSH2_ERROR_EAGAIN ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_FLUSH_EXTENDED_DATA <span> &emsp; [ -1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_CHANNEL_FLUSH_ALL <span> &emsp; [ -2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HAVE_LIBSSH2_KNOWNHOST_API <span> &emsp; [ #010101 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HAVE_LIBSSH2_VERSION_API <span> &emsp; [ #010100 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_TYPE_MASK <span> &emsp; [ #FFFF ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_TYPE_PLAIN <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_TYPE_SHA1 <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_TYPE_CUSTOM <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEYENC_RAW <span> &emsp; [ #10000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEYENC_BASE64 <span> &emsp; [ #20000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEYENC_MASK <span> &emsp; [ #30000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEY_MASK <span> &emsp; [ #C0000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEY_SHIFT <span> &emsp; [ #00012 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEY_RSA1 <span> &emsp; [ #10000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEY_SSHRSA <span> &emsp; [ #B0000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_KEY_SSHDSS <span> &emsp; [ #C0000 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_CHECK_MATCH <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_CHECK_MISMATCH <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_CHECK_NOTFOUND <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_CHECK_FAILURE <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_KNOWNHOST_FILE_OPENSSH <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>HAVE_LIBSSH2_AGENT_API <span> &emsp; [ #010202 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_TRANS <span> &emsp; [ #0002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_KEX <span> &emsp; [ #0004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_AUTH <span> &emsp; [ #0008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_CONN <span> &emsp; [ #0010 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_SCP <span> &emsp; [ #0020 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_SFTP <span> &emsp; [ #0040 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_ERROR <span> &emsp; [ #0080 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_PUBLICKEY <span> &emsp; [ #0100 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LIBSSH2_TRACE_SOCKET <span> &emsp; [ #0200 ]</span></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

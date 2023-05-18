@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_html_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_html_</div>
+    <div class="main">
+      <p>-- HTML parser<br>
+-- decodes an HTML/XML document, sequence or file<br>
+-- hybrid approach between pure text search and pure HTML decoding<br>
+-- parsing indexes HTML/XML document to give quick access to searched<br>
+-- element in the original HTML/XML source code<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>NO_TAG <span> &emsp; [ 0 ]</span></h3>
+          <p>XML formatted string with no tag (should never occur)</p>
+        </li>
+        <li>
+          <h3>START_TAG <span> &emsp; [ 1 ]</span></h3>
+          <p>starting tag (with no closing part)</p>
+        </li>
+        <li>
+          <h3>SINGLE_TAG <span> &emsp; [ 2 ]</span></h3>
+          <p>single tag with no mandatory ending part</p>
+        </li>
+        <li>
+          <h3>END_TAG <span> &emsp; [ 3 ]</span></h3>
+          <p>ending tag</p>
+        </li>
+        <li>
+          <h3>START_END_TAG <span> &emsp; [ 4 ]</span></h3>
+          <p>autonomous tag</p>
+        </li>
+        <li>
+          <h3>INVALID_TAG <span> &emsp; [ 5 ]</span></h3>
+          <p>invalid tag</p>
+        </li>
+        <li>
+          <h3>EOF_TAG <span> &emsp; [ 6 ]</span></h3>
+          <p>end of file reached without finding next expected tag</p>
+        </li>
+        <li>
+          <h3>TEXT <span> &emsp; [ 7 ]</span></h3>
+          <p>text outside of tags</p>
+        </li>
+        <li>
+          <h3>CDATA <span> &emsp; [ 8 ]</span></h3>
+          <p>CDATA</p>
+        </li>
+        <li>
+          <h3>COMMENT <span> &emsp; [ 9 ]</span></h3>
+          <p>HTML/XML comment</p>
+        </li>
+        <li>
+          <h3>ATTR_NAME <span> &emsp; [ 10 ]</span></h3>
+          <p>attribute name within a tag</p>
+        </li>
+        <li>
+          <h3>ATTR_VALUE <span> &emsp; [ 11 ]</span></h3>
+          <p>attribute value within a tag</p>
+        </li>
+        <li>
+          <h3>TAG_TYPES <span> &emsp; [ {"START_TAG", "SINGLE_TAG", "END_TAG", "START_END_TAG", "INVALID_TAG",<br>"EOF_TAG", "TEXT", "CDATA", "COMMENT", "ATTR_NAME", "ATTR_VALUE"} ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TAG_NAME <span> &emsp; [ 1 ]</span></h3>
+          <p>tag name</p>
+        </li>
+        <li>
+          <h3>TAG_TYPE <span> &emsp; [ 2 ]</span></h3>
+          <p>tag type</p>
+        </li>
+        <li>
+          <h3>TAG_ATTRIBUTES <span> &emsp; [ 3 ]</span></h3>
+          <p>tag attributes</p>
+        </li>
+        <li>
+          <h3>TAG_PATH <span> &emsp; [ 4 ]</span></h3>
+          <p>list of parent tag names</p>
+        </li>
+        <li>
+          <h3>TAG_START <span> &emsp; [ 5 ]</span></h3>
+          <p>start position of the tag in the HTML sequence</p>
+        </li>
+        <li>
+          <h3>TAG_END <span> &emsp; [ 6 ]</span></h3>
+          <p>end position of the tag in the HTML sequence</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>xml_path <span>(integer, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer id          <p>number of an item of structure <i</p>
+        </li>
+        <li>
+sequence elements          <p>detailed HTML/XML parser result</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>numerical path to a tag (ex: {1,3,2})<br></p>
+      <b>Example:</b><br>
+          <code>s = tag_path(, elements)<br></code><br>
+        </li>
+        <li>
+          <h3>tag_path <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence path          <p>numerical path to a tag</p>
+        </li>
+        <li>
+sequence elements          <p>detailed HTML/XML parser result</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>string formatted as a POSIX file path (ex: "/html/body/div")<br></p>
+      <b>Example:</b><br>
+          <code>s = tag_path({1,3,2}, elements)<br></code><br>
+        </li>
+        <li>
+          <h3>parse_sequence <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence buffer          <p>HTML sequence to parse</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>hierarchical sequence of all HTML/XML elements<br>with value, type, attributes, path, starting and ending position<br></p>
+      <b>Example:</b><br>
+          <code>s = "<head><title>Example Domain</title><meta charset="utf-8" /></head>"<br>elements = parse_sequence(s)<br></code><br>
+        </li>
+        <li>
+          <h3>parse_file <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence filename          <p>HTML file to parse</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br>[1] HTML/XML code of the file<br>[2] hierarchical sequence of all HTML/XML elements<br>with value, type, attributes, path, starting and ending position<br></p>
+      <b>Example:</b><br>
+          <code>elements = parse_file("page.html")<br></code><br>
+        </li>
+        <li>
+          <h3>xml_to_sequence <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>XML string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>s = xml_to_sequence(<br>"&lt;?xml version=\"1.0\" standalone=\"yes\" ?&gt;" &<br>"&lt;list&gt;" &<br>"  &lt;node id=\"proxmox\" claimed=\"true\" class=\"system\" handle=\"DMI:0002\"&gt;" &<br>"    &lt;description&gt;Low Profile Desktop Computer&lt;/description&gt;" &<br>"    &lt;product&gt;()&lt;/product&gt;" &<br>"    &lt;vendor&gt;Hewlett-Packard&lt;/vendor&gt;" &<br>"  &lt;/node&gt;" &<br>"&lt;/list&gt;"<br>)<br></code><br>
+      <b>See also:</b>
+          <p>get_tag(), get_attributes(), get_attribute_value()</p>
+        </li>
+        <li>
+          <h3>get_tag_name <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>XML string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>s = get_tag_name("&lt;setting id=\"driver\" value=\"MOSCHIP usb-ethernet driver\" /&gt;")<br>s will get value "setting"<br></code><br>
+      <b>See also:</b>
+          <p>xml_to_sequence(), get_attributes(), get_attribute_value()</p>
+        </li>
+        <li>
+          <h3>get_attributes <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>XML string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Description:</b>
+          <p>the list is returned as a sequence of pairs {name, value}<br></p>
+      <b>Example:</b><br>
+          <code>s = get_attributes("&lt;setting id=\"driver\" value=\"MOSCHIP usb-ethernet driver\" /&gt;")<br>s will get value {{"id", "driver"}, {"value", "MOSCHIP usb-ethernet driver"}}<br></code><br>
+      <b>See also:</b>
+          <p>xml_to_sequence(), get_tag_name(), get_attribute_value()</p>
+        </li>
+        <li>
+          <h3>get_attribute_value <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence name          <p>attribute name</p>
+        </li>
+        <li>
+sequence s          <p>XML string</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>s = get_attribute_value("id", "&lt;setting id=\"driver\" value=\"MOSCHIP usb-ethernet driver\" /&gt;")<br>s will get value "driver"<br></code><br>
+      <b>See also:</b>
+          <p>xml_to_sequence(), get_tag_name(), get_attributes()()</p>
+        </li>
+        <li>
+          <h3>search_target <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence name          <p>value to search for</p>
+        </li>
+        <li>
+sequence elements          <p>detailed HTML/XML parser result</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: list of pathes that match <i>name</i><br></p>
+      <b>Description:</b>
+          <p>searches the best target in this order<br>* exact match if unique (when find_all_nested returns one unique path)<br>* if no exact match is found then partial match if unique (match)<br>* if many exact matches found then filter on tag type TEXT, return filtered matches if not null<br>* if many partial matches found then filter on tag type TEXT, return filtered matches if not null<br>* if many exact matches found then filter on tag type ATTR_VALUE, return filtered matches if not null<br>* if many partial matches found then filter on tag type ATTR_VALUE, return filtered matches if not null<br>* if exact matches found then return matches<br>* return partial matches<br></p>
+      <b>Example:</b><br>
+          <code>s = search_target("0001AAAA", elements, html)<br></code><br>
+      <b>See also:</b>
+          <p>xml_to_sequence(), get_closest_link()</p>
+        </li>
+        <li>
+          <h3>get_parent_containing <span>(sequence, sequence, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence path          <p>numerical path to a tag</p>
+        </li>
+        <li>
+sequence id          <p>value to search for</p>
+        </li>
+        <li>
+sequence elements          <p>detailed HTML/XML parser result</p>
+        </li>
+        <li>
+sequence buffer          <p>HTML/XML string</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>parent = get_parent_containing({504,3,5,2}, "0001AAAA", elements, html)<br></code><br>
+      <b>See also:</b>
+          <p>xml_to_sequence(), get_closest_link()</p>
+        </li>
+        <li>
+          <h3>get_closest_link <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence path          <p>numerical path to a tag</p>
+        </li>
+        <li>
+sequence buffer          <p>HTML/XML string</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>parent = get_closest_link({504,3,5,2}, elements, html)<br></code><br>
+      <b>See also:</b>
+          <p>xml_to_sequence(), get_parent_containing()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{FUNC, "setup_grid", {INTEGER, SEQUENCE, SEQUENCE} },
+{PROC, "clear_grid", {INTEGER} },
+{PROC, "load_grid", {ATOM, SEQUENCE} },
+{PROC, "save_grid", {ATOM, SEQUENCE} },
+{PROC, "set_edit_text", {ATOM} },

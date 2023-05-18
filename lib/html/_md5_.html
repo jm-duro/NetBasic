@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_md5_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_md5_</div>
+    <div class="main">
+      <p>-- md5.e - The MD5 Message-Digest Algorithm - version 1.11<br>
+-- Copyright (C) 2000  Davi Tassinari de Figueiredo<br>
+--<br>
+-- If you wish to contact me, send an e-mail to davitf@usa.net .<br>
+--<br>
+-- You can get the latest version of this program from my Euphoria page:<br>
+-- http://davitf.n3.net/<br>
+--<br>
+--<br>
+-- License terms and disclaimer:<br>
+--<br>
+-- Permission is granted to anyone to use this software for any purpose,<br>
+-- including commercial applications, and to alter it and redistribute it<br>
+-- freely, subject to the following restrictions:<br>
+--<br>
+-- 1. The origin of this software must not be misrepresented; you must not<br>
+--    claim that you wrote the original software or remove the original<br>
+--    authors' names.<br>
+-- 2. Altered source versions must be plainly marked as such, and must not<br>
+--    be misrepresented as being the original software.<br>
+-- 3. All source distributions, with or without modifications, must be<br>
+--    distributed under this license. If this software's source code is<br>
+--    distributed as part of a larger product, this item does not apply to<br>
+--    the rest of the product.<br>
+-- 4. If you use this software in a product, an acknowledgment in the<br>
+--    product documentation is required. If the source code for the product<br>
+--    is not freely distributed, you must include information on how to<br>
+--    freely obtain the original software's source code.<br>
+--<br>
+-- This software is provided 'as-is', without any express or implied<br>
+-- warranty.  In no event will the authors be held liable for any damages<br>
+-- arising from the use of this software.<br>
+--<br>
+-- If you want to distribute this software in a way not allowed by this<br>
+-- license, or distribute the source under different license terms, contact<br>
+-- the authors for permission.<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>md5 <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence message          <p>string to compute</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence of 16-byte hash<br></p>
+      <b>Example:</b><br>
+          <code>whole_file = read_file(filename)<br>return hex_string(md5(whole_file))<br></code><br>
+      <b>See also:</b>
+          <p>md5sum()</p>
+        </li>
+        <li>
+          <h3>md5sum <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence filename          <p>the filename to compute</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: an hexadecimal MD5 hash string of the file content<br></p>
+      <b>Example:</b><br>
+          <code>s = md5sum(sequence filename)<br></code><br>
+      <b>See also:</b>
+          <p>md5()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

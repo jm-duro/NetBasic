@@ -1,0 +1,5 @@
+{FUNC, "registerw32Library", {SEQUENCE} },
+{FUNC, "registerw32Function", {INTEGER, SEQUENCE, SEQUENCE, INTEGER} },
+{FUNC, "registerw32Procedure", {INTEGER, SEQUENCE, SEQUENCE} },
+{FUNC, "w32Func", {ATOM, SEQUENCE} },
+{PROC, "w32Proc", {ATOM, SEQUENCE} },

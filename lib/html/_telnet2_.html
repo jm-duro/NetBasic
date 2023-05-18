@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_telnet2_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_telnet2_</div>
+    <div class="main">
+      <p>-- Manages TCP connections<br>
+-- Program then    TNCNX.PAS<br>
+-- Object then     Delphi component which implement the TCP/IP telnet protocol<br>
+--         including some options negociations.<br>
+--         RFC854, RFC885, RFC779, RFC1091<br>
+-- Author then     Fran&ccedil;ois PIETTE<br>
+-- EMail then    http then//users.swing.be/francois.piette  francois.piette@swing.be<br>
+--         http then//www.rtfm.be/fpiette       francois.piette@rtfm.be<br>
+--         francois.piette@pophost.eunet.be<br>
+-- Creation then   April, 1996<br>
+-- Version then    2.09<br>
+-- Support then    Use the mailing list twsocket@rtfm.be See website for details.<br>
+-- Legal issues then Copyright (C) 1996-2002 by Fran&ccedil;ois PIETTE<br>
+--         Rue de Grady 24, 4053 Embourg, Belgium. Fax then +32-4-365.74.56<br>
+--         <francois.piette@pophost.eunet.be><br>
+--<br>
+--         This software is provided "as-is", without any express or<br>
+--         implied warranty.  In no event will the author be held liable<br>
+--         for any  damages arising from the use of this software.<br>
+--<br>
+--         Permission is granted to anyone to use this software for any<br>
+--         purpose, including commercial applications, and to alter it<br>
+--         and redistribute it freely, subject to the following<br>
+--         restrictions then<br>
+--<br>
+--         1. The origin of this software must not be misrepresented,<br>
+--          you must not claim that you wrote the original software.<br>
+--          If you use this software in a product, an acknowledgment<br>
+--          in the product documentation would be appreciated but is<br>
+--          not required.<br>
+--<br>
+--         2. Altered source versions must be plainly marked as such, and<br>
+--          must not be misrepresented as being the original software.<br>
+--<br>
+--         3. This notice may not be removed or altered from any source<br>
+--          distribution.<br>
+--<br>
+--         4. You must register this software by sending a picture postcard<br>
+--          to the author. Use a nice stamp and mention your name, street<br>
+--          address, EMail address and any comment you like to say.<br>
+--<br>
+-- Updates then<br>
+-- Jul 22, 1997 Adapted to Delphi 3<br>
+-- Sep 5, 1997  Added version information, removed old code, added OnTermType<br>
+--        Renamed some indentifier to be more standard.<br>
+-- Sep 24, 1997 V2.03 Added procedures to negociate options<br>
+-- May 12, 1998 V2.04 Changed NegociateOption to properly handle unwanted<br>
+--        option as Jan Tomasek <xtomasej@feld.cvut.cz> suggested.<br>
+-- Aug 10, 1998 V2.05 Cleared activeConnections[cnx][SUB_OPTION] after NegociateSubOption as Jan<br>
+--        Tomasek <xtomasej@feld.cvut.cz> suggested.<br>
+-- Aug 15, 1999 V2.06 Moved Notification procedure to global section for<br>
+--        BCB4 compatibility<br>
+-- Aug 20, 1999 V2.07 Added compile time options. Revised for BCB4.<br>
+-- Jun 18, 2001 V2.08 Use AllocateHWnd and DeallocateHWnd from wsocket.<br>
+-- Oct 23, 2002 V2.09 Changed Buffer arg in OnDataAvailable to Pointer instead<br>
+--        of PChar to avoid Delphi 7 messing everything with AnsiChar.<br>
+-- Oct 23, 2015 V2.09 Ported to OpenEuphoria 4 by Jean-Marc DURO<br>
+-- Mar 31, 2016 V2.09 Ported to Euphoria 3.11 by Jean-Marc DURO<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>TCP_HOST <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TCP_PORT <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TCP_SOCKET <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TELNET_STATE <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>BUFFER <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>IAC <span> &emsp; [ 6 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>VERB <span> &emsp; [ 7 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SUB_OPTION <span> &emsp; [ 8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SUB_NEGOC <span> &emsp; [ 9 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TELNET_LOGIN <span> &emsp; [ 10 ]</span></h3>
+          <p>Telnet login</p>
+        </li>
+        <li>
+          <h3>LAST_SEND <span> &emsp; [ 11 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LAST_RECV <span> &emsp; [ 12 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>DISCONNECTED <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>CONNECTED <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>IDENTIFIED <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>AUTHENTICATED <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>LISTENING <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>variable</h2>
+      <p>Following global variables are defined:</p>
+      <ul>
+        <li>
+          <h3>sequence activeConnections</h3>
+          <p>list of active connections<br>active does not mean connected (see activeSockets for that)<br></p>
+        </li>
+        <li>
+          <h3>sequence activeSockets</h3>
+          <p>list of active sockets</p>
+        </li>
+        <li>
+          <h3>integer onTheFlowDisplayRoutine</h3>
+          <p>if declared, id of the routine that gets data when check connections() is run<br>not really on the flow until you set a timer to check connections periodically<br></p>
+        </li>
+        <li>
+          <h3>integer rtn_ident_cnx</h3>
+          <p>id of the routine that identifies items in activeConnections<br>to be used for debug with analyze_object<br>example:<br>analyzeObject(activeConnections, "activeConnections", f_debug, rtn_ident_cnx)<br></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>handle_error <span>()</span></h3>
+        </li>
+        <li>
+          <h3>sock_disconnect <span>(socket)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+socket tcpSocket          <p>socket to close</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>sock_disconnect(tcpSocket)<br></code><br>
+        </li>
+        <li>
+          <h3>telnet_close <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>updates activeConnections and activeSockets<br></p>
+      <b>Example:</b><br>
+          <code>telnet_close(1)<br></code><br>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>get_port <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hsock          <p>TCP socket</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: port number<br></p>
+      <b>Description:</b>
+          <p>low-level command<br></p>
+      <b>Example:</b><br>
+          <code>port_used = get_port(tcpSocket)<br>port_used = get_port(activeConnections[cnx][TCP_SOCKET])<br></code><br>
+        </li>
+        <li>
+          <h3>check_link <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>if not check_link(1) then puts(2, "Connection 1 failed!") end if<br></code><br>
+        </li>
+        <li>
+          <h3>get_buffer <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: buffer content<br></p>
+      <b>Example:</b><br>
+          <code>data = get_buffer(cnx)<br></code><br>
+        </li>
+        <li>
+          <h3>set_buffer <span>(integer, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+sequence data          <p>new buffer content</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>data = get_buffer(cnx)<br>ok = set_buffer(cnx, remove(data, 1, 7))<br></code><br>
+        </li>
+        <li>
+          <h3>clean_buffer <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>ok = clean_buffer(cnx)<br></code><br>
+        </li>
+        <li>
+          <h3>sock_bind <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer port          <p>Port to bind a socket</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>atom: socket on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>tcpSocket = sock_bind(23)<br></code><br>
+        </li>
+        <li>
+          <h3>sock_listen <span>(sockets:socket)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sockets:socket tcpSocket          <p>socket to listen on</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>atom: 1 on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>while sock_listen(tcpSocket) do<br>-- do some stuff<br>end while<br></code><br>
+        </li>
+        <li>
+          <h3>sock_connect <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence host          <p>IP address to connect to</p>
+        </li>
+        <li>
+integer port          <p>port to connect to</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>atom: TCP socket on success, 0 on failure<br></p>
+      <b>Example:</b><br>
+          <code>tcpSocket = sock_connect("127.0.0.1", 23)<br></code><br>
+        </li>
+        <li>
+          <h3>telnet_send <span>(integer, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+sequence cmd          <p>command to send (as is)</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>void = telnet_send(cnx, "exit\r\n")<br></code><br>
+      <b>See also:</b>
+          <p>telnet_read(), read_all(), read_until()</p>
+        </li>
+        <li>
+          <h3>find_connection <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence host          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>i = find_connection("192.168.1.250", 23)<br></code><br>
+        </li>
+        <li>
+          <h3>check_connection <span>(integer, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection to check<br></p>
+        </li>
+        <li>
+integer timeout          <p>time out in seconds to wait for. default to 0<br></p>
+        </li>
+        <li>
+integer timeout_micro          <p>additional time out in microseconds to wait for. default to 10000<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 if readable data available, 0 else<br></p>
+      <b>Description:</b>
+          <p>used by telnet_read(), read_all(), read_until() and send_receive()<br>can also be launched periodically by a 0.1 s timer to receive data on the flow<br>to display data on the flow onTheFlowDisplayRoutine has to point to a display routine<br></p>
+      <b>Example:</b><br>
+          <code>procedure onTimer(integer self, integer event, sequence params)<br>-- This handler is called every TIMEOUT ms.<br>integer timerID<br><br>timerID = params[1]<br>if timerID = TIMER then<br>killTimer (Form, TIMER) -- Prevent reentry<br>void = check_connection(cnx)<br>setTimer (Form, TIMER, 100) -- Restart the timer<br>end if<br>end procedure  -- onTimer_Form1<br></code><br>
+        </li>
+        <li>
+          <h3>check_all_connections <span>(integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer timeout          <p>time out in seconds to wait for. default to 0<br></p>
+        </li>
+        <li>
+integer timeout_micro          <p>additional time out in microseconds to wait for. default to 10000<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: connections with readable data<br></p>
+      <b>Description:</b>
+          <p>checks all connections<br>can also be launched periodically by a 0.1 s timer to receive data on the flow<br>to display data on the flow onTheFlowDisplayRoutine has to point to a display routine<br></p>
+      <b>Example:</b><br>
+          <code>procedure onTimer(integer self, integer event, sequence params)<br>-- This handler is called every TIMEOUT ms.<br>integer timerID<br><br>timerID = params[1]<br>if timerID = TIMER then<br>killTimer (Form, TIMER) -- Prevent reentry<br>void = check_all_connections()<br>setTimer (Form, TIMER, 100) -- Restart the timer<br>end if<br>end procedure  -- onTimer_Form1<br></code><br>
+        </li>
+        <li>
+          <h3>telnet_listen <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer port          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: connection id<br></p>
+      <b>Example:</b><br>
+          <code>cnx = telnet_listen(23)<br></code><br>
+        </li>
+        <li>
+          <h3>telnet_accept <span>(socket)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+socket tcpSocket          <p>listening connection</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: connection id<br></p>
+      <b>Description:</b>
+          <p>updates activeConnections and activeSockets<br></p>
+      <b>Example:</b><br>
+          <code>cnx = telnet_accept(listen)<br></code><br>
+        </li>
+        <li>
+          <h3>telnet_connect <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence host          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: connection id<br></p>
+      <b>Description:</b>
+          <p>updates activeConnections and activeSockets<br></p>
+      <b>Example:</b><br>
+          <code>cnx = telnet_connect("192.168.1.250", 23)<br></code><br>
+        </li>
+        <li>
+          <h3>telnet_read <span>(integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+atom wait_time          <p>time to wait for data in seconds: defaults to 0.1s<br></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>data = telnet_read(cnx)<br>data = telnet_read(cnx, 3)<br></code><br>
+      <b>See also:</b>
+          <p>telnet_send()</p>
+        </li>
+        <li>
+          <h3>read_until <span>(integer, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+sequence invite          <p>current invite that ends all received data</p>
+        </li>
+        <li>
+sequence optional          <p>optional "other" is a list of invites that may happen in timeout or abnormal conditions: defaults to {"login:"}<br>optional "wait_time" is time to wait between two data checks: defaults to 0.1s<br>optional "max_time" is maximal delay to wait for expected data: defaults to 3s<br>optional "debug_mode" defaults to 0. When set won't wait for an invite, waits for a timeout<br>in debug mode most devices send lots of data on the flow and expected invite can be splitted by debug data<br></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>first read with telnet_read and a wait_time delay<br>repeat until max_time is reached or invite has been received<br>if login_invite is received, stop reading<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, read_until(cnx, "password:", {})<br></code><br>
+      <b>See also:</b>
+          <p>telnet_send(), read_all()</p>
+        </li>
+        <li>
+          <h3>read_all <span>(integer, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p>connection id</p>
+        </li>
+        <li>
+atom wait_time          <p>time to wait between two data checks: defaults to 0.1s<br></p>
+        </li>
+        <li>
+integer max_time          <p>maximal delay to wait for expected data: defaults to 3s<br></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>first read with telnet_read and a wait_time delay<br>if nothing received, try more until max_time is reached if max_time is an<br>integer or max_time[1] (maxWaitTime) if max_time is a sequence<br>if something received, read more until max_time is reached if max_time is an<br>integer or max_time[1] (maxWaitTime) if max_time is a sequence<br>stop immediatly if nothing more received<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, read_all(cnx))<br></code><br>
+      <b>See also:</b>
+          <p>telnet_send(), read_until()</p>
+        </li>
+        <li>
+          <h3>send_receive <span>(integer, sequence, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer cnx          <p></p>
+        </li>
+        <li>
+sequence cmd          <p></p>
+        </li>
+        <li>
+sequence invite          <p></p>
+        </li>
+        <li>
+sequence optional          <p>optional "login_invite" is invite to log in (when connection lost after idle timeout): defaults to "login:"<br>optional "wait_time" is time to wait between two data checks: defaults to 0.1s<br>optional "max_time" is maximal delay to wait for expected data: defaults to 3s<br>optional "debug_mode" defaults to 0. When set won't wait for an invite, waits for a timeout<br>in debug mode most devices send lots of data on the flow and expected invite can be splitted by debug data<br></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>void = sendReceive(cnx, "exit\r\n", "login:", {})<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

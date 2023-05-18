@@ -1,0 +1,8 @@
+E:\WinApps\euphoria32\include\lib\test\test_ssh2.ex:1
+can't find std/filesys.e in E:\WinApps\euphoria32\include\lib\test
+or in c:\euphoria\win32lib\include
+or in c:\euphoria\include
+include std/filesys.e
+                     ^
+
+

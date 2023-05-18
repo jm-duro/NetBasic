@@ -1,0 +1,2 @@
+{FUNC, "json_to_sequence", {SEQUENCE} },
+{FUNC, "get_json_value", {SEQUENCE, SEQUENCE, OBJECT} },

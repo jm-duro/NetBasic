@@ -1,0 +1,4 @@
+{PROC, "define_series", {OBJECT, SEQUENCE} },
+{FUNC, "next_number", {OBJECT} },
+{FUNC, "current_number", {OBJECT} },
+{FUNC, "get_series", {OBJECT} },

@@ -1,0 +1,19 @@
+{#E2, #9C, #93}
+utf8_to_chr(#C398) = 00D8 'Ш'
+utf8_to_chr(#C2A3) = 00A3 'Ј'
+s[i]   = C3
+s[i+1] = 98
+char = 00D8
+s[i]   = C2
+s[i+1] = A3
+char = 00A3
+s[i]   = C3
+s[i+1] = A8
+char = 00E8
+s[i]   = C3
+s[i+1] = A9
+char = 00E9
+s[i]   = C3
+s[i+1] = AA
+char = 00EA
+ШЈийк

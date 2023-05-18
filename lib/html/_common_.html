@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_common_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_common_</div>
+    <div class="main">
+      <p></p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>EU_4_1_LNX_64 <span> &emsp; [ 1 ]</span></h3>
+          <p>OpenEuphoria 4.1 running on 64-bit Linux<br></p>
+        </li>
+        <li>
+          <h3>EU_4_1_LNX_32 <span> &emsp; [ 2 ]</span></h3>
+          <p>OpenEuphoria 4.1 running on 32-bit Linux<br></p>
+        </li>
+        <li>
+          <h3>EU_4_0_LNX <span> &emsp; [ 3 ]</span></h3>
+          <p>OpenEuphoria 4.0 running on Linux<br>always considered as 32-bit even on 64-bit OSes<br></p>
+        </li>
+        <li>
+          <h3>EU_4_1_WIN_64 <span> &emsp; [ 5 ]</span></h3>
+          <p>OpenEuphoria 4.1 running on 64-bit Windows<br></p>
+        </li>
+        <li>
+          <h3>EU_4_1_WIN_32 <span> &emsp; [ 6 ]</span></h3>
+          <p>OpenEuphoria 4.1 running on 32-bit Windows<br></p>
+        </li>
+        <li>
+          <h3>EU_4_0_WIN <span> &emsp; [ 7 ]</span></h3>
+          <p>OpenEuphoria 4.0 running on Windows<br>always considered as 32-bit even on 64-bit OSes<br></p>
+        </li>
+        <li>
+          <h3>ON <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>OFF <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>SUCCESS <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>FAIL <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>TRUE <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>FALSE <span> &emsp; [ 0 ]</span></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>variable</h2>
+      <p>Following global variables are defined:</p>
+      <ul>
+        <li>
+          <h3>integer address_length</h3>
+          <p>address length for pointers detected by _version_.e<br>* 4 on 32-bit OSes<br>* 8 on 64-bit OSes<br></p>
+        </li>
+        <li>
+          <h3>integer f_debug</h3>
+          <p>default debug file handle: defaults to 0 (no_debug)<br>set f_debug to 1 to debug on standard output<br>open a file in write text mode "w" and set f_debug to its handle<br>to debug to a file<br><code>ex: f_debug = open("debug.log", "w")<br></code></p>
+        </li>
+        <li>
+          <h3>integer with_debug</h3>
+          <p>if set, log_puts and log_printf will write to debug file<br>defaults to 0 (no_debug)<br></p>
+        </li>
+        <li>
+          <h3>sequence InitialDir</h3>
+          <p>directory where the program is located. Defaults to ".".</p>
+        </li>
+        <li>
+          <h3>object void</h3>
+          <p>Dummy object used when function return value is unused<br><code>ex: void = change_directory("..")<br></code></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>log_puts <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence msg          <p>the message to put in the debug file</p>
+        </li>
+      </ul>
+      <b>See also:</b>
+          <p>log_printf</p>
+        </li>
+        <li>
+          <h3>log_printf <span>(sequence, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence format          <p>the format of the value to put in the debug file</p>
+        </li>
+        <li>
+object value          <p>the value to put in the debug file</p>
+        </li>
+      </ul>
+      <b>See also:</b>
+          <p>log_puts</p>
+        </li>
+        <li>
+          <h3>error_message <span>(sequence, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence msg          <p>error message to log/display</p>
+        </li>
+        <li>
+atom quit          <p>abort (1) or not (0)</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>logs an error and displays a warning<br>then abort if quit is set<br></p>
+      <b>Example:</b><br>
+          <code>if atom(o) then<br>error_message(sprintf("Unknown option '%d'", {option}), 1)<br>end if<br></code><br>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>get_option <span>(sequence, sequence, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence name          <p>name associated to a value</p>
+        </li>
+        <li>
+sequence options          <p>list of pairs {name, value}</p>
+        </li>
+        <li>
+object default          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>object: value associated with specified mane<br></p>
+      <b>Example:</b><br>
+          <code>search_field = get_option("search_field", optional, 1)<br>returns optional value associated with "search_field" in sequence optional<br>defaults to 1 if not found<br>example of a call to the parent function:<br>find_in_array(2, {{"first",1},{"second",2}}, {{"search_field",2}})<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

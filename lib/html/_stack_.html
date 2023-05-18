@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_stack_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_stack_</div>
+    <div class="main">
+      <p></p>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>stack_clear <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to clear</p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>stack_remove <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence stack_name          <p>name of the stack to remove</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>stack_remove("tags")<br></code><br>
+      <b>See also:</b>
+          <p>stack_new()</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>stack_check <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to check</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 if valid or 0 if not<br></p>
+      <b>Example:</b><br>
+          <code>if not stack_check(stack_id) then return 0 end if<br></code><br>
+        </li>
+        <li>
+          <h3>stack_push <span>(integer, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to push on</p>
+        </li>
+        <li>
+object o          <p>object to push on the stack</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: 1 if successful, 0 if not<br></p>
+      <b>Example:</b><br>
+          <code>void = stack_push(10, "One")<br>pushes string "One" on stack #10<br></code><br>
+      <b>See also:</b>
+          <p>stack_pop(), stack_at(), stack_last()</p>
+        </li>
+        <li>
+          <h3>stack_last <span>(integer, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to check</p>
+        </li>
+        <li>
+object notFound          <p>object to return if check fails</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>last item if successful or object notFound if not<br></p>
+      <b>Description:</b>
+          <p>stack_last does not remove the last item of the stack as stack_pop does<br></p>
+      <b>Example:</b><br>
+          <code>x = stack_last(stack_id, notFound)<br>returns last object if stack is not empty and notFound if not<br></code><br>
+      <b>See also:</b>
+          <p>stack_push(), stack_pop(), stack_at()</p>
+        </li>
+        <li>
+          <h3>stack_pop <span>(integer, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to pop from</p>
+        </li>
+        <li>
+object notFound          <p>object to return if pop fails</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>last item if successful or object notFound if not<br></p>
+      <b>Description:</b>
+          <p>stack_pop removes the last item of the stack whereas stack_last does not<br></p>
+      <b>Example:</b><br>
+          <code>x = stack_pop(stack_id, notFound)<br>returns most recent object if stack is not empty and notFound if not<br></code><br>
+      <b>See also:</b>
+          <p>stack_push(), stack_last(), stack_at()</p>
+        </li>
+        <li>
+          <h3>stack_at <span>(integer, integer, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to check</p>
+        </li>
+        <li>
+integer i          <p>position of item to check in the stack</p>
+        </li>
+        <li>
+object notFound          <p>object to return if check fails</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>item at given position if successful or object notFound if not<br></p>
+      <b>Description:</b>
+          <p>stack_at does change the content of the stack<br></p>
+      <b>Example:</b><br>
+          <code>x = stack_at(stack_id, 3, notFound)<br>returns the third most recent object in stack if stack_size is enough<br>and notFound if not<br></code><br>
+      <b>See also:</b>
+          <p>stack_push(), stack_pop(), stack_last()</p>
+        </li>
+        <li>
+          <h3>stack_dump <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to compute the path</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>void = stack_push(10, "One")<br>void = stack_push(10, "Two")<br>void = stack_push(10, "Three")<br>puts(1, stack_dump(10)) shows<br>.  [1] "Three"<br>.  [2] "Two"<br>.  [3] "One"<br></code><br>
+        </li>
+        <li>
+          <h3>stack_path <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to compute the path</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: a string formatted as a POSIX file path<br></p>
+      <b>Description:</b>
+          <p>result is formatted as a POSIX file path<br></p>
+      <b>Example:</b><br>
+          <code>void = stack_push(10, "One")<br>void = stack_push(10, "Two")<br>void = stack_push(10, "Three")<br>puts(1, stack_path(10)) shows "Three/Two/One"<br></code><br>
+        </li>
+        <li>
+          <h3>stack_find <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence stack_name          <p>stack name to find</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: corresponding stack id<br></p>
+        </li>
+        <li>
+          <h3>stack_size <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer stack_id          <p>stack id to check</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: stack size<br></p>
+        </li>
+        <li>
+          <h3>stack_new <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence stack_name          <p>stack name to associate with new stack id</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>integer: the new stack id<br></p>
+      <b>Example:</b><br>
+          <code>id = stack_new("tags")<br></code><br>
+      <b>See also:</b>
+          <p>stack_remove()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

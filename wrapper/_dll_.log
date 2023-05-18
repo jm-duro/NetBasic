@@ -1,0 +1,7 @@
+{FUNC, "size_of", {ATOM} },
+{FUNC, "allocate_structure", {ATOM, SEQUENCE} },
+{PROC, "write_structure", {ATOM, SEQUENCE, SEQUENCE} },
+{FUNC, "read_structure", {ATOM, SEQUENCE} },
+{PROC, "free_structure", {ATOM, SEQUENCE, SEQUENCE} },
+{FUNC, "register_library", {SEQUENCE, SEQUENCE} },
+{FUNC, "register_routine", {ATOM, SEQUENCE, SEQUENCE} },

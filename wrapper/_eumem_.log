@@ -1,0 +1,2 @@
+{FUNC, "memAlloc", {OBJECT} },
+{PROC, "memFree", {ATOM} },

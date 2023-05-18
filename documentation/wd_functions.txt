@@ -1,0 +1,467 @@
+Session
+=======
+
+  Management
+  ==========
+
+  wd_cleanup                       Final cleanup
+
+  wd_delete_session                Delete the session
+
+  wd_get_session_capabilities      Retrieve the capabilities of the specified
+                                   session
+
+  wd_init                          Initializes CURL and sets proxy
+
+  wd_list_sessions                 Returns a list of the currently active
+                                   sessions
+
+  wd_new_session                   Starts a new Chrome session
+  
+  Timeouts
+  ========
+
+  wd_set_timeout                   Set the amount of time, in milliseconds, that
+                                   an operation can run before it is aborted and
+                                   a Timeout error occurs
+
+  wd_set_script_timeout            Set the amount of time, in milliseconds, that
+                                   asynchronous scripts can run before they are
+                                   aborted and a Timeout error occurs
+
+  wd_set_implicit_wait             Set the amount of time the driver should wait
+                                   when searching for elements
+
+  Cookies
+  =======
+
+  wd_add_cookie                    Set a cookie
+
+  wd_delete_all_cookies            Delete all cookies visible to the current
+                                   page
+
+  wd_get_cookies                   Retrieve all cookies visible to the current
+                                   page
+
+  wd_delete_cookie_by_name         Delete the cookie with the given name
+
+  Logs
+  ====
+
+  wd_get_log                       Get the log for a given log type
+
+  wd_list_available_log_types      Get available log types
+
+  Status
+  ======
+
+  wd_get_html5_cache_status        Get the status of the html5 application cache
+
+  wd_get_status                    Query the server's current status
+
+Navigation
+==========
+
+  Navigation
+  ==========
+
+  wd_go_back                       Navigate backwards in the browser history,
+                                   if possible
+
+  wd_go_forward                    Navigate forwards in the browser history,
+                                   if possible
+
+  wd_switch_to_frame               Change focus to another frame on the page
+
+  wd_switch_to_parent_frame        Change focus back to parent frame
+
+  wd_change_url                    Navigate to a new URL
+
+  wd_get_current_url               Retrieve the URL of the current page
+
+  wd_get_page_source               Get the current page source
+
+  wd_get_title                     Get the current page title
+
+  Alerts
+  ======
+
+  wd_accept_alert                  Accepts the currently displayed alert dialog
+
+  wd_dismiss_alert                 Dismisses the currently displayed alert
+                                   dialog
+
+  wd_get_alert_text                Gets the text of the currently displayed
+                                   JavaScript alert(), confirm(), or prompt()
+                                   dialog
+
+  wd_send_keys_to_alert            Sends keystrokes to a JavaScript prompt()
+                                   dialog
+
+  Windows
+  =======
+
+  wd_close_current_window          Close the current window
+
+  wd_get_all_window_handles        Retrieve the list of all window handles
+                                   available to the session
+
+  wd_get_current_window_handle     Retrieve the current window handle
+
+  wd_get_window_position           Get the position of the specified window
+
+  wd_get_window_size               Get the size of the specified window
+
+  wd_maximize_window               Maximize the specified window if not already
+                                   maximized
+
+  wd_set_window_position           Change the position of the specified window
+
+  wd_set_window_size               Change the size of the specified window
+
+  wd_switch_to_window              Change focus to another window
+
+  wd_get_orientation               Get the current browser orientation
+
+  wd_set_orientation               Set the browser orientation
+
+  wd_refresh                       Refresh the current page
+
+  wd_take_screenshot               Take a screenshot of the current page
+
+Elements
+========
+
+  wd_clear_element                 Clear a TEXTAREA or text INPUT element's
+                                   value
+
+  wd_click_element                 Click on an element
+
+  wd_element_equals                Test if two element IDs refer to the same DOM
+                                   element
+
+  wd_get_active_element            Get the element on the page that currently
+                                   has focus
+
+  wd_get_css_property              Query the value of an element's computed CSS
+                                   property
+
+  wd_get_element                   Describe the identified element
+
+  wd_get_element_attribute         Get the value of an element's attribute
+
+  wd_get_element_location          Determine an element's location on the page
+
+  wd_get_element_location_in_view  Determine an element's location on the screen
+                                   once it has been scrolled into view
+
+  wd_get_element_name              Query for an element's tag name
+
+  wd_get_element_size              Determine an element's size in pixels
+
+  wd_get_element_text              Returns the visible text for the element
+
+  wd_is_element_displayed          Determine if an element is currently
+                                   displayed
+
+  wd_is_element_enabled            Determine if an element is currently enabled
+
+  wd_is_element_selected           Determine if an OPTION element, or an INPUT
+                                   element of type checkbox or radiobutton is
+                                   currently selected
+
+  wd_search_element                Search for an element on the page, starting
+                                   from the document root
+
+  wd_search_element_from           Search for an element on the page, starting
+                                   from the identified element
+
+  wd_search_elements               Search for multiple elements on the page,
+                                   starting from the document root
+
+  wd_search_elements_from          Search for multiple elements on the page,
+                                   starting from the identified element
+  
+  wd_select_element_by_id          Search for an element ID on the page,
+                                   starting from the document root
+  
+  wd_select_element_by_name        Search for an element NAME on the page,
+                                   starting from the document root
+
+  wd_send_keys_to_active_element
+
+  wd_send_keys_to_element          Send a sequence of key strokes to an element
+  
+  wd_set_element                   Send a sequence of key strokes to an element
+
+  wd_submit_form                   Submit a FORM element
+
+Mouse
+=====
+
+  wd_button_down                   Click and hold the left mouse button at the
+                                   current mouse coordinates (set by
+                                   wd_move_mouse_to)
+
+  wd_button_up                     Releases the mouse button previously held
+
+  wd_click                         Click any mouse button at the current mouse
+                                   coordinates (set by wd_move_mouse_to)
+
+  wd_double_click                  Double-clicks at the current mouse
+                                   coordinates (set by wd_move_mouse_to)
+
+  wd_move_mouse_to                 Move the mouse by an offset of the specified
+                                   element
+
+Touch
+=====
+
+  wd_touch_single_tap              Single tap on the touch enabled device
+
+  wd_touch_double_tap              Double tap on the touch screen using finger
+                                   motion events
+
+  wd_touch_down                    Finger down on the screen
+
+  wd_touch_flick                   Flick on the touch screen using finger motion
+                                   events. This flick command starts at a
+                                   particular screen location
+
+  wd_touch_flick_anywhere          Flick on the touch screen using finger motion
+                                   events. Use this flick command if you don't
+                                   care where the flick starts on the screen
+
+  wd_touch_long_press              Long press on the touch screen using finger
+                                   motion events
+
+  wd_touch_move                    Finger move on the screen
+
+  wd_touch_scroll                  Scroll on the touch screen using finger based
+                                   motion events
+
+  wd_touch_up                      Finger up on the screen
+
+Javascript
+==========
+
+  wd_execute_async_script          Inject a snippet of JavaScript into the page
+                                   for execution in the context of the currently
+                                   selected frame. The executed script is
+                                   assumed to be asynchronous and must signal
+                                   that is done by invoking the provided
+                                   callback, which is always provided as the
+                                   final argument to the function. The value to
+                                   this callback will be returned to the client
+
+  wd_execute_script                Inject a snippet of JavaScript into the page
+                                   for execution in the context of the currently
+                                   selected frame. The executed script is
+                                   assumed to be synchronous and the result of
+                                   evaluating the script is returned to the
+                                   client
+
+IME
+===
+
+  wd_activate_ime                  Make an engines that is available active
+
+  wd_deactivate_ime                De-activates the currently-active IME engine
+
+  wd_get_ime_active_engine         Get the name of the active IME engine
+
+  wd_is_ime_activated              Indicates whether IME input is active at the
+                                   moment (not if it's available)
+
+  wd_list_ime_available_engines    List all available engines on the machine
+
+Storage
+=======
+
+  Local storage
+  =============
+
+  wd_clear_local_storage           Clear the storage
+                                   
+  wd_get_local_storage_keys        Get all keys of the storage
+                                   
+  wd_set_local_storage_item        Set the storage item for the given key
+                                   
+  wd_get_local_storage_item        Get the storage item for the given key
+                                   
+  wd_remove_local_storage_item     Remove the storage item for the given key
+
+  wd_get_local_storage_size        Get the number of items in the storage
+
+  Session storage
+  ===============
+
+  wd_clear_session_storage         Clear the storage
+
+  wd_get_session_storage_key       Get all keys of the storage
+
+  wd_set_session_storage_item      Set the storage item for the given key
+
+  wd_get_session_storage_item      Get the storage item for the given key
+
+  wd_remove_session_storage_item   Remove the storage item for the given key
+
+  wd_get_session_storage_size      Get the number of items in the storage
+
+Geo location
+============
+
+  wd_get_geo_location              Get the current geo location
+
+  wd_set_geo_location              Set the current geo location
+
+--------------------------------------------------------------------------------
+-- Following functions may be out-of-date or for standalone Selenium server
+-- (remote web driver). They are untested and may be missing parameters.
+--------------------------------------------------------------------------------
+
+  wd_get_session_logs              Get all sessions logs
+  wd_get_alert                     Get alert
+  wd_is_auto_reporting
+  wd_set_auto_reporting
+  wd_is_browser_online
+  wd_set_browser_online
+  wd_launch_app
+  wd_delete_network_conditions
+  wd_get_network_conditions
+  wd_set_network_conditions
+  wd_drag_element
+  wd_hover_over_element
+  wd_get_element_value
+  wd_execute_sql
+  wd_upload_file
+  wd_is_loading
+  wd_get_network_connection
+  wd_set_network_connection
+  wd_delete_orientation
+  wd_touch_pinch
+  wd_is_browser_visible
+  wd_set_browser_visible
+  wd_get_sessions
+
+Alphabetic order
+================
+
+  wd_accept_alert
+  wd_activate_ime
+  wd_add_cookie
+  wd_button_down
+  wd_button_up
+  wd_change_url
+  wd_clear_element
+  wd_clear_local_storage
+  wd_clear_session_storage
+  wd_click
+  wd_click_element
+  wd_close_current_window
+  wd_deactivate_ime
+  wd_delete_all_cookies
+  wd_delete_cookie_by_name
+  wd_delete_network_conditions
+  wd_delete_orientation
+  wd_delete_session
+  wd_dismiss_alert
+  wd_double_click
+  wd_drag_element
+  wd_element_equals
+  wd_execute_async_script
+  wd_execute_script
+  wd_execute_sql
+  wd_get_active_element
+  wd_get_alert
+  wd_get_alert_text
+  wd_get_all_window_handles
+  wd_get_cookies
+  wd_get_css_property
+  wd_get_current_url
+  wd_get_current_window_handle
+  wd_get_element
+  wd_get_element_attribute
+  wd_get_element_location
+  wd_get_element_location_in_view
+  wd_get_element_name
+  wd_get_element_size
+  wd_get_element_text
+  wd_get_element_value
+  wd_get_geo_location
+  wd_get_html5_cache_status
+  wd_get_ime_active_engine
+  wd_get_local_storage_item
+  wd_get_local_storage_keys
+  wd_get_local_storage_size
+  wd_get_log
+  wd_get_network_conditions
+  wd_get_network_connection
+  wd_get_orientation
+  wd_get_page_source
+  wd_get_session_capabilities
+  wd_get_session_logs
+  wd_get_session_storage_item
+  wd_get_session_storage_key
+  wd_get_session_storage_size
+  wd_get_sessions
+  wd_get_title
+  wd_get_window_position
+  wd_get_window_size
+  wd_go_back
+  wd_go_forward
+  wd_hover_over_element
+  wd_is_auto_reporting
+  wd_is_browser_online
+  wd_is_browser_visible
+  wd_is_element_displayed
+  wd_is_element_enabled
+  wd_is_element_selected
+  wd_is_ime_activated
+  wd_is_loading
+  wd_launch_app
+  wd_list_available_log_types
+  wd_list_ime_available_engines
+  wd_maximize_window
+  wd_move_mouse_to
+  wd_refresh
+  wd_remove_local_storage_item
+  wd_remove_session_storage_item
+  wd_search_element
+  wd_search_element_from
+  wd_search_elements
+  wd_search_elements_from
+  wd_send_keys_to_active_element
+  wd_send_keys_to_alert
+  wd_send_keys_to_element
+  wd_set_auto_reporting
+  wd_set_browser_online
+  wd_set_browser_visible
+  wd_set_geo_location
+  wd_set_implicit_wait
+  wd_set_local_storage_item
+  wd_set_network_conditions
+  wd_set_network_connection
+  wd_set_orientation
+  wd_set_script_timeout
+  wd_set_session_storage_item
+  wd_set_timeout
+  wd_set_window_position
+  wd_set_window_size
+  wd_status
+  wd_submit_form
+  wd_switch_to_frame
+  wd_switch_to_parent_frame
+  wd_switch_to_window
+  wd_take_screenshot
+  wd_touch_double_tap
+  wd_touch_down
+  wd_touch_flick
+  wd_touch_flick_anywhere
+  wd_touch_long_press
+  wd_touch_move
+  wd_touch_pinch
+  wd_touch_scroll
+  wd_touch_single_tap
+  wd_touch_up
+  wd_upload_file

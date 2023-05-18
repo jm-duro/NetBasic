@@ -1,0 +1,80 @@
+_common_.e
+  include dll.e
+  include machine.e
+  include file.e
+  include misc.e
+  include wildcard.e
+  include msgbox.e
+
+_types_.e
+
+_eumem_.e
+
+_search_.e
+  include _common_.e
+
+_math_.e
+  include _common_.e
+  include _types_.e
+
+_version_.e
+  include _common_.e
+
+_machine_.e
+  include machine.e
+  include _version_.e
+  include _common_.e
+
+_debug_.e
+  include file.e
+  include graphics.e
+  include msgbox.e
+  include get.e
+  include wildcard.e
+  include _version_.e
+  include _types_.e
+
+_conv_.e
+  include _types_.e
+  include _debug_.e
+  include _search_.e
+
+_sequence_.e
+  include _common_.e
+  include _types_.e
+  include _conv_.e
+
+_stack_.e
+  include _debug_.e
+  include _search_.e
+  include _sequence_.e
+
+_http_.e
+  include _types_.e
+  include _debug_.e
+  include _search_.e
+  include _conv_.e
+  include _sequence_.e
+
+_xml_.e
+  include _debug_.e
+  include _conv_.e
+  include _sequence_.e
+
+_file_.e
+  include _common_.e
+  include _types_.e
+  include _debug_.e
+  include _conv_.e
+  include _sequence_.e
+
+_md5_.e
+  include _file_.e
+
+_dll_.e
+  include dll.e
+  include _version_.e
+  include _search_.e
+  include _machine_.e
+  include _sequence_.e
+  include _debug_.e

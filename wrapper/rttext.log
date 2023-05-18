@@ -1,0 +1,4 @@
+{FUNC, "setUserLanguage", {OBJECT} },
+{FUNC, "setContainer", {OBJECT} },
+{FUNC, "UseText", {OBJECT, SEQUENCE} },
+{FUNC, "FormatMsg", {OBJECT, SEQUENCE} },

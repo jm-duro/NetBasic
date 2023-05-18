@@ -1,0 +1,2 @@
+{FUNC, "md5", {SEQUENCE} },
+{FUNC, "md5sum", {SEQUENCE} },

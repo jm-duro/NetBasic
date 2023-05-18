@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_winhttp_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_winhttp_</div>
+    <div class="main">
+      <p>-- WinHTTP wrapper<br>
+-- WinHTTP is Unicode only<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>WinHttpAddRequestHeaders <span>(atom, object, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hRequest          <p></p>
+        </li>
+        <li>
+object Headers          <p></p>
+        </li>
+        <li>
+atom dwModifiers          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpCheckPlatform <span>()</span></h3>
+        </li>
+        <li>
+          <h3>WinHttpCloseHandle <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hInternet          <p>Valid HINTERNET handle to be closed.</p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpConnect <span>(atom, sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hSession          <p></p>
+        </li>
+        <li>
+sequence ServerName          <p></p>
+        </li>
+        <li>
+integer nServerPort          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpCrackUrl <span>(atom, integer, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom pwszUrl          <p></p>
+        </li>
+        <li>
+integer dwUrlLength          <p></p>
+        </li>
+        <li>
+integer dwFlags          <p></p>
+        </li>
+        <li>
+atom lpUrlComponents          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpCreateUrl <span>(atom, integer, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom lpUrlComponents          <p></p>
+        </li>
+        <li>
+integer dwFlags          <p></p>
+        </li>
+        <li>
+atom pwszUrl          <p></p>
+        </li>
+        <li>
+atom pdwUrlLength          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpDetectAutoProxyConfigUrl <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>This function reports the URL of the PAC file, but it does not download the file.<br></p>
+        </li>
+        <li>
+          <h3>WinHttpGetDefaultProxyConfiguration <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpGetIEProxyConfigForCurrentUser <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpGetProxyForUrl <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpOpen <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpOpenRequest <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpQueryAuthSchemes <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpQueryDataAvailable <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hRequest          <p>A valid HINTERNET handle returned by WinHttpOpenRequest.</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>number of bytes of data that are available to read immediately by a<br>subsequent call to WinHttpReadData.<br><br>If no data is available and the end of the file has not been reached, one of<br>two things happens:<br>* If the session is synchronous, the request waits until data becomes<br>available.<br>* If the session is asynchronous, the function returns TRUE, and when data<br>becomes available, calls the callback function with<br>WINHTTP_STATUS_CALLBACK_DATA_AVAILABLE and indicates the number of bytes<br>immediately available to read by calling WinHttpReadData.<br></p>
+        </li>
+        <li>
+          <h3>WinHttpQueryHeaders <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hRequest          <p>Valid HINTERNET handle returned by WinHttpOpenRequest. Wait until<br>WinHttpSendRequest has completed before calling this function.<br></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpQueryStatusCode <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hRequest          <p>Valid HINTERNET handle returned by WinHttpOpenRequest. Wait until<br>WinHttpSendRequest has completed before calling this function.<br></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpQueryOption <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpReadData <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpReceiveResponse <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpSendRequest <span>(atom, object, object, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hRequest          <p>Valid HINTERNET handle returned by WinHttpOpenRequest. Wait until<br>WinHttpSendRequest has completed before calling this function.<br></p>
+        </li>
+        <li>
+object additional_headers          <p>either a sequence or WINHTTP_NO_ADDITIONAL_HEADERS</p>
+        </li>
+        <li>
+object request_data          <p>either a sequence or WINHTTP_NO_REQUEST_DATA</p>
+        </li>
+        <li>
+atom dwContext          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>bResults = WinHttpSendRequest(hRequest,<br>WINHTTP_NO_ADDITIONAL_HEADERS,<br>WINHTTP_NO_REQUEST_DATA,<br>0)<br>bResults = WinHttpSendRequest(hRequest,<br>"content-type:application/x-www-form-urlencoded",<br>credentials,<br>0)<br></code><br>
+        </li>
+        <li>
+          <h3>WinHttpSetCredentials <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpSetDefaultProxyConfiguration <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpSetOption <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpSetStatusCallback <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpSetTimeouts <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpTimeFromSystemTime <span>()</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>WinHttpTimeToSystemTime <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence http_time          <p>HTTP time/date string</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence of integers<br>{wYear, wMonth, wDayOfWeek, wDay, wHour, wMinute, wSecond, wMilliseconds}<br><br>wYear<br>The year. The valid values for this member are 1601 through 30827.<br>wMonth<br>The month. The valid values for this member are 1 through 12.<br>wDayOfWeek<br>The day of the week. This member can be one of the following values.<br>Value   Meaning<br>0       Sunday<br>1       Monday<br>2       Tuesday<br>3       Wednesday<br>4       Thursday<br>5       Friday<br>6       Saturday<br>wDay<br>The day of the month. The valid values for this member are 1 through 31.<br>wHour<br>The hour. The valid values for this member are 0 through 23.<br>wMinute<br>The minute. The valid values for this member are 0 through 59.<br>wSecond<br>The second. The valid values for this member are 0 through 59.<br>wMilliseconds<br>The millisecond. The valid values for this member are 0 through 999.<br></p>
+        </li>
+        <li>
+          <h3>WinHttpWriteData <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hRequest          <p>Valid HINTERNET handle returned by WinHttpOpenRequest. Wait until<br>WinHttpSendRequest has completed before calling this function.<br></p>
+        </li>
+        <li>
+sequence Data          <p>data to be sent to the server</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns TRUE if successful, or FALSE otherwise.</p>
+        </li>
+        <li>
+          <h3>WinHttpExtractCookies <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence headers          <p>sequence of headers</p>
+        </li>
+        <li>
+integer raw          <p>extracts raw cookie line from header if 1 (true), only cookie name and<br>value if 0 (false). defaults to 0.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br>list of cookies found in last header<br></p>
+      <b>Description:</b>
+          <p>option raw defaults to no (only cookie name and value returned)<br>only last header is considered in case of redirection<br></p>
+      <b>Example:</b><br>
+          <code>Headers = WinHttpQueryHeaders( hRequest )<br>if sequence(Buffer) then<br>cookies = WinHttpExtractCookies(Headers, 1)<br>analyze_object(cookies, "cookies")<br><br>cookies = WinHttpExtractCookies(Headers)<br>analyze_object(cookies, "cookies", f_debug)<br>end if<br></code><br>
+        </li>
+        <li>
+          <h3>WinHttpExtractCsrfToken <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence content          <p>HTML content</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br>* CRSF token<br></p>
+      <b>Example:</b><br>
+          <code>Buffer = ""<br>dwSize = WinHttpQueryDataAvailable(hRequest)<br>while dwSize do<br>Buffer &= WinHttpReadData(hRequest, dwSize)<br>dwSize = WinHttpQueryDataAvailable(hRequest)<br>end while<br>token = WinHttpExtractCsrfToken(Buffer)<br></code><br>
+        </li>
+        <li>
+          <h3> <span>(, , )</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3> <span>(, , , )</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+        <li>
+          <p></p>
+        </li>
+      </ul>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

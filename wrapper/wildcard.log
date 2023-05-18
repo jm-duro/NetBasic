@@ -1,0 +1,4 @@
+{FUNC, "lower", {OBJECT} },
+{FUNC, "upper", {OBJECT} },
+{FUNC, "wildcard_match", {SEQUENCE, SEQUENCE} },
+{FUNC, "wildcard_file", {SEQUENCE, SEQUENCE} },

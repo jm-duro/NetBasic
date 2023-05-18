@@ -1,0 +1,224 @@
+include lib/_types_.e
+include lib/_file_.e
+include eugrid.ew
+include win32lib.ew
+
+public constant STRING = 1, INTEGER = 2, FLOAT = 3
+--<constant>
+--<name>STRING</name>
+--<value>1</value>
+--<desc></desc>
+--</constant>
+--<constant>
+--<name>INTEGER</name>
+--<value>2</value>
+--<desc></desc>
+--</constant>
+--<constant>
+--<name>FLOAT</name>
+--<value>3</value>
+--<desc></desc>
+--</constant>
+
+-- function  setup_grid(integer grid, sequence colNames, sequence colSettings)
+-- procedure clean_grid(integer grid)
+-- procedure load_grid(atom grid, sequence filename)
+-- procedure save_grid(atom grid, sequence filename)
+-- procedure setEditText(atom grid)
+
+------------------------------------------------------------------------------
+
+procedure formatIntegerColumn(atom grid, atom col)
+  void = EGW_SetColumnProperty(grid, col, EGW_COL_ALIGN, EGW_RIGHT)
+  void = EGW_SetColumnProperty(grid, col, EGW_COL_DATATYPE, EGW_NUMBER)
+  void = EGW_SetColumnProperty(grid, col, EGW_COL_NUMFORMAT, "%d")
+end procedure
+
+------------------------------------------------------------------------------
+
+procedure formatFloatColumn(atom grid, atom col)
+  void = EGW_SetColumnProperty(grid, col, EGW_COL_ALIGN, EGW_RIGHT)
+  void = EGW_SetColumnProperty(grid, col, EGW_COL_DATATYPE, EGW_NUMBER)
+  void = EGW_SetColumnProperty(grid, col, EGW_COL_NUMFORMAT, "%-0.2f")
+end procedure
+
+------------------------------------------------------------------------------
+
+public function setup_grid(integer grid, sequence colNames, sequence colSettings)
+--<function>
+--<name>setup_grid</name>
+--<digest></digest>
+--<desc>
+--</desc>
+--<param>
+--<type>integer</type>
+--<name>grid</name>
+--<desc></desc>
+--</param>
+--<param>
+--<type>sequence</type>
+--<name>colNames</name>
+--<desc></desc>
+--</param>
+--<param>
+--<type>sequence</type>
+--<name>colSettings</name>
+--<desc></desc>
+--</param>
+--<return>
+--</return>
+--<example>
+--</example>
+--<see_also>
+--</see_also>
+--</function>
+  integer id
+  sequence res
+
+  res = {}
+  for i = 1 to length(colNames)  do
+    id = EGW_AddColumn(grid, colNames[i], colSettings[i][1], EGW_LAST, colSettings[i][2], i )
+    res = append(res, id)
+    if colSettings[i][3] = STRING then
+    elsif colSettings[i][3] = INTEGER then
+      formatIntegerColumn(grid, id)
+    elsif colSettings[i][3] = FLOAT then
+      formatFloatColumn(grid, id)
+    end if
+  end for
+  return res
+end function
+
+------------------------------------------------------------------------------
+
+public procedure clear_grid(integer grid)
+--<procedure>
+--<name>clear_grid</name>
+--<digest></digest>
+--<desc>
+--</desc>
+--<param>
+--<type>integer</type>
+--<name>grid</name>
+--<desc></desc>
+--</param>
+--<example>
+--</example>
+--<see_also>
+--</see_also>
+--</procedure>
+  VOID = EGW_LoadData( grid, {}, EGW_REPLACE )
+end procedure
+
+------------------------------------------------------------------------------
+
+public procedure load_grid(atom grid, sequence s)
+--<procedure>
+--<name>load_grid</name>
+--<digest></digest>
+--<desc>
+--</desc>
+--<param>
+--<type>atom</type>
+--<name>grid</name>
+--<desc></desc>
+--</param>
+--<param>
+--<type>sequence</type>
+--<name>s</name>
+--<desc></desc>
+--</param>
+--<example>
+--</example>
+--<see_also>
+--</see_also>
+--</procedure>
+  integer n
+  object nbcols
+
+--  analyzeSequence(s, "s", f_debug)
+  for i = 1 to length(s) do
+    n = EGW_AddDataRow ( grid, s[i], EGW_LAST )
+  end for
+  nbcols = EGW_EnumColumns (grid)
+  s = {}
+  for i = 1 to length(nbcols) do s = append(s, {}) end for
+  n = EGW_AddDataRow ( grid, s, EGW_LAST )
+  setFocus(grid)
+end procedure
+
+------------------------------------------------------------------------------
+
+public procedure save_grid(atom grid, sequence filename)
+--<procedure>
+--<name>save_grid</name>
+--<digest></digest>
+--<desc>
+--</desc>
+--<param>
+--<type>atom</type>
+--<name>grid</name>
+--<desc></desc>
+--</param>
+--<param>
+--<type>sequence</type>
+--<name>filename</name>
+--<desc></desc>
+--</param>
+--<example>
+--</example>
+--<see_also>
+--</see_also>
+--</procedure>
+  object o, p
+  sequence s, t
+
+  o = EGW_EnumColumns(grid)
+  t = {}
+  for i = 1 to length(o) do
+    p = EGW_GetColumnProperty (grid, o[i], EGW_COL_NAME)
+    if atom(p) then t = append(t, {p}) else t = append(t, p) end if
+  end for
+  s = {}
+  s = append(s, t)
+  for i = 1 to EGW_GetRowCount(grid) do
+    o = EGW_GetDataRow ( grid, i )
+    if atom(o) then s = append(s, {o}) else s = append(s, o) end if
+  end for
+--  AnalyseSequence(s, "s", f_debug)
+  write_csv(filename, s)
+end procedure
+
+------------------------------------------------------------------------------
+
+public procedure set_edit_text(atom grid)
+--<procedure>
+--<name>set_edit_text</name>
+--<digest></digest>
+--<desc>
+--</desc>
+--<param>
+--<type>atom</type>
+--<name>grid</name>
+--<desc></desc>
+--</param>
+--<example>
+--</example>
+--<see_also>
+--</see_also>
+--</procedure>
+  atom row, col
+  object rowdata, nbcols
+  integer n
+  sequence s
+
+  nbcols = EGW_EnumColumns (grid)
+  s = {}
+  for i = 1 to length(nbcols) do s = append(s, {}) end for
+  rowdata = EGW_GetCurrentCell(grid)
+  row = rowdata[1] col = rowdata[2]
+  if row = EGW_GetRowCount(grid) then     -- clic en dernière ligne, on en rajoute une
+    n = EGW_AddDataRow ( grid, s, EGW_LAST )
+  end if
+end procedure
+

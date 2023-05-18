@@ -1,0 +1,3 @@
+{FUNC, "WSGetErrorString", {INTEGER} },
+{FUNC, "WSGetShortDescription", {INTEGER} },
+{FUNC, "WSGetLongDescription", {INTEGER} },

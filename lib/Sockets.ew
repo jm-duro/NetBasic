@@ -1,0 +1,535 @@
+-------------------------------------------------------------------------------
+-- Sockets.ew
+--
+-- Author:  Brett A. Pantalone
+--          pantalone2001@yahoo.com
+--
+-- Description:
+--     Euphoria wrappers for Winsock API function calls.
+--
+-- License: Copyright (C) 2005 Brett A. Pantalone
+--
+--     This program is free software; you can redistribute it and/or modify
+--     it under the terms of the GNU General Public License version 2 or
+--     later as published by the Free Software Foundation.
+--
+--     This program is distributed in the hope that it will be useful,
+--     but WITHOUT ANY WARRANTY; without even the implied warranty of
+--     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+--     GNU General Public License for more details.
+--
+-------------------------------------------------------------------------------
+
+include std/dll.e
+include std/machine.e
+include std/convert.e
+include std/win32/msgbox.e
+
+-- Socket types and address families
+public constant 
+  SOCKET_ERROR          = -1
+, SOCK_STREAM           = 1
+, SOCK_DGRAM            = 2
+, SOCK_RAW              = 3
+, AF_UNSPEC             = 0
+, AF_UNIX               = 1
+, AF_INET               = 2
+, PF_UNSPEC             = AF_UNSPEC
+, PF_UNIX               = AF_UNIX
+, PF_INET               = AF_INET
+, INADDR_ANY            = 0
+, INADDR_LOOPBACK       = #7F000001
+, INADDR_BROADCAST      = #FFFFFFFF
+, INADDR_NONE           = #FFFFFFFF
+, INVALID_SOCKET        = #FFFFFFFF
+
+-- Top-level socket options
+public constant 
+SOL_SOCKET              = #FFFF 
+, SO_BROADCAST          = #20
+, SO_CONDITIONAL_ACCEPT = #3002
+, SO_DEBUG              = #1
+, SO_DONTROUTE          = #10
+, SO_KEEPALIVE          = #8
+, SO_LINGER             = #80
+, SO_OOBINLINE          = #100
+, SO_RCVBUF             = #1002
+, SO_RCVTIMEO           = #1006
+, SO_REUSEADDR          = #4
+, SO_SNDBUF             = #1001
+, SO_SNDTIMEO           = #1005
+, SO_USELOOPBACK        = #40
+
+-------------------------------------------------------------------------------
+-- Sizes and offsets of some critical data structures used by the Winsock API
+-------------------------------------------------------------------------------
+constant SIZEOF_IN_ADDR             -- struct in_addr {
+    = 4                             --   union {
+                                    --     struct {u_char s_b1, s_b2, s_b3, s_b4;} S_un_b;
+                                    --     struct {u_short s_w1, s_w2;} S_un_w;
+                                    --     u_long S_addr;
+                                    --   } S_un;
+                                    -- };
+
+constant SIZEOF_SOCKADDR_IN         -- struct sockaddr_in {
+    = 2                             --   short   sin_family;
+    + 2                             --   u_short sin_port;
+    + SIZEOF_IN_ADDR                --   struct  in_addr sin_addr;
+    + 8                             --   char    sin_zero[8];
+                                    -- };
+
+constant SIZEOF_WSADATA             -- typedef struct WSAData {
+    = 2                             --   WORD wVersion;
+    + 2                             --   WORD wHighVersion;
+    + 257                           --   char szDescription[WSADESCRIPTION_LEN+1];
+    + 129                           --   char szSystemStatus[WSASYS_STATUS_LEN+1];
+    + 2                             --   unsigned short iMaxSockets;
+    + 2                             --   unsigned short iMaxUdpDg;
+    + 4                             --   char * lpVendorInfo;
+                                    -- } WSADATA;
+
+constant OFFSET_HOST_ADDR_LIST      -- typedef struct hostent {
+    = 4                             --   char FAR* h_name;
+    + 4                             --   char FAR FAR** h_aliases;
+    + 2                             --   short h_addrtype;
+    + 2                             --   short h_length;
+                                    --   char FAR FAR** h_addr_list;
+                                    -- } hostent;
+
+constant SIZEOF_FD_SET              -- typedef struct fd_set {
+    = 4                             --   u_int fd_count;
+    + 4 * 64                        --   SOCKET fd_array[FD_SETSIZE];
+                                    -- } fd_set;
+
+constant SIZEOF_TIMEVAL             -- struct timeval {
+    = 4                             --   long tv_sec;
+    + 4                             --   long tv_usec;
+                                    -- };
+
+-------------------------------------------------------------------------------
+-- Define Winsock API calls and other variables with file scope.
+-------------------------------------------------------------------------------
+object void
+atom WSAData WSAData = 0
+
+constant WS2 = open_dll("ws2_32.dll")
+if WS2 = 0 then
+    void = message_box("Can't load ws2_32.dll", "sockets.ew", MB_OK)
+    abort(1)
+end if
+
+constant 
+  xStartup = define_c_func(WS2,"WSAStartup",{C_SHORT, C_POINTER}, C_INT)
+, xCleanup = define_c_func(WS2,"WSACleanup",{}, C_INT)
+, xLastErr = define_c_func(WS2,"WSAGetLastError",{}, C_INT)
+, xSocket  = define_c_func(WS2,"socket",{C_INT, C_INT, C_INT}, C_INT)
+, xBind    = define_c_func(WS2,"bind",{C_INT, C_POINTER, C_INT}, C_INT)
+, xConnect = define_c_func(WS2,"connect",{C_INT, C_POINTER, C_INT}, C_INT)
+, xClose   = define_c_func(WS2,"closesocket",{C_INT}, C_INT)
+, xSend    = define_c_func(WS2,"send",{C_INT, C_POINTER, C_INT, C_INT}, C_INT)
+, xRecv    = define_c_func(WS2,"recv",{C_INT, C_POINTER, C_INT, C_INT}, C_INT)
+, xSetOpt  = define_c_func(WS2,"setsockopt",{C_INT, C_INT, C_INT, C_POINTER, C_INT}, C_INT)
+, xSendTo  = define_c_func(WS2,"sendto",{C_INT, C_POINTER, C_INT, C_INT, C_POINTER, C_INT}, C_INT)
+, xListen  = define_c_func(WS2,"listen",{C_INT, C_INT}, C_INT)
+, xSelect  = define_c_func(WS2,"select",{C_INT, C_POINTER, C_POINTER, C_POINTER, C_POINTER}, C_INT)
+, xAccept  = define_c_func(WS2,"accept",{C_INT, C_POINTER, C_POINTER}, C_INT)
+, xHtonl   = define_c_func(WS2,"htonl",{C_INT}, C_INT)
+, xHtons   = define_c_func(WS2,"htons",{C_SHORT}, C_SHORT)
+, xGetHost = define_c_func(WS2,"gethostbyname",{C_POINTER}, C_POINTER)
+, xGetName = define_c_func(WS2,"getsockname",{C_INT, C_POINTER, C_POINTER}, C_INT)
+, xGetPeer = define_c_func(WS2,"getpeername",{C_INT, C_POINTER, C_POINTER}, C_INT)
+
+-------------------------------------------------------------------------------
+-- WSAStartup()
+-- Load the WS2_32.DLL winsock library version 2.2.
+-- Must be called successfully before using any Winsock functions.
+-- Returns zero if successful, otherwise returns a non-zero error code.
+-------------------------------------------------------------------------------
+public function WSAStartup()
+    atom result
+    if WSAData = 0 then
+        WSAData = allocate(SIZEOF_WSADATA)
+        result = c_func( xStartup, {#0202, WSAData} )
+        if result != 0 then free(WSAData) end if
+        return result
+    end if
+    return 0
+end function
+
+-------------------------------------------------------------------------------
+-- WSACleanup()
+-- Free socket resources and unload the Winsock library.
+-- Returns zero if successful, otherwise returns SOCKET_ERROR.
+-------------------------------------------------------------------------------
+public function WSACleanup()
+    atom result
+    if WSAData then
+        result = c_func( xCleanup, {} )
+        free(WSAData)
+        WSAData = 0
+        return result
+    end if
+    return 0
+end function
+
+-------------------------------------------------------------------------------
+-- WSAGetLastError()
+-- Returns the error status for the last operation that failed.
+-------------------------------------------------------------------------------
+public function WSAGetLastError()
+    return c_func( xLastErr, {} )
+end function
+
+-------------------------------------------------------------------------------
+-- htonl()
+-- Perform host to network type conversion on a long (4-byte) integer.
+-------------------------------------------------------------------------------
+public function htonl(atom a)
+    return c_func(xHtonl, {a})
+end function
+
+-------------------------------------------------------------------------------
+-- htons()
+-- Perform host to network type conversion on a short (2-byte) integer.
+-------------------------------------------------------------------------------
+public function htons(atom a)
+    return c_func(xHtons, {a})
+end function
+
+-------------------------------------------------------------------------------
+-- socket()
+-- Creates a new socket of the specified family and type.
+--
+-- Parameters:
+--     af       - Address family, typically AF_INET for internet addresses.
+--     socktype - Socket type, use SOCK_DGRAM for UDP or SOCK_STREAM for TCP.
+--     pf       - Protocol family, set to zero and let Windows determine it
+--                based on the address family.
+-- Returns:
+--     If successful, returns a pointer referencing the new socket.
+--     Otherwise, INVALID_SOCKET is returned.
+-------------------------------------------------------------------------------
+public function socket(integer af, integer socktype, integer pf)
+    return c_func( xSocket, {af, socktype, pf} )
+end function
+
+-------------------------------------------------------------------------------
+-- setsockopt()
+-- Sets the current value for a socket option associated with a socket of any 
+-- type, in any state. Only top-level socket options (SOL_SOCKET) are supported
+-- here, to make things simple. Returns zero or SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function setsockopt(integer Socket, integer Option, object OptVal)
+    atom objLen, pValue, result
+    if atom(OptVal) then -- option is type integer or boolean
+        objLen = 4
+        pValue = allocate(objLen)
+        poke4(pValue,OptVal)
+    else -- option is a structure (option SO_LINGER only)
+        objLen = length(OptVal) 
+        pValue = allocate(objLen)
+        poke(pValue,OptVal)
+    end if
+    result = c_func( xSetOpt, {Socket, SOL_SOCKET, Option, pValue, objLen} )
+    free(pValue)
+    return result
+end function
+
+-------------------------------------------------------------------------------
+-- gethostbyname()
+-- Retrieves host information corresponding to a host name from a host database.
+-- This function returns only the address portion of Winsock hostent structure.
+-------------------------------------------------------------------------------
+public function gethostbyname(sequence Host)
+    atom pString, pHostent, ppInAddr
+    pString = allocate_string(Host)
+    pHostent = c_func( xGetHost, {pString} )
+    free(pString)
+    if pHostent != 0 then
+        ppInAddr = peek4u(pHostent + OFFSET_HOST_ADDR_LIST)
+        return peek4u(peek4u(ppInAddr))
+    end if
+    return SOCKET_ERROR
+end function
+
+-------------------------------------------------------------------------------
+-- sockAddrIn()
+--
+-- Populate a sockaddr_in structure with an internet address
+-- and port number. This function calls gethostbyname() to convert
+-- a domain name or dotted decimal string into a machine readable 
+-- address. It also takes care of all host-to-network type conversions.
+-- 
+-- To fill the structure with the IP address of the local host,
+-- pass an empty sequence as the host parameter. To have the system
+-- automatically select an unused port on the local host, pass 0 
+-- as the port parameter.
+--
+-- Example:
+--     sockAddrIn("www.rapideuphoria.com", 80)
+--     sockAddrIn("127.0.0.1", 8080) -- Port 8080 on the localhost
+--     sockAddrIn("", 0)             -- Any port on the localhost
+-- 
+-- Returns: 
+--     A sequence representing the socket address (struct sockaddr_in)
+--     or SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function sockaddr_in(integer Family, sequence Host, integer Port)
+    atom InAddr
+    sequence SockAddrIn
+
+    if equal(Host,{}) then
+        InAddr = INADDR_ANY
+    else
+        InAddr = gethostbyname(Host)
+        if InAddr = 0 then 
+            return SOCKET_ERROR
+        end if
+    end if
+
+    Port = htons(Port)
+    SockAddrIn = int_to_bytes(Family)
+    SockAddrIn = SockAddrIn[1..2] & int_to_bytes(Port)
+    SockAddrIn = SockAddrIn[1..4] & int_to_bytes(InAddr)
+    SockAddrIn = SockAddrIn & repeat(0,8)
+    return SockAddrIn
+
+end function
+
+-------------------------------------------------------------------------------
+-- bind()
+-- Associates a local address with a socket. Must be used on an unconnected 
+-- socket before a subsequent call to the listen() function.
+-- Returns zero or SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function bind(integer sockfd, sequence sockaddr)
+    atom cptr, retval
+    cptr = allocate_string(sockaddr)
+    retval = c_func( xBind, {sockfd, cptr, length(sockaddr)} )
+    free(cptr)
+    return retval
+end function
+
+-------------------------------------------------------------------------------
+-- connect()
+-- Establishes a connection to a specified socket.
+-- Returns zero if successful, otherwise returns SOCKET_ERROR.
+-------------------------------------------------------------------------------
+public function connect(integer sockdesc, sequence sockaddr)
+    atom cptr, sizeof, retval
+    sizeof = length(sockaddr)
+    cptr = allocate(sizeof)
+    poke(cptr, sockaddr)
+    retval = c_func( xConnect, {sockdesc, cptr, sizeof} )
+    free(cptr)
+    return retval
+end function
+
+-------------------------------------------------------------------------------
+-- listen()
+-- Places a bound socket in a state in which it is listening for an incoming 
+-- connection. 'Backlog' specifies the maximum number of pending connections.
+-- Returns zero if successful, otherwise returns SOCKET_ERROR.
+-------------------------------------------------------------------------------
+public function listen(integer sockdesc, integer backlog)
+    return c_func( xListen, {sockdesc, backlog} )
+end function
+
+-------------------------------------------------------------------------------
+-- accept()
+-- Permits an incoming connection attempt on a socket.
+-- Returns a value that is a descriptor for a new socket. The returned value 
+-- is a handle for the socket on which the actual connection is made. In case
+-- of error, this function returns a value of INVALID_SOCKET.
+-------------------------------------------------------------------------------
+public function accept(integer sockdesc)
+    return c_func( xAccept, {sockdesc, NULL, NULL} )
+end function
+
+-------------------------------------------------------------------------------
+-- select()
+--
+-- The select function is used to determine the status of one or more sockets. 
+-- For each socket, the caller can request information on read, write, or 
+-- error status. The set of sockets for which a given status is requested is 
+-- indicated by a sequence of socket handles.
+--
+-- Timeout is a sequence of the form {seconds, microsecs} that specifies the 
+-- maximum time select() should wait before returning. If the timeout value is 
+-- {0,0} then select() will check the status of sockets and return immediately. 
+-- If Timeout is an empty sequence, select() will block indefinitely until at 
+-- least one of the sockets meets the specified criteria.
+--
+-- Example:
+--      Wait for 10 seconds or until Sock1 or Sock2 have data to read:
+--          select({Sock1,Sock2}, {}, {}, {10,0})
+--
+--      Check for errors on Sock1 and return immediately:
+--          select({}, {}, {Sock1}, {0,0})
+--
+--      Wait indefinitely for incoming Sock1 data, or Sock2 is ready to send:
+--          select({Sock1},{Sock2},{},{})
+--
+-- Returns: 
+--      {integer result, sequence readSet, sequence writeSet, sequence errorSet}
+--      Status = SOCKET_ERROR : An error occurred.
+--      Status = 0 : The time limit expired.
+--      Status > 0 : The total number of sockets that meet the criteria;
+--                   sequences contain handles of the matching sockets.
+-------------------------------------------------------------------------------
+public function select(sequence ReadSet, sequence WriteSet, sequence ErrorSet, sequence Timeout)
+    atom ReadPtr, WritePtr, ErrorPtr, TimeoutPtr
+    integer retval
+
+    if not equal(ReadSet,{}) then
+        ReadPtr = allocate(SIZEOF_FD_SET)
+        poke4(ReadPtr, length(ReadSet) & ReadSet)
+    else ReadPtr = NULL end if
+
+    if not equal(WriteSet,{}) then
+        WritePtr = allocate(SIZEOF_FD_SET)
+        poke4(WritePtr, length(WriteSet) & WriteSet)
+    else WritePtr = NULL end if
+
+    if not equal(ErrorSet,{}) then
+        ErrorPtr = allocate(SIZEOF_FD_SET)
+        poke4(ErrorPtr, length(ErrorSet) & ErrorSet)
+    else ErrorPtr = NULL end if
+
+    if not equal(Timeout,{}) then
+        TimeoutPtr = allocate(SIZEOF_TIMEVAL)
+        poke4(TimeoutPtr, Timeout)
+    else TimeoutPtr = NULL end if
+
+    retval = c_func (xSelect,{0, ReadPtr, WritePtr, ErrorPtr, TimeoutPtr})
+
+    if ReadPtr != NULL then 
+        ReadSet = peek4u({ReadPtr+4, peek4u(ReadPtr)})
+        free(ReadPtr)
+    end if
+
+    if WritePtr != NULL then 
+        WriteSet = peek4u({WritePtr+4, peek4u(WritePtr)})
+        free(WritePtr)
+    end if
+
+    if ErrorPtr != NULL then 
+        ErrorSet = peek4u({ErrorPtr+4, peek4u(ErrorPtr)})
+        free(ErrorPtr)
+    end if
+
+    free(TimeoutPtr)
+    return {retval, ReadSet, WriteSet, ErrorSet}
+end function
+
+-------------------------------------------------------------------------------
+-- getsockname()
+--
+-- Retrieves the local name (family, address, and port) for a socket.
+-- This is the only way to determine the local association of socket/name
+-- when a connect() call has been made without doing a bind() first.
+--
+-- Returns: 
+--     A sequence representing the socket address (struct sockaddr_in)
+--     or SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function getsockname(integer hSocket)
+    object retval
+    atom name, namelen
+    name = allocate(SIZEOF_SOCKADDR_IN)
+    namelen = allocate(4)
+    poke4(namelen, SIZEOF_SOCKADDR_IN)
+    retval = c_func (xGetName, {hSocket, name, namelen})
+    if retval != SOCKET_ERROR then
+        retval = peek({name, peek4u(namelen)}) 
+    end if
+    free(name)
+    free(namelen)
+    return retval
+end function
+
+-------------------------------------------------------------------------------
+-- getpeername()
+--
+-- Retrieves the name of the peer to which a socket is connected.
+-- This does not work for unconnected datagram sockets.
+--
+-- Returns: 
+--     A sequence representing the peer address (struct sockaddr_in)
+--     or SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function getpeername(integer hSocket)
+    object retval
+    atom name, namelen
+    name = allocate(SIZEOF_SOCKADDR_IN)
+    namelen = allocate(4)
+    poke4(namelen, SIZEOF_SOCKADDR_IN)
+    retval = c_func (xGetPeer, {hSocket, name, namelen})
+    if retval != SOCKET_ERROR then
+        retval = peek({name, peek4u(namelen)}) 
+    end if
+    free(name)
+    free(namelen)
+    return retval
+end function
+
+-------------------------------------------------------------------------------
+-- send()
+-- Sends data on a connected socket.
+-- Returns the actual number of bytes transmitted, which may be less than the
+-- total message length. Returns SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function send(integer socket, sequence message)
+    atom cptr
+    integer result
+    cptr = allocate_string(message)
+    result = c_func (xSend, {socket, cptr, length(message), 0})
+    free(cptr)
+    return result
+end function
+
+-------------------------------------------------------------------------------
+-- sendto()
+-- Sends data on an unconnected socket to a specific destination.
+-- Returns the actual number of bytes transmitted, or SOCKET_ERROR on failure.
+-------------------------------------------------------------------------------
+public function 
+sendto(integer Socket, sequence Message, integer Flags, sequence InetSockAddr)
+    atom Buffer, AddrPtr
+    integer result
+    Buffer = allocate_string(Message)
+    AddrPtr = allocate(SIZEOF_SOCKADDR_IN)
+    poke(AddrPtr, InetSockAddr)
+    result = c_func( xSendTo, {Socket, Buffer, length(Message), Flags, AddrPtr, SIZEOF_SOCKADDR_IN} )
+    free(Buffer)
+    free(AddrPtr)
+    return result
+end function
+
+-------------------------------------------------------------------------------
+-- recv()
+-- Receives data from a connected or bound socket.
+-- Returns a sequence of the form {result, buffer} where
+--     result = the actual number of bytes received or SOCKET_ERROR, and
+--     buffer = a sequence containing the received characters.
+-------------------------------------------------------------------------------
+public function recv(integer socket, integer bytes)
+    atom cptr
+    sequence buffer
+    integer result
+    cptr = allocate(bytes)
+    result = c_func (xRecv, {socket, cptr, bytes, 0})
+    if result = SOCKET_ERROR then buffer = {}
+    else buffer = peek({cptr, result}) end if
+    free(cptr)
+    return {result, buffer}
+end function
+
+-------------------------------------------------------------------------------
+-- closesocket()
+-- Closes an existing socket.
+-- Returns zero if successful, otherwise returns SOCKET_ERROR.
+-------------------------------------------------------------------------------
+public function closesocket(integer socket)
+    return c_func (xClose, {socket})
+end function

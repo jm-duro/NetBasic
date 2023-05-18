@@ -1,0 +1,6 @@
+netbasic.exw
+  include webdriver.e
+    include b64.e
+    include toolhelpprocesslist.ew
+    wd_commands.csv
+  include libraries.e

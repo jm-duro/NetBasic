@@ -1,0 +1,676 @@
+-- chromedriver --log-path=chromedriver.log [--verbose]
+
+--------------------------------------------------------------------------------
+
+type MouseButton(integer n)
+  return (n >= 0) and (n <= 2)
+end type
+
+constant
+  LEFT_BUTTON   = 0,
+  MIDDLE_BUTTON = 1,
+  RIGHT_BUTTON  = 2
+
+-- type Cookie struct {
+--   Name   string
+--   Value  string
+--   Path   string
+--   Domain string
+--   Secure bool
+--   Expiry int
+-- }
+
+-- type GeoLocation struct {
+--   Latitude  float64 `json:"latitude"`
+--   Longitude float64 `json:"longitude"`
+--   Altitude  float64 `json:"altitude"`
+-- }
+
+-- HTML5CacheStatus
+
+type HTML5CacheStatus(integer n)
+  return (n>=0) and (n <= 5)
+end type
+
+constant
+  CACHE_STATUS_UNCACHED     = 0,
+  CACHE_STATUS_IDLE         = 1,
+  CACHE_STATUS_CHECKING     = 2,
+  CACHE_STATUS_DOWNLOADING  = 3,
+  CACHE_STATUS_UPDATE_READY = 4,
+  CACHE_STATUS_OBSOLETE     = 5
+
+-- LogLevel
+
+type LogLevel(sequence s)
+  return find(s, {"ALL", "DEBUG", "INFO", "WARNING", "SEVERE", "OFF"})
+end type
+
+-- type LogEntry struct {
+--   TimeStamp int --TODO timestamp number type?
+--   Level     string
+--   Message   string
+-- }
+
+-- FindElementStrategy
+
+type FindElementStrategy(sequence s)
+  return find(s, {"class name", "css selector", "id", "name", "link text",
+                  "partial link text", "tag name", "xpath"})
+end type
+
+-- Search for an element on the page, starting from the document root.
+-- using:
+-- class name         Returns an element whose class name contains the search
+--                    value; compound class names are not permitted.
+-- css selector       Returns an element matching a CSS selector.
+--
+-- id                 Returns an element whose ID attribute matches the search
+--                    value.
+-- name               Returns an element whose NAME attribute matches the search
+--                    value.
+-- link text          Returns an anchor element whose visible text matches the
+--                    search value.
+-- partial link text  Returns an anchor element whose visible text partially
+--                    matches the search value.
+-- tag name           Returns an element whose tag name matches the search
+--                    value.
+-- xpath              Returns an element matching an XPath expression.
+
+-- type Size struct {
+--   width  int
+--   height int
+-- }
+
+-- type Position struct {
+--   X int
+--   Y int
+-- }
+
+--------------------------------------------------------------------------------
+
+-- Take a screenshot of the current page.
+global function wd_take_screenshot(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get the current page source.
+global function wd_get_page_source(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Initializes CURL and sets proxy
+-- set proxy to NULL if unused
+global procedure wd_init(object proxy)
+
+--------------------------------------------------------------------------------
+
+-- Starts a new Chrome session
+-- chromedriver has to be run before using wd_new_session()
+-- chromedriver --log-path=chromedriver.log [--verbose]
+global function wd_new_session(object proxy)
+
+--------------------------------------------------------------------------------
+
+-- Final cleanup
+global procedure wd_cleanup(atom curl)
+
+--------------------------------------------------------------------------------
+
+-- Accepts the currently displayed alert dialog.
+global procedure wd_accept_alert(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Set a cookie.
+global procedure wd_add_cookie(sequence sessionId, sequence cookie)
+
+--------------------------------------------------------------------------------
+
+-- Click and hold the left mouse button (set by moveto).
+global procedure wd_button_down(sequence sessionId, MouseButton button)
+
+--------------------------------------------------------------------------------
+
+-- Releases the mouse button previously held (set by moveto).
+global procedure wd_button_up(sequence sessionId, MouseButton button)
+
+--------------------------------------------------------------------------------
+
+-- Navigate to a new URL.
+global function wd_change_url(sequence sessionId, sequence url)
+
+--------------------------------------------------------------------------------
+
+-- Clear a TEXTAREA or text INPUT element's value.
+global procedure wd_clear_element(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Click any mouse button (at the coordinates set by the last moveto command).
+--
+-- Note that calling this command after calling wd_button_down() and before
+-- calling wd_button_up() (or any out-of-order interactions sequence) will
+-- yield undefined behaviour).
+global procedure wd_click(sequence sessionId, MouseButton button)
+
+--------------------------------------------------------------------------------
+
+-- Click on an element.
+global procedure wd_click_element(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Close the current window.
+global procedure wd_close_current_window(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Delete all cookies visible to the current page.
+global procedure wd_delete_all_cookies(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Delete the cookie with the given name.
+global procedure wd_delete_cookie_by_name(sequence sessionId, sequence name)
+
+--------------------------------------------------------------------------------
+
+-- Delete the session.
+global procedure wd_delete_session(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Dismisses the currently displayed alert dialog.
+global procedure wd_dismiss_alert(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Double-clicks at the current mouse coordinates (set by moveto).
+global procedure wd_double_click(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Test if two element IDs refer to the same DOM element.
+global function wd_element_equals(sequence sessionId, sequence id,
+                                  sequence element)
+
+--------------------------------------------------------------------------------
+
+-- Inject a snippet of JavaScript into the page for execution in the context of
+-- the currently selected frame. The executed script is assumed to be
+-- asynchronous and must signal that is done by invoking the provided callback,
+-- which is always provided as the final argument to the function. The value to
+-- this callback will be returned to the client.
+-- Asynchronous script commands may not span page loads. If an unload event is
+-- fired while waiting for a script result, an error should be returned to the
+-- client.
+-- The script argument defines the script to execute in teh form of a function
+-- body. The function will be invoked with the provided args array and the
+-- values may be accessed via the arguments object in the order specified. The
+-- final argument will always be a callback function that must be invoked to
+-- signal that the script has finished.
+-- Arguments may be any JSON-primitive, array, or JSON object. JSON objects that
+-- define a WebElement reference will be converted to the corresponding DOM
+-- element. Likewise, any WebElements in the script result will be returned to
+-- the client as WebElement JSON objects.
+global function wd_execute_async_script(sequence sessionId,
+                                        sequence script, sequence args)
+
+--------------------------------------------------------------------------------
+
+-- Inject a snippet of JavaScript into the page for execution in the context of
+-- the currently selected frame. The executed script is assumed to be
+-- synchronous and the result of evaluating the script is returned to the
+-- client.
+-- The script argument defines the script to execute in the form of a function
+-- body. The value returned by that function will be returned to the client. The
+-- function will be invoked with the provided args array and the values may be
+-- accessed via the arguments object in the order specified.
+-- Arguments may be any JSON-primitive, array, or JSON object. JSON objects that
+-- define a WebElement reference will be converted to the corresponding DOM
+-- element. Likewise, any WebElements in the script result will be returned to
+-- the client as WebElement JSON objects.
+global function wd_execute_script(sequence sessionId, sequence script,
+                                  sequence args)
+
+--------------------------------------------------------------------------------
+
+-- Get the element on the page that currently has focus.
+global function wd_get_active_element(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Gets the text of the currently displayed JavaScript alert(), confirm(),
+-- or prompt() dialog.
+global function wd_get_alert_text(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Retrieve all cookies visible to the current page.
+global function wd_get_cookies(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Query the value of an element's computed CSS property.
+global function wd_get_css_property(sequence sessionId,  sequence id,
+                                    sequence name)
+
+--------------------------------------------------------------------------------
+
+-- Describe the identified element. This command is reserved for future use;
+-- its return type is currently undefined.
+global function wd_get_element(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Get the value of an element's attribute.
+global function wd_get_element_attribute(sequence sessionId, sequence id,
+                                         sequence name)
+
+--------------------------------------------------------------------------------
+
+-- Determine an element's location on the page.
+--The point (0, 0) refers to the upper-left corner of the page. The element's
+-- coordinates are returned as a JSON object with x and y properties.
+global function wd_get_element_location(sequence sessionId,      sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Determine an element's location on the screen once it has been scrolled into
+-- view.
+-- Note: This is considered an internal command and should only be used to
+-- determine an element's location for correctly generating native events.
+global function wd_get_element_location_in_view(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Query for an element's tag name.
+global function wd_get_element_name(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Determine an element's size in pixels.
+global function wd_get_element_size(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Returns the visible text for the element.
+global function wd_get_element_text(sequence sessionId,  sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Get the current geo location.
+global function wd_get_geo_location(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get the status of the html5 application cache.
+global function wd_get_html5_cache_status(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get the log for a given log type.
+global function wd_get_log(sequence sessionId, sequence logType)
+
+--------------------------------------------------------------------------------
+
+-- Get available log types.
+global function wd_list_available_log_types(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get the current browser orientation.
+global function wd_get_orientation(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Retrieve the capabilities of the specified session.
+global function wd_get_session_capabilities(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get the current page title.
+global function wd_get_title(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Retrieve the URL of the current page.
+global function wd_get_current_url(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Retrieve the current window handle.
+global function wd_get_current_window_handle(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Retrieve the list of all window handles available to the session.
+global function wd_get_all_window_handles(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get the position of the specified window.
+global function wd_get_window_position(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Get the size of the specified window.
+global function wd_get_window_size(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Make an engines that is available (appears on the list returned by
+-- wd_list_available_engines) active.
+global procedure wd_activate_ime(sequence sessionId, sequence engine)
+
+--------------------------------------------------------------------------------
+
+-- Get the name of the active IME engine.
+global function wd_get_ime_active_engine(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- List all available engines on the machine.
+global function wd_list_ime_available_engines(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- De-activates the currently-active IME engine.
+global procedure wd_deactivate_ime(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Indicates whether IME input is active at the moment (not if it's available).
+global function wd_is_ime_activated(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Determine if an element is currently displayed.
+global function wd_is_element_displayed(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Determine if an element is currently enabled.
+global function wd_is_element_enabled(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Determine if an OPTION element, or an INPUT element of type checkbox or
+-- radiobutton is currently selected.
+global function wd_is_element_selected(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Maximize the specified window if not already maximized.
+global procedure wd_maximize_window(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Move the mouse by an offset of the specificed element.
+-- If no element is specified, the move is relative to the current mouse cursor.
+-- If an element is provided but no offset, the mouse will be moved to the
+-- center of the element. If the element is not visible, it will be scrolled
+-- into view.
+global procedure wd_move_mouse_to(sequence sessionId, sequence element,
+                                  integer xoffset, integer yoffset)
+
+--------------------------------------------------------------------------------
+
+-- Navigate backwards in the browser history, if possible.
+global procedure wd_go_back(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Navigate forwards in the browser history, if possible.
+global procedure wd_go_forward(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Refresh the current page.
+global procedure wd_refresh(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Search for an element on the page, starting from document root.
+global function wd_search_element(sequence sessionId,
+--                                  FindElementStrategy using, sequence value)
+                                  sequence using, sequence value)
+
+--------------------------------------------------------------------------------
+
+-- Search for an element by ID, starting from document root.
+global function wd_select_element_by_id(sequence sessionId, sequence name)
+
+--------------------------------------------------------------------------------
+
+-- Search for an element by NAME, starting from document root.
+global function wd_select_element_by_name(sequence sessionId, sequence name)
+
+--------------------------------------------------------------------------------
+
+-- Search for an element on the page, starting from the identified element.
+global function wd_search_element_from(sequence sessionId, sequence id,
+                                       sequence using, sequence value)
+
+--------------------------------------------------------------------------------
+
+-- Search for multiple elements on the page, starting from the document root.
+global function wd_search_elements(sequence sessionId,
+                                   sequence using, sequence value)
+
+--------------------------------------------------------------------------------
+
+-- Search for multiple elements on the page, starting from the identified
+-- element.
+global function wd_search_elements_from(sequence sessionId, sequence id,
+                                        sequence using, sequence value)
+
+--------------------------------------------------------------------------------
+
+-- Send a sequence of key strokes to an element.
+global procedure wd_send_keys_to_element(sequence sessionId, sequence id,
+                                         sequence text)
+
+--------------------------------------------------------------------------------
+
+-- Send a sequence of key strokes to an element.
+global procedure wd_set_element(sequence sessionId, sequence id, sequence text)
+
+--------------------------------------------------------------------------------
+
+-- Send a sequence of key strokes to the active element.
+global procedure wd_send_keys_to_active_element(sequence sessionId,
+                                                sequence text)
+
+--------------------------------------------------------------------------------
+
+-- Sends keystrokes to a JavaScript prompt() dialog.
+global procedure wd_send_keys_to_alert(sequence sessionId, sequence text)
+
+--------------------------------------------------------------------------------
+
+-- Set the current geo location.
+global procedure wd_set_geo_location(sequence sessionId, sequence location) -- location GeoLocation
+
+--------------------------------------------------------------------------------
+
+-- Set the amount of time the driver should wait when searching for elements.
+-- When searching for a single element, the driver should poll the page until an
+-- element is found or the timeout expires, whichever occurs first.
+-- When searching for multiple elements, the driver should poll the page until
+-- at least one element is found or the timeout expires, at which point it
+-- should return an empty list.
+-- If this command is never sent, the driver should default to an implicit wait
+-- of 0ms.
+global procedure wd_set_implicit_wait(sequence sessionId, integer ms)
+
+--------------------------------------------------------------------------------
+
+-- Set the browser orientation.
+global procedure wd_set_orientation(sequence sessionId, sequence orientation)
+
+--------------------------------------------------------------------------------
+
+-- Change the size of the specified window.
+global procedure wd_set_window_size(sequence sessionId, sequence id,
+                                    integer width, integer height)
+
+--------------------------------------------------------------------------------
+
+-- Configure the amount of time that a particular type of operation can execute
+-- for before they are aborted and a |Timeout| error is returned to the client.
+-- Valid values are: "script" for script timeouts, "implicit" for modifying the
+-- implicit wait timeout and "page load" for setting a page load timeout.
+global procedure wd_set_timeout(sequence sessionId, sequence typ, integer ms)
+
+--------------------------------------------------------------------------------
+
+-- Set the amount of time, in milliseconds, that asynchronous scripts executed
+-- by ExecuteScriptAsync() are permitted to run before they are aborted and a
+-- |Timeout| error is returned to the client.
+global procedure wd_set_script_timeout(sequence sessionId, integer ms)
+
+--------------------------------------------------------------------------------
+
+-- Change the position of the specified window.
+global procedure wd_set_window_position(sequence sessionId, sequence id,
+                                        integer x, integer y)
+
+--------------------------------------------------------------------------------
+
+-- Clear the storage.
+global procedure wd_clear_local_storage(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get all keys of the storage.
+global function wd_get_local_storage_keys(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Set the storage item for the given key.
+global procedure wd_set_local_storage_item(sequence sessionId,
+                                           sequence key, sequence value)
+
+--------------------------------------------------------------------------------
+
+-- Get the storage item for the given key.
+global function wd_get_local_storage_item(sequence sessionId, sequence key)
+
+--------------------------------------------------------------------------------
+
+-- Remove the storage item for the given key.
+global procedure wd_remove_local_storage_item(sequence sessionId, sequence key)
+
+--------------------------------------------------------------------------------
+
+-- Get the number of items in the storage.
+global function wd_get_local_storage_size(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Clear the storage.
+global procedure wd_clear_session_storage(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Get all keys of the storage.
+global function wd_get_session_storage_key(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Set the storage item for the given key.
+global procedure wd_set_session_storage_item(sequence sessionId,
+                                             sequence key, sequence value)
+
+--------------------------------------------------------------------------------
+
+-- Get the storage item for the given key.
+global function wd_get_session_storage_item(sequence sessionId, sequence key)
+
+--------------------------------------------------------------------------------
+
+-- Remove the storage item for the given key.
+global procedure wd_remove_session_storage_item(sequence sessionId,
+                                                sequence key)
+
+--------------------------------------------------------------------------------
+
+-- Get the number of items in the storage.
+global function wd_get_session_storage_size(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Submit a FORM element.
+global procedure wd_submit_form(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Change focus to another frame on the page.
+-- frameId must be string (int|NULL|WebElement are not accepted here)
+global procedure wd_switch_to_frame(sequence sessionId, sequence frameId)
+
+--------------------------------------------------------------------------------
+
+-- Change focus to another window. The window to change focus to may be
+-- specified by its server assigned window handle, or by the value of its name
+-- attribute.
+global procedure wd_switch_to_window(sequence sessionId,  sequence name)
+
+--------------------------------------------------------------------------------
+
+-- Change focus back to parent frame
+global procedure wd_switch_to_parent_frame(sequence sessionId)
+
+--------------------------------------------------------------------------------
+
+-- Single tap on the touch enabled device.
+global procedure wd_touch_single_tap(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Finger down on the screen.
+global procedure wd_touch_down(sequence sessionId, integer x, integer y)
+
+--------------------------------------------------------------------------------
+
+-- Finger up on the screen.
+global procedure wd_touch_up(sequence sessionId, integer x, integer y)
+
+--------------------------------------------------------------------------------
+
+-- Finger move on the screen.
+global procedure wd_touch_move(sequence sessionId, integer x, integer y)
+
+--------------------------------------------------------------------------------
+
+-- Scroll on the touch screen using finger based motion events.
+global procedure wd_touch_scroll(sequence sessionId, sequence element,
+                                 integer xoffset, integer yoffset)
+
+--------------------------------------------------------------------------------
+
+-- Double tap on the touch screen using finger motion events.
+global procedure wd_touch_double_tap(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Long press on the touch screen using finger motion events.
+global procedure wd_touch_long_press(sequence sessionId, sequence id)
+
+--------------------------------------------------------------------------------
+
+-- Flick on the touch screen using finger motion events.
+-- This flick command starts at a particular screen location.
+global procedure wd_touch_flick(sequence sessionId, sequence element,
+                                integer xoffset, integer yoffset, integer speed)
+
+--------------------------------------------------------------------------------
+
+-- Flick on the touch screen using finger motion events.
+-- Use this flick command if you don't care where the flick starts on the
+-- screen.
+global procedure wd_touch_flick_anywhere(sequence sessionId,
+                                         integer xspeed, integer yspeed)
+

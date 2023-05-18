@@ -1,0 +1,7 @@
+{FUNC, "read_file", {SEQUENCE} },
+{FUNC, "remove_less_than", {SEQUENCE, INTEGER} },
+{FUNC, "remove_greater_than", {SEQUENCE, INTEGER} },
+{FUNC, "remove", {SEQUENCE, OBJECT} },
+{FUNC, "remove_subscripts", {SEQUENCE, OBJECT} },
+{FUNC, "members", {SEQUENCE} },
+{FUNC, "replace_all", {SEQUENCE, OBJECT, OBJECT} },

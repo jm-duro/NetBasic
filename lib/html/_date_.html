@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_date_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_date_</div>
+    <div class="main">
+      <p>-- Date Calculations<br>
+--<br>
+-- Sep 1, 1996<br>
+-- written by Junko C. Miura, Rapid Deployment Software<br>
+-- Contributed to the Public Domain<br>
+--<br>
+-- Aug 5, 2010<br>
+-- converted by Jean-Marc Duro to a reusable unit<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>DATE_LANGUAGE <span> &emsp; [ One of "en" or "fr" ]</span></h3>
+          <p>Language used to format date strings</p>
+        </li>
+        <li>
+          <h3>STR_WEEK <span> &emsp; [ {"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday"} ]</span></h3>
+          <p>Names of the days in a week (english)</p>
+        </li>
+        <li>
+          <h3>STR_SEMAINE <span> &emsp; [ {"Samedi", "Dimanche", "Lundi", "Mardi", "Mercredi", "Jeudi", "Vendredi"} ]</span></h3>
+          <p>Names of the days in a week (french)</p>
+        </li>
+        <li>
+          <h3>STR_MONTH <span> &emsp; [ {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"} ]</span></h3>
+          <p>Names of the monthes in a year (english)</p>
+        </li>
+        <li>
+          <h3>STR_MOIS <span> &emsp; [ {"Janvier", "Février", "Mars", "Avril", "Mai", "Juin", "Juillet", "Août", "Septembre", "Octobre", "Novembre", "Décembre"} ]</span></h3>
+          <p>Names of the monthes in a year (french)</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>get_factor <span>(integer, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer yyyy          <p>year on 4 digits</p>
+        </li>
+        <li>
+integer mm          <p>month</p>
+        </li>
+        <li>
+integer dd          <p>day</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>lunar_landing = get_factor(1969, 7, 20)<br></code><br>
+        </li>
+        <li>
+          <h3>day_of_week <span>(integer, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer yyyy          <p>year on 4 digits</p>
+        </li>
+        <li>
+integer mm          <p>month</p>
+        </li>
+        <li>
+integer dd          <p>day</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>printf(1, "The lunar module Eagle landed on the moon on %s July 20, 1969\n",<br>{WEEK[day_of_week(1969, 7, 20)]})<br>printf(1, "Le module lunaire Eagle a atterri sur la lune le %s 20 juillet 1969\n",<br>{SEMAINE[day_of_week(1969, 7, 20)]})<br></code><br>
+        </li>
+        <li>
+          <h3>days_between_dates <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence date1          <p></p>
+        </li>
+        <li>
+sequence date2          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>printf(1, "The lunar module Eagle landed on the moon %d days ago\n", days_between_dates({1969, 7, 20}, {1900+dt[1], dt[2], dt[3]}))<br></code><br>
+        </li>
+        <li>
+          <h3>datetime_to_iso <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence dt          <p>date in datetime format<br></p>
+        </li>
+        <li>
+integer fmt          <p>output format:<br>* STRING_DATE: "YYYY-MM-DD HH:MM:SS"<br>* FILE_DATE  : "YYYY-MM-DD_HH-MM-SS"<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: date and time in ISO format<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, datetime_to_iso(date(), STRING_DATE) & " -> message\n")<br>2016-11-14 08:14:14 -> message<br>puts(1, datetime_to_iso(date(), FILE_DATE) & ".log")<br>2016-11-14_08-14-14.log<br></code><br>
+        </li>
+        <li>
+          <h3>date_stamp <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence msg          <p>string to prefix</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: given string prefixed by date and time<br></p>
+        </li>
+        <li>
+          <h3>string_to_datetime <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence dt          <p>date and time in string format<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: datetime<br></p>
+      <b>Description:</b>
+          <p>monthes names have to be complete: no abbreviation<br>monthes decoding according to DATE_LANGUAGE constant: "en" or "fr"<br>seconds are optional<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, "string_to_datetime(\"27 octobre 1996 11:10:00\") = " &<br>object_dump(string_to_datetime("27 octobre 1996 11:10:00")) & "\n")<br>string_to_datetime("27 octobre 1996 11:10:00") = {1996,10,27,11,10,0}<br>puts(1, "string_to_datetime(\"27 octobre 1996 11:10\") = " &<br>object_dump(string_to_datetime("27 octobre 1996 11:10")) & "\n")<br>string_to_datetime("27 octobre 1996 11:10") = {1996,10,27,11,10,0}<br></code><br>
+        </li>
+        <li>
+          <h3>seconds_to_time_string <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom t          <p>number of seconds to convert<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>string<br></p>
+      <b>Description:</b>
+          <p>day abbreviation according to DATE_LANGUAGE constant<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, "seconds_to_time_string(99999) = " &<br>object_dump(seconds_to_time_string(99999)) & "\n")<br>seconds_to_time_string(99999) = '01j 03h 46mn 39s'<br></code><br>
+        </li>
+        <li>
+          <h3>excel_time_to_datetime <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom a          <p>Excel datetime atom to convert<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: datetime<br></p>
+      <b>Example:</b><br>
+          <code>birth = datetime_to_excel_time({1996, 10, 27, 11, 10, 0})<br>printf(1, "excel_time_to_datetime(%f) = %s\n", {birth,<br>object_dump(excel_time_to_datetime(birth))})<br>excel_time_to_datetime(35365.465278) = {1996,10,27,11,10,0}<br></code><br>
+        </li>
+        <li>
+          <h3>datetime_to_excel_time <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence dt          <p>datetime sequence to convert<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Excel datetime atom<br></p>
+      <b>Example:</b><br>
+          <code>birth = datetime_to_excel_time({1996, 10, 27, 11, 10, 0})<br>printf(1, "datetime_to_excel_time(%s) = %f\n", {<br>object_dump({1996, 10, 27, 11, 10, 0}), birth})<br>datetime_to_excel_time({1996,10,27,11,10,0}) = 35365.465278<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

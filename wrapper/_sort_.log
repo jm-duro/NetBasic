@@ -1,0 +1,3 @@
+{FUNC, "ext_sort", {SEQUENCE, SEQUENCE} },
+{FUNC, "ext_custom_sort", {INTEGER, SEQUENCE, SEQUENCE} },
+{FUNC, "sort_columns", {SEQUENCE, SEQUENCE} },

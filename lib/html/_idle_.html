@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_idle_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_idle_</div>
+    <div class="main">
+      <p>--Written by Ryan Johnson<br>
+--Date: 2008-05-13<br>
+--http://fluidae.com/<br>
+--<br>
+--You make use this code freely.<br>
+--Currently runs only on linux and windows.<br>
+--<br>
+--Euphoria 3.0.0 or higher required for the idletask() procedure.<br>
+--If you have an older version, you can still use nanosleep() if you comment out idletask()<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>nanosleep <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom s          <p>sleep duration in seconds</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>This is compatible with the sleep() function. However, you can use non-integers as well.<br>Note: It is normal for the program to sleep for slightly more than the specified time, due<br>to multitasking scheduling.<br>Also, on windows, the resolution seems to be only milliseconds, not nanoseconds.<br></p>
+      <b>Example:</b><br>
+          <code>nanosleep(0.001) --sleeps for 1 millisecond<br>nanosleep(0.000000001) --this is the smallest amount of time possible (linux)<br>nanosleep(0) --sleeps for the smallest amount of time possible<br>nanosleep(1.5)<br>nanosleep(17.0003)<br>nanosleep(0.5)<br></code><br>
+      <b>See also:</b>
+          <p>pause(), sleep()</p>
+        </li>
+        <li>
+          <h3>pause <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom delaytime          <p>delay time in milliseconds</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>causes a delay while allowing other tasks to run</p>
+      <b>Example:</b><br>
+          <code>pause(500) pauses program for half a second<br></code><br>
+      <b>See also:</b>
+          <p>nanosleep(), sleep(), idletask()</p>
+        </li>
+        <li>
+          <h3>idletask <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom idletime          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>allows the new Euphoria task manager to idle the cpu when other tasks are not scheduled to run.<br>without this, a Euphoria program will use 100% cpu when there is less than 1 second between<br>scheduled tasks!<br></p>
+      <b>Example:</b><br>
+          <code>To use this properly, insert the following code into your program:<br><br>atom task_idle<br>task_idle = task_create(routine_id("idletask"), {0.001})<br>task_schedule(task_idle, 1)<br><br>The task will be scheduled to run whenever real-time tasks are not running. It should not<br>affect the performance of the application.<br>If you want to, you can experiment with different values for idletime.If you try 0 seconds<br>on windows, you program may still use 100% CPU.  I would recomment trying 0.001 seconds first.<br></code><br>
+      <b>See also:</b>
+          <p>pause()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

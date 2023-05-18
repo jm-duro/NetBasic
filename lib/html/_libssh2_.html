@@ -1,0 +1,1655 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_libssh2_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_libssh2_</div>
+    <div class="main">
+      <p>-- Copyright (c) 2004-2009, Sara Golemon <sarag@libssh2.org><br>
+-- Copyright (c) 2009 by Daniel Stenberg<br>
+-- Copyright (c) 2010 Simon Josefsson <simon@josefsson.org><br>
+-- All rights reserved.<br>
+--<br>
+-- Redistribution and use in source and binary forms,<br>
+-- with or without modification, are permitted provided<br>
+-- that the following conditions are met:<br>
+--<br>
+-- Redistributions of source code must retain the above<br>
+-- copyright notice, this list of conditions and the<br>
+-- following disclaimer.<br>
+--<br>
+-- Redistributions in binary form must reproduce the above<br>
+-- copyright notice, this list of conditions and the following<br>
+-- disclaimer in the documentation and/or other materials<br>
+-- provided with the distribution.<br>
+--<br>
+-- Neither the name of the copyright holder nor the names<br>
+-- of any other contributors may be used to endorse or<br>
+-- promote products derived from this software without<br>
+-- specific prior written permission.<br>
+--<br>
+-- THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND<br>
+-- CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES,<br>
+-- INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES<br>
+-- OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE<br>
+-- ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR<br>
+-- CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,<br>
+-- SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING,<br>
+-- BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR<br>
+-- SERVICES LOSS OF USE, DATA, OR PROFITS OR BUSINESS<br>
+-- INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,<br>
+-- WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING<br>
+-- NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE<br>
+-- USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY<br>
+-- OF SUCH DAMAGE.<br>
+--<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>libssh2_exit <span>()</span></h3>
+      <b>Description:</b>
+          <p>Exit the libssh2 functions and free's all memory used internally.<br></p>
+      <b>See also:</b>
+          <p>libssh2_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_banner_set <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+sequence banner          <p>user defined banner</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Set the banner that will be sent to the remote host when the SSH session is<br>started with libssh2_session_handshake()<br>This is optional; a banner corresponding to the protocol and libssh2 version<br>will be sent by default.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_handshake()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_set_blocking <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+integer blocking          <p>Set to a non-zero value to make the channel block, or zero to make it non-blocking.</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Set or clear blocking mode on the selected on the session.  This will<br>instantly affect any channels associated with this session. If a read is<br>performed on a session with no data currently available, a blocking session<br>will wait for data to arrive and return what it receives.  A non-blocking<br>session will return immediately with an empty buffer.  If a write is performed<br>on a session with no room for more data, a blocking session will wait for<br>room.  A non-blocking session will return immediately without writing<br>anything.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_get_blocking()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_set_timeout <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+atom timeout          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Set the <b>timeout</> in milliseconds for how long a blocking the libssh2<br>function calls may wait until they consider the situation an error and return<br>LIBSSH2_ERROR_TIMEOUT.<br>By default or if you set the timeout to zero, libssh2 has no timeout for<br>blocking functions.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_get_timeout()</p>
+        </li>
+        <li>
+          <h3>libssh2_channel_set_blocking <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer blocking          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_handle_extended_data <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer ignore_mode          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>DEPRECATED, do not use!<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_free <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_agent_free <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom agent          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>also frees the internal collection of public keys.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_keepalive_config <span>(atom, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer want_reply          <p>indicates whether the keepalive messages should request a response<br>from the server.<br></p>
+        </li>
+        <li>
+integer interval          <p>number of seconds that can pass without any i/O<br>use 0 (the default) to disable keepalives.<br>To avoid some busy-loop corner-cases, if you specify an interval of 1<br>it will be treated as 2.<br></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Note that non-blocking applications are responsible for sending the<br>keepalive messages using libssh2_keepalive_send().<br></p>
+        </li>
+        <li>
+          <h3>libssh2_channel_ignore_extended_data <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer ignore          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>DEPRECATED<br>Future uses should use libssh2_channel_handle_extended_data() directly if<br>LIBSSH2_CHANNEL_EXTENDED_DATA_MERGE is passed, extended data will be read<br>(FIFO) from the standard data channel<br></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>libssh2_init <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer flags          <p>Flags can be:<br>0:                       Normal initialize<br>LIBSSH2_INIT_NO_CRYPTO:  Do not initialize the crypto library (ie.<br>OPENSSL_add_cipher_algorithms() for OpenSSL<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 if succeeded, or a negative value for error.<br></p>
+      <b>Description:</b>
+          <p>Initialize the libssh2 functions.  This typically initialize the<br>crypto library.  It uses a public state, and is not thread safe.<br>You must make sure this function is not called concurrently.<br></p>
+      <b>See also:</b>
+          <p>libssh2_exit()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_init <span>()</span></h3>
+      <b>Return:</b>
+          <p>Pointer to a newly allocated LIBSSH2_SESSION instance, or NULL on errors.<br></p>
+      <b>Description:</b>
+          <p>Initializes an SSH session object. By default system memory allocators<br>(malloc(), free(), realloc()) will be used for any dynamically allocated memory<br>blocks. Alternate memory allocation functions may be specified using the<br>extended version of this API call, and/or optional application specific data<br>may be attached to the session object.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_free(), libssh2_session_startup()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_callback_set <span>(atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init_ex()</p>
+        </li>
+        <li>
+integer cbtype          <p>Callback type. One of the types listed in Callback Types.</p>
+        </li>
+        <li>
+atom callback          <p>Pointer to custom callback function. The prototype for this function must<br>match the associated callback declaration macro.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Pointer to previous callback handler. Returns NULL if no prior callback<br>handler was set or the callback type was unknown.<br></p>
+      <b>Description:</b>
+          <p>Sets a custom callback handler for a previously initialized session<br>object. Callbacks are triggered by the receipt of special packets at the<br>Transport layer. To disable a callback, set it to NULL.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_handshake <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init_ex()</p>
+        </li>
+        <li>
+atom sock          <p><b>must</b> be populated with an opened and connected socket.</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns: 0 on success, or non-zero on failure<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_startup()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_startup <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init_ex()</p>
+        </li>
+        <li>
+integer sock          <p><b>must</b> be populated with an opened and connected socket.</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 on success, negative on failure.<br></p>
+      <b>Description:</b>
+          <p>Starting in libssh2 version 1.2.8 this function is considered deprecated. Use<br><i>libssh2_session_handshake()</i> instead.</p>
+      <b>See also:</b>
+          <p>libssh2_session_free(), libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_free <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.  It returns<br>LIBSSH2_ERROR_EAGAIN when it would otherwise block. While<br>LIBSSH2_ERROR_EAGAIN is a negative number, it isn't really a failure per se.<br></p>
+      <b>Description:</b>
+          <p>Frees all resources associated with a session instance.<br>Typically called after libssh2_session_disconnect_ex()<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init_ex(), libssh2_session_disconnect_ex()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_disconnect <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init_ex()</p>
+        </li>
+        <li>
+sequence description          <p>Human readable reason for disconnection.</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.  It returns<br>LIBSSH2_ERROR_EAGAIN when it would otherwise block. While<br>LIBSSH2_ERROR_EAGAIN is a negative number, it isn't really a failure per se.<br></p>
+      <b>Description:</b>
+          <p>Send a disconnect message to the remote host associated with <i>session</i>,<br>along with a <i>SSH_DISCONNECT_BY_APPLICATION</> symbol and a verbose<br><i>description</i>.</p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_methods <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer method_type          <p>one of the method type constants: LIBSSH2_METHOD_KEX, LIBSSH2_METHOD_HOSTKEY,<br>LIBSSH2_METHOD_CRYPT_CS, LIBSSH2_METHOD_CRYPT_SC, LIBSSH2_METHOD_MAC_CS,<br>LIBSSH2_METHOD_MAC_SC, LIBSSH2_METHOD_COMP_CS, LIBSSH2_METHOD_COMP_SC,<br>LIBSSH2_METHOD_LANG_CS, LIBSSH2_METHOD_LANG_SC.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Negotiated method or NULL if the session has not yet been started.<br></p>
+      <b>Description:</b>
+          <p>Returns the actual method negotiated for a particular transport parameter.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_abstract <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>A pointer to session internal storage who's contents points to previously<br>provided abstract data.<br></p>
+      <b>Description:</b>
+          <p>Return a pointer to where the abstract pointer provided to<br><b>libssh2_session_init_ex()</b> is stored. By providing a doublyde-referenced pointer, the internal storage of the session instance may be<br>modified in place.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_last_error <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Error message<br></p>
+      <b>Description:</b>
+          <p>Determine the most recent error condition and its cause.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_last_errno()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_last_errno <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Numeric error code corresponding to the the Error Code constants.<br></p>
+      <b>Description:</b>
+          <p>Determine the most recent error condition.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_last_error()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_flag <span>(atom, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer flag          <p>* LIBSSH2_FLAG_SIGPIPE<br>If set, libssh2 will not attempt to block SIGPIPEs but will let them trigger<br>from the underlying socket layer.<br>* LIBSSH2_FLAG_COMPRESS<br>If set - before the connection negotiation is performed - libssh2 will try to<br>negotiate compression enabling for this connection. By default libssh2 will<br>not attempt to use compression.<br></p>
+        </li>
+        <li>
+integer value          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns regular libssh2 error code.<br></p>
+      <b>Description:</b>
+          <p><i>flag</i> is the option to set, while <i>value</i> is typically setto 1 or 0 to enable or disable the option.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_session_get_blocking <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>session instance as returned by libssh2_session_init()</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 if the state of the session has previously be set to non-blocking<br>and it returns 1 if the state was set to blocking.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_set_blocking()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_get_timeout <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>The value of the timeout setting.<br></p>
+      <b>Description:</b>
+          <p>Returns the <b>timeout</b> (in milliseconds) for how long a blocking the<br>libssh2 function calls may wait until they consider the situation an error and<br>return LIBSSH2_ERROR_TIMEOUT.<br>By default libssh2 has no timeout (zero) for blocking functions.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_set_timeout()</p>
+        </li>
+        <li>
+          <h3>libssh2_poll <span>(atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom fds          <p></p>
+        </li>
+        <li>
+integer nfds          <p></p>
+        </li>
+        <li>
+atom timeout          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Number of fds with interesting events.<br></p>
+      <b>Description:</b>
+          <p>This function is deprecated. Do note use. We encourage users to instead use<br>the <i>poll()</i> or <i>select()</i> functions to check for socket activity or<br>when specific sockets are ready to get recevied from or send to.<br>Poll for activity on a socket, channel, listener, or any combination of these<br>three types. The calling semantics for this function generally match<br><i>poll(2)</i> however the structure of fds is somewhat more complex in orderto accommodate the disparate datatypes, POLLFD constants have been namespaced<br>to avoid platform discrepancies, and revents has additional values defined.<br></p>
+      <b>See also:</b>
+          <p>libssh2_poll_channel_read()</p>
+        </li>
+        <li>
+          <h3>libssh2_poll_channel_read <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer extended          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 1 when data is available and 0 otherwise.<br></p>
+      <b>Description:</b>
+          <p>This function is deprecated. Do note use.<br><br><i>libssh2_poll_channel_read()</i> checks to see if data is available in the<i>channel</i>'s read buffer. No attempt is made with this method to see ifpackets are available to be processed. For full polling support, use<br><i>libssh2_poll()</i>.</p>
+      <b>See also:</b>
+          <p>libssh2_poll()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_block_directions <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by <b>libssh2_session_init()</b></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns the set of directions as a binary mask. Can be a combination of:<br>* LIBSSH2_SESSION_BLOCK_INBOUND: Inbound direction blocked.<br>* LIBSSH2_SESSION_BLOCK_OUTBOUND: Outbound direction blocked.<br></p>
+      <b>Description:</b>
+          <p>When any of libssh2 functions return <b>LIBSSH2_ERROR_EAGAIN</b> an application<br>should wait for the socket to have data available for reading or<br>writing. Depending on the return value of<br><i>libssh2_session_block_directions()</i> an application should wait for read,write or both.<br><br>Application should wait for data to be available for socket prior to calling a<br>libssh2 function again. If <b>LIBSSH2_SESSION_BLOCK_INBOUND</b> is set select<br>should contain the session socket in readfds set.  Correspondingly in case of<br><b>LIBSSH2_SESSION_BLOCK_OUTBOUND</b> writefds set should contain the socket.</p>
+        </li>
+        <li>
+          <h3>libssh2_hostkey_hash <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer hash_type          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Returned buffer should NOT be freed<br>Length of buffer is determined by hash type<br>i.e. MD5 == 16, SHA1 == 20<br></p>
+        </li>
+        <li>
+          <h3>libssh2_session_hostkey <span>(atom, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer len          <p></p>
+        </li>
+        <li>
+integer Type          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>A pointer, or NULL if something went wrong.<br></p>
+      <b>Description:</b>
+          <p>Returns a pointer to the current host key, the value <i>len</i> points to will<br>get the length of the key.<br><br>The value <i>type</i> points to the type of hostkey which is one of:<br>* LIBSSH2_HOSTKEY_TYPE_RSA, LIBSSH2_HOSTKEY_TYPE_DSS, or<br>* LIBSSH2_HOSTKEY_TYPE_UNKNOWN.<br></p>
+      <b>See also:</b>
+          <p>libssh2_knownhost_check(), libssh2_knownhost_add()</p>
+        </li>
+        <li>
+          <h3>libssh2_session_method_pref <span>(atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+integer method_type          <p>One of the Method Type constants.</p>
+        </li>
+        <li>
+atom prefs          <p>Comma delimited list of preferred methods to use with the most preferred<br>listed first and the least preferred listed last.<br>If a method is listed which is not supported by libssh2 it will be<br>ignored and not sent to the remote host during protocol negotiation.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.  It returns LIBSSH2_ERROR_EAGAIN<br>when it would otherwise block. While LIBSSH2_ERROR_EAGAIN is a negative<br>number, it isn't really a failure per se.<br></p>
+      <b>Description:</b>
+          <p>Set preferred methods to be negotiated. These<br>preferrences must be set prior to calling libssh2_session_startup()<br>as they are used during the protocol initiation phase.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init(), libssh2_session_startup()</p>
+        </li>
+        <li>
+          <h3>libssh2_userauth_list <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+sequence username          <p>Username which will be used while authenticating. Note that most server<br>implementations do not permit attempting authentication with different<br>usernames between requests. Therefore this must be the same username you<br>will use on later userauth calls.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>On success a comma delimited list of supported authentication schemes. This<br>list is internally managed by libssh2. On failure returns NULL.<br></p>
+      <b>Description:</b>
+          <p>Send a <b>SSH_USERAUTH_NONE</b> request to the remote host. Unless the remote<br>host is configured to accept none as a viable authentication scheme<br>(unlikely), it will return <b>SSH_USERAUTH_FAILURE</b> along with a listing of<br>what authentication schemes it does support. In the unlikely event that none<br>authentication succeeds, this method with return NULL. This case may be<br>distinguished from a failing case by examining<br><i>libssh2_userauth_authenticated()</i>.</p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_userauth_authenticated <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 1 if authenticated and 0 if not.<br></p>
+      <b>Description:</b>
+          <p>Indicates whether or not the named session has been successfully authenticated.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_userauth_password <span>(atom, sequence, sequence, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+sequence username          <p>Name of user to attempt plain password authentication for.</p>
+        </li>
+        <li>
+sequence password          <p>Password to use for authenticating username.</p>
+        </li>
+        <li>
+atom passwd_change_cb          <p>If the host accepts authentication but requests that the password be<br>changed, this callback will be issued.<br>If no callback is defined, but server required password change,<br>authentication will fail.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.  It returns<br>* LIBSSH2_ERROR_EAGAIN when it would otherwise block. While<br>* LIBSSH2_ERROR_EAGAIN is a negative number, it isn't really a failure per se.<br></p>
+      <b>Description:</b>
+          <p>Attempt basic password authentication. Note that many SSH servers<br>which appear to support ordinary password authentication actually have<br>it disabled and use Keyboard Interactive authentication (routed via<br>PAM or another authentication backed) instead.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_userauth_publickey <span>(atom, atom, sequence, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+atom user          <p></p>
+        </li>
+        <li>
+sequence pubkeydata          <p></p>
+        </li>
+        <li>
+atom sign_callback          <p></p>
+        </li>
+        <li>
+atom abstract          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.<br></p>
+      <b>Description:</b>
+          <p>Authenticate with the <i>sign_callback</i> callback that matches the prototype<br>below<br><code>function name(atom session, atom sig, atom sig_len,<br>atom data, atom data_len, atom abstract)<br></code></p>
+      <b>See also:</b>
+          <p>libssh2_userauth_publickey_fromfile()</p>
+        </li>
+        <li>
+          <h3>libssh2_userauth_publickey_fromfile <span>(atom, sequence, atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+sequence username          <p>Remote user name to authenticate as.</p>
+        </li>
+        <li>
+atom publickey          <p>Path and name of public key file. (e.g. /etc/ssh/hostkey.pub)</p>
+        </li>
+        <li>
+atom privatekey          <p>Path and name of private key file. (e.g. /etc/ssh/hostkey)</p>
+        </li>
+        <li>
+atom passphrase          <p>Passphrase to use when decoding private key file.</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.  It returns LIBSSH2_ERROR_EAGAIN<br>when it would otherwise block. While LIBSSH2_ERROR_EAGAIN is a negative<br>number, it isn't really a failure per se.<br></p>
+      <b>Description:</b>
+          <p>Attempt public key authentication using a PEM encoded private key file stored on disk<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_userauth_hostbased_fromfile <span>(atom, sequence, atom, atom, atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+sequence username          <p></p>
+        </li>
+        <li>
+atom publickey          <p></p>
+        </li>
+        <li>
+atom privatekey          <p></p>
+        </li>
+        <li>
+atom passphrase          <p></p>
+        </li>
+        <li>
+sequence hostname          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_userauth_keyboard_interactive <span>(atom, sequence, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by <i>libssh2_session_init_ex()</i>.</p>
+        </li>
+        <li>
+sequence username          <p>Name of user to attempt keyboard-interactive authentication for.</p>
+        </li>
+        <li>
+atom response_callback          <p>As authentication proceeds, the host issues several (1 or more) challenges and<br>requires responses. This callback will be called at this moment. The callback<br>is responsible to obtain responses for the challenges, fill the provided data<br>structure and then return control. Responses will be sent to the host.<br>String values will be free()ed by the library.<br>The callback prototype must match this:<br><br><code>procedure response(atom name, integer name_len,<br>atom instruction, integer instruction_len,<br>integer num_prompts, atom prompts,<br>atom responses, atom abstract)<br></code></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Return 0 on success or negative on failure.  It returns LIBSSH2_ERROR_EAGAIN<br>when it would otherwise block. While LIBSSH2_ERROR_EAGAIN is a negative<br>number, it isn't really a failure per se.<br></p>
+      <b>Description:</b>
+          <p>Attempts keyboard-interactive (challenge/response) authentication.<br><br>Note that many SSH servers will always issue a single "password" challenge,<br>requesting actual password as response, but it is not required by the<br>protocol, and various authentication schemes, such as smartcard authentication<br>may use keyboard-interactive authentication type too.<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init()</p>
+        </li>
+        <li>
+          <h3>libssh2_channel_forward_cancel <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom listener          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_forward_accept <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom listener          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_process_startup <span>(atom, atom, integer, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+atom request          <p></p>
+        </li>
+        <li>
+integer request_len          <p></p>
+        </li>
+        <li>
+atom message          <p></p>
+        </li>
+        <li>
+integer message_len          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_receive_window_adjust <span>(atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+atom adjustment          <p></p>
+        </li>
+        <li>
+integer force          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_receive_window_adjust2 <span>(atom, atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+atom adjustment          <p></p>
+        </li>
+        <li>
+integer force          <p></p>
+        </li>
+        <li>
+atom storewindow          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_handle_extended_data2 <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer ignore_mode          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_get_exit_status <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_send_eof <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_eof <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_wait_eof <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_close <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_wait_closed <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_free <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_base64_decode <span>(atom, atom, atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+atom dest          <p></p>
+        </li>
+        <li>
+atom dest_len          <p></p>
+        </li>
+        <li>
+atom src          <p></p>
+        </li>
+        <li>
+integer src_len          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>This function is deemed DEPRECATED and will be removed from libssh2 in a<br>future version. Don't use it!<br><br>Decode a base64 chunk and store it into a newly allocated buffer.<br>'dest_len' will be set to hold the length of the returned buffer that '*dest'<br>will point to.<br><br>The returned buffer is allocated by this function, but it is not clear how to<br>free that memory!<br></p>
+        </li>
+        <li>
+          <h3>libssh2_version <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer req_version_num          <p>should be the version number as constructed by the LIBSSH2_VERSION_NUM<br>constant, which is a 24 bit number in the 0xMMmmpp format.<br>MM for major, mm for minor and pp for patch<br>number.<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>The version number of libssh2 is returned or NULL if the<br><i>required_version</i> isn't fulfilled.</p>
+      <b>Description:</b>
+          <p>If <i>required_version</i> is lower than or equal to the version number of the<br>libssh2 in use, the version number of libssh2 is returned<br></p>
+      <b>Example:</b><br>
+          <code>To make sure you run with the correct libssh2 version:<br><code>if not libssh2_version(LIBSSH2_VERSION_NUM) then<br>printf (2, &quot;Runtime libssh2 version too old!\n&quot;)<br>abort(1)<br>end if<br></code>Unconditionally get the version number:<br><code>printf(1, &quot;libssh2 version: %s&quot;, libssh2_version(0) )<br></code></code><br>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_init <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns the pointer to a collection.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_add <span>(atom, atom, atom, atom, atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom host          <p></p>
+        </li>
+        <li>
+atom salt          <p></p>
+        </li>
+        <li>
+atom key          <p></p>
+        </li>
+        <li>
+atom keylen          <p></p>
+        </li>
+        <li>
+integer typemask          <p></p>
+        </li>
+        <li>
+atom store          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>The 'type' argument specifies on what format the given host is:<br><br>plain  - ascii "hostname.domain.tld"<br>sha1   - SHA1(<salt> <host>) base64-encoded!<br>custom - another hash<br><br>If 'sha1' is selected as type, the salt must be provided to the salt<br>argument. This too base64 encoded.<br><br>The SHA-1 hash is what OpenSSH can be told to use in known_hosts files.  If<br>a custom type is used, salt is ignored and you must provide the host<br>pre-hashed when checking for it in the libssh2_knownhost_check() public function.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_addc <span>(atom, atom, atom, atom, atom, atom, atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom host          <p></p>
+        </li>
+        <li>
+atom salt          <p></p>
+        </li>
+        <li>
+atom key          <p></p>
+        </li>
+        <li>
+atom keylen          <p>may be omitted (zero) if the key is provided as a NULL-terminated<br>base64-encoded string.<br></p>
+        </li>
+        <li>
+atom comment          <p>NULL indicates there is no comment and the entry will end directly after the<br>key when written out to a file.<br>An empty string "" will indicate an empty comment which will cause a single<br>space to be written after the key.<br></p>
+        </li>
+        <li>
+atom commentlen          <p></p>
+        </li>
+        <li>
+integer typemask          <p></p>
+        </li>
+        <li>
+atom store          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>The 'type' argument specifies on what format the given host and keys are:<br>plain  - ascii "hostname.domain.tld"<br>sha1   - SHA1(<salt> <host>) base64-encoded!<br>custom - another hash<br><br>If 'sha1' is selected as type, the salt must be provided to the salt<br>argument. This too base64 encoded.<br><br>The SHA-1 hash is what OpenSSH can be told to use in known_hosts files.  If<br>a custom type is used, salt is ignored and you must provide the host<br>pre-hashed when checking for it in the libssh2_knownhost_check() public function.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_check <span>(atom, atom, atom, atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom host          <p></p>
+        </li>
+        <li>
+atom key          <p></p>
+        </li>
+        <li>
+atom keylen          <p></p>
+        </li>
+        <li>
+integer typemask          <p></p>
+        </li>
+        <li>
+atom knownhost          <p>may be set to NULL if you don't care about that info.</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>LIBSSH2_KNOWNHOST_CHECK_* values</p>
+      <b>Description:</b>
+          <p>The type is the type/format of the given host name.<br><br>plain  - ascii "hostname.domain.tld"<br>custom - prehashed base64 encoded. Note that this cannot use any salts.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_checkp <span>(atom, sequence, integer, atom, atom, integer, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+sequence host          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+        <li>
+atom key          <p></p>
+        </li>
+        <li>
+atom keylen          <p></p>
+        </li>
+        <li>
+integer typemask          <p></p>
+        </li>
+        <li>
+atom knownhost          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>this global function is identical to libssh2_knownhost_check but takes an<br>additional port argument that allows libssh2 to do a better check<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_del <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom entry          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>The 'entry' struct is retrieved by a call to libssh2_knownhost_check().<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_readline <span>(atom, atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom line          <p></p>
+        </li>
+        <li>
+atom len          <p></p>
+        </li>
+        <li>
+integer Type          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>LIBSSH2_KNOWNHOST_FILE_OPENSSH is the only supported type.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_readfile <span>(atom, sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+sequence filename          <p></p>
+        </li>
+        <li>
+integer Type          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns a negative value for error or number of successfully added hosts.<br></p>
+      <b>Description:</b>
+          <p>This implementation currently only knows one 'type'<br>(LIBSSH2_KNOWNHOST_FILE_OPENSSH), all others are reserved for future use.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_writeline <span>(atom, atom, atom, atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom known          <p></p>
+        </li>
+        <li>
+atom buffer          <p></p>
+        </li>
+        <li>
+atom buflen          <p></p>
+        </li>
+        <li>
+atom outlen          <p></p>
+        </li>
+        <li>
+integer Type          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>returns LIBSSH2_ERROR_BUFFER_TOO_SMALL if the given output buffer is too<br>small to hold the desired output.<br></p>
+      <b>Description:</b>
+          <p>This implementation currently only knows one 'type' (openssh), all others<br>are reserved for future use.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_writefile <span>(atom, sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+sequence filename          <p></p>
+        </li>
+        <li>
+integer Type          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>This implementation currently only knows one 'type' (openssh), all others<br>are reserved for future use.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_knownhost_get <span>(atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom hosts          <p></p>
+        </li>
+        <li>
+atom store          <p></p>
+        </li>
+        <li>
+atom prev          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns:<br>* 0 if a fine host was stored in 'store'<br>* 1 if end of hosts<br>* [negative] on errors<br></p>
+      <b>Description:</b>
+          <p>Pass NULL to 'prev' to get the first one, or pass a pointer to the<br>previously returned one to get the next.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_agent_init <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns the pointer to the handle.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_agent_connect <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom agent          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 if succeeded, or a negative value for error.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_agent_list_identities <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom agent          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 if succeeded, or a negative value for error.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_agent_get_identity <span>(atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom agent          <p></p>
+        </li>
+        <li>
+atom store          <p></p>
+        </li>
+        <li>
+atom prev          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns:<br>* 0 if a fine public key was stored in 'store'<br>* 1 if end of public keys<br>[negative] on errors<br></p>
+      <b>Description:</b>
+          <p>Pass NULL to 'prev' to get the first one, or pass a pointer to the previously<br>returned one to get the next.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_agent_userauth <span>(atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom agent          <p></p>
+        </li>
+        <li>
+atom pointer          <p></p>
+        </li>
+        <li>
+atom identity          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 if succeeded, or a negative value for error.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_agent_disconnect <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom agent          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns 0 if succeeded, or a negative value for error.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_keepalive_send <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>session handle</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Returns how many seconds you can sleep after this call before you need to<br>call it again on success, or -1 if failed.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_trace <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer bitmask          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_trace_sethandler <span>(atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+atom context          <p></p>
+        </li>
+        <li>
+atom callback          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_open_session <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_direct_tcpip <span>(atom, sequence, integer, sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+sequence host          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+        <li>
+sequence shost          <p></p>
+        </li>
+        <li>
+integer sport          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_forward_listen <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p></p>
+        </li>
+        <li>
+integer port          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_setenv <span>(atom, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+sequence varname          <p></p>
+        </li>
+        <li>
+sequence value          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_request_pty <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+sequence term          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_request_pty_size <span>(atom, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer width          <p></p>
+        </li>
+        <li>
+integer height          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_x11_req <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+integer screen_number          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_shell <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_exec <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+sequence command          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_subsystem <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+sequence subsystem          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_read_ex <span>(atom, integer, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p>active channel stream to read from.</p>
+        </li>
+        <li>
+integer stream_id          <p>substream ID number (e.g. 0 or SSH_EXTENDED_DATA_STDERR)</p>
+        </li>
+        <li>
+atom buf          <p></p>
+        </li>
+        <li>
+integer buflen          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Actual number of bytes read or negative on failure. It returns<br>LIBSSH2_ERROR_EAGAIN when it would otherwise block. While<br>LIBSSH2_ERROR_EAGAIN is a negative number, it isn't really a failure per se.<br><br>Note that a return value of zero (0) can in fact be a legitimate value and<br>only signals that no payload data was read. It is not an error.<br></p>
+      <b>Description:</b>
+          <p>Attempt to read data from an active channel stream.<br></p>
+      <b>See also:</b>
+          <p>libssh2_poll_channel_read()</p>
+        </li>
+        <li>
+          <h3>libssh2_channel_read <span>(atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p>active channel stream to read from.</p>
+        </li>
+        <li>
+atom buf          <p></p>
+        </li>
+        <li>
+integer buflen          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Attempt to read data from an active channel stream.<br></p>
+        </li>
+        <li>
+          <h3>libssh2_channel_read_stderr <span>(atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+atom buf          <p></p>
+        </li>
+        <li>
+integer buflen          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_window_read <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_write <span>(atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+atom buf          <p></p>
+        </li>
+        <li>
+integer buflen          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>Returns the number of bytes which may be safely written on the channel<br>without blocking. 'window_size_initial' (if passed) will be populated with<br>the size of the initial window as defined by the channel_open request<br></p>
+        </li>
+        <li>
+          <h3>libssh2_channel_write_stderr <span>(atom, atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+        <li>
+atom buf          <p></p>
+        </li>
+        <li>
+integer buflen          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_window_write <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_flush <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_channel_flush_stderr <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom channel          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>libssh2_scp_send <span>(atom, atom, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init_ex()</p>
+        </li>
+        <li>
+atom path          <p>Full path and filename of file to transfer to. That is the remote file name.</p>
+        </li>
+        <li>
+integer mode          <p>File access mode to create file with</p>
+        </li>
+        <li>
+integer size          <p>Size of file being transmitted (Must be known ahead of time precisely)</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Pointer to a newly allocated LIBSSH2_CHANNEL instance, or NULL on errors.<br></p>
+      <b>Description:</b>
+          <p>Deprecated since libssh2 1.2.6. Use <i>libssh2_scp_send64()</i> instead.<br></p>
+      <b>See also:</b>
+          <p>libssh2_channel_open(), libssh2_scp_send64()</p>
+        </li>
+        <li>
+          <h3>libssh2_scp_send64 <span>(atom, atom, integer, atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+atom path          <p>Full path and filename of file to transfer to. That is the remote file name.</p>
+        </li>
+        <li>
+integer mode          <p>File access mode to create file with</p>
+        </li>
+        <li>
+atom size          <p>Size of file being transmitted (Must be known ahead of time).<br>Note that this needs to be passed on as variable type libssh2_uint64_t.<br>This type is 64 bit on modern operating systems and compilers.<br></p>
+        </li>
+        <li>
+atom mtime          <p>mtime to assign to file being created</p>
+        </li>
+        <li>
+atom atime          <p>atime to assign to file being created (Set this and mtime to zero to<br>instruct remote host to use current time).<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Pointer to a newly allocated LIBSSH2_CHANNEL instance, or NULL on errors.<br></p>
+      <b>See also:</b>
+          <p>libssh2_channel_open()</p>
+        </li>
+        <li>
+          <h3>libssh2_scp_recv <span>(atom, atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom session          <p>Session instance as returned by libssh2_session_init()</p>
+        </li>
+        <li>
+atom path          <p>Full path and filename of file to transfer. That is the remote file name.</p>
+        </li>
+        <li>
+atom sb          <p>Populated with remote file's size, mode, mtime, and atime</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>Pointer to a newly allocated LIBSSH2_CHANNEL instance, or NULL on errors.<br></p>
+      <b>Description:</b>
+          <p>This receives files larger than 2 GB, but is unable to report the proper size<br>on platforms where the st_size member of struct stat is limited to 2 GB<br>(e.g. windows).<br></p>
+      <b>See also:</b>
+          <p>libssh2_session_init(), libssh2_channel_open()</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

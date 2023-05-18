@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_machine_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_machine_</div>
+    <div class="main">
+      <p>-- Machine Level Access<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>poke8 <span>(atom, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom address          <p>either a long integer or a non empty sequence of long integers</p>
+        </li>
+        <li>
+object x          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke8(addr, -1)<br></code><br>
+      <b>See also:</b>
+          <p>peek8u(), peek8s()</p>
+        </li>
+        <li>
+          <h3>poke_float <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+        <li>
+atom a          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke_float(addr, 3.1416)<br></code><br>
+      <b>See also:</b>
+          <p>peek_float()</p>
+        </li>
+        <li>
+          <h3>poke_double <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+        <li>
+atom a          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke_double(addr, 216656332.2)<br></code><br>
+      <b>See also:</b>
+          <p>peek_double()</p>
+        </li>
+        <li>
+          <h3>poke_pointer <span>(atom, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom addr          <p></p>
+        </li>
+        <li>
+object x          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke_pointer(addr, allocate_string("where?"))<br></code><br>
+      <b>See also:</b>
+          <p>peek_pointer()</p>
+        </li>
+        <li>
+          <h3>poke_plist <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom addr          <p></p>
+        </li>
+        <li>
+sequence pointers          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>addr2 = allocate(4)<br>addr3 = allocate(4)<br>addr = allocate_plist({NULL, NULL})<br>poke_plist(addr, {addr3, addr2})<br></code><br>
+      <b>See also:</b>
+          <p>allocate_plist(), peek_plist(), free_plist()</p>
+        </li>
+        <li>
+          <h3>free_plist <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom addr          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>free_plist(addr)<br>? peek_plist(addr) --> {}<br></code><br>
+      <b>See also:</b>
+          <p>allocate_plist(), poke_plist(), peek_plist()</p>
+        </li>
+        <li>
+          <h3>free_string_list <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom addr          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>free_string_list(addr)<br>s = peek_string_list(addr, {})<br>s is {}<br></code><br>
+      <b>See also:</b>
+          <p>allocate_string_list(), peek_string_list()</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>peek8u <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object address          <p>either of<br>* an atom addr : to fetch one long integer at addr, or<br>* a pair {addr,len} : to fetch len long integers at addr<br></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke8(addr, -1)<br>? peek8u(addr) --> 1.844674407e+019<br></code><br>
+      <b>See also:</b>
+          <p>poke8(), peek8s()</p>
+        </li>
+        <li>
+          <h3>peek8s <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object address          <p>either of<br>* an atom addr : to fetch one long integer at addr, or<br>* a pair {addr,len} : to fetch len long integers at addr<br></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke8(addr, -1)<br>? peek8s(addr) --> -1<br></code><br>
+      <b>See also:</b>
+          <p>poke8(), peek8u()</p>
+        </li>
+        <li>
+          <h3>peek_float <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke_float(addr, 3.1416)<br>? peek_float(addr) --> 3.141599894 (caused by float storage format)<br></code><br>
+      <b>See also:</b>
+          <p>poke_float()</p>
+        </li>
+        <li>
+          <h3>peek_double <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>poke_double(addr, 216656332.2)<br>? peek_double(addr) --> 216656332.2<br></code><br>
+      <b>See also:</b>
+          <p>poke_double()</p>
+        </li>
+        <li>
+          <h3>peek_pointer <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object addr          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>addr2 = allocate_string("where?")<br>? addr2<br>poke_pointer(addr, addr2)<br>? peek_pointer(addr) --> same as addr2<br></code><br>
+      <b>See also:</b>
+          <p>poke_pointer()</p>
+        </li>
+        <li>
+          <h3>allocate_plist <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence pointers          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>addr2 = allocate(4)<br>addr3 = allocate(4)<br>addr = allocate_plist({addr2, addr3})<br></code><br>
+      <b>See also:</b>
+          <p>poke_plist(), peek_plist(), free_plist()</p>
+        </li>
+        <li>
+          <h3>peek_plist <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom addr          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>addr2 = allocate(4)<br>? addr2 --> 4758384<br>addr3 = allocate(4)<br>? addr3 --> 4832984<br>addr = allocate_plist({addr2, addr3})<br>? peek_plist(addr) --> {4758384,4832984}<br></code><br>
+      <b>See also:</b>
+          <p>allocate_plist(), poke_plist(), free_plist()</p>
+        </li>
+        <li>
+          <h3>allocate_string_list <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object string_list          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>no need of poke_string_list as allocate_string_list does the job<br></p>
+      <b>Example:</b><br>
+          <code>addr = allocate_string_list({"my","taylor","is","rich"})<br></code><br>
+      <b>See also:</b>
+          <p>peek_string_list(), free_string_list()</p>
+        </li>
+        <li>
+          <h3>peek_string_list <span>(atom, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom addr          <p></p>
+        </li>
+        <li>
+integer max          <p>fixes maximum number of strings to read<br></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>opposite of allocate_string_list()<br></p>
+      <b>Example:</b><br>
+          <code>addr = allocate_string_list({"my","taylor","is","rich"})<br>s = peek_string_list(addr)<br>s is {"my","taylor","is","rich"}<br>s = peek_string_list(addr, 2)<br>s is {"my","taylor"}<br></code><br>
+      <b>See also:</b>
+          <p>allocate_string_list(), free_string_list()</p>
+        </li>
+        <li>
+          <h3>cdecl_callback <span>(integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer rtn          <p></p>
+        </li>
+      </ul>
+        </li>
+        <li>
+          <h3>byte_to_word <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom l          <p></p>
+        </li>
+        <li>
+atom h          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>? byte_to_word(#AA, #80)  --> 32938 (#80AA)<br></code><br>
+      <b>See also:</b>
+          <p>high_byte(), low_byte()</p>
+        </li>
+        <li>
+          <h3>high_byte <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom x          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>? high_byte(#80AA)  --> 128 (#80)<br></code><br>
+      <b>See also:</b>
+          <p>byte_to_word(), low_byte()</p>
+        </li>
+        <li>
+          <h3>low_byte <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom x          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>? low_byte(#80AA)  --> 170 (#AA)<br></code><br>
+      <b>See also:</b>
+          <p>byte_to_word(), high_byte()</p>
+        </li>
+        <li>
+          <h3>word_to_dword <span>(atom, atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom l          <p></p>
+        </li>
+        <li>
+atom h          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>? word_to_dword(#21FA, #8123)  --> 2166563322 (#812321FA)<br></code><br>
+      <b>See also:</b>
+          <p>high_word(), low_word()</p>
+        </li>
+        <li>
+          <h3>high_word <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom pData          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>from win32lib tk_maths.e<br></p>
+      <b>Example:</b><br>
+          <code>? high_word(#812321FA)  --> 33059 (#8123)<br></code><br>
+      <b>See also:</b>
+          <p>word_to_dword(), low_word()</p>
+        </li>
+        <li>
+          <h3>low_word <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom pData          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>from win32lib tk_maths.e<br></p>
+      <b>Example:</b><br>
+          <code>? low_word(#812321FA)  --> 8698 (#21FA)<br></code><br>
+      <b>See also:</b>
+          <p>word_to_dword(), high_word()</p>
+        </li>
+        <li>
+          <h3>higher_bits <span>(integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer x          <p></p>
+        </li>
+        <li>
+integer divide          <p>divide is the is the value that fixes the limit between higher bits and lower bits</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>higher_bits(x, #10) gets the higher quartet (4 bits) of byte x (8 bits)<br>higher_bits(x, #100) gets the higher bytes (8 bits) of word x (16 bits)<br>higher_bits(x, #10000) gets the higher word (16 bits) of dword x (32 bits)<br></code><br>
+        </li>
+        <li>
+          <h3>lower_bits <span>(integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer x          <p></p>
+        </li>
+        <li>
+integer divide          <p>divide is the is the value that fixes the limit between higher bits and lower bits</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>lower_bits(x, #10) gets the lower quartet (4 bits) of byte x (8 bits)<br>lower_bits(x, #100) gets the lower bytes (8 bits) of word x (16 bits)<br>lower_bits(x, #10000) gets the lower word (16 bits) of dword x (32 bits)<br></code><br>
+        </li>
+        <li>
+          <h3>join_bits <span>(integer, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+integer highest          <p></p>
+        </li>
+        <li>
+integer lowest          <p></p>
+        </li>
+        <li>
+integer divide          <p>divide is the resulting value when highest is 1 and lowest is 0</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>join_bits(h, l, #10) joins to quartets (4 bits) to build a byte (8 bits)<br>join_bits(h, l, #100) joins to bytes (8 bits) to build a word (16 bits)<br>join_bits(h, l, #10000) joins to words (16 bits) to build a dword (32 bits)<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

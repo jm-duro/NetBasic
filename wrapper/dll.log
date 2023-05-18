@@ -1,0 +1,6 @@
+{FUNC, "open_dll", {SEQUENCE} },
+{FUNC, "define_c_var", {ATOM, SEQUENCE} },
+{FUNC, "define_c_proc", {OBJECT, OBJECT, SEQUENCE} },
+{FUNC, "define_c_func", {OBJECT, OBJECT, SEQUENCE, ATOM} },
+{FUNC, "call_back", {OBJECT} },
+{PROC, "free_console", {} },

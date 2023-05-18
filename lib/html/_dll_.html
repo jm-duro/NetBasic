@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_dll_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_dll_</div>
+    <div class="main">
+      <p></p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>int8 <span> &emsp; [ #01000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int16 <span> &emsp; [ #01000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int32 <span> &emsp; [ #01000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int64 <span> &emsp; [ #01000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint8 <span> &emsp; [ #02000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint16 <span> &emsp; [ #02000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint32 <span> &emsp; [ #02000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint64 <span> &emsp; [ #02000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>pointer <span> &emsp; [ #03000001 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>long_pointer <span> &emsp; [ #03000002 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>float <span> &emsp; [ #03000004 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>double <span> &emsp; [ #03000008 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>bool <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>Bool <span> &emsp; [ bool ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>byte <span> &emsp; [ uint8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>char <span> &emsp; [ uint8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>char16 <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>char16_t <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>char32 <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>char32_t <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>double_t <span> &emsp; [ double ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>dword <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>dwordlong <span> &emsp; [ uint64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>float_t <span> &emsp; [ float ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int8_t <span> &emsp; [ int8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int16_t <span> &emsp; [ int16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int32_t <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>int64_t <span> &emsp; [ int64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>intptr <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>intptr_t <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>long <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>long_double <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>long_int <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>long_long <span> &emsp; [ int64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>long_long_int <span> &emsp; [ int64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>longlong <span> &emsp; [ int64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ptrdiff_t <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>short <span> &emsp; [ int16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>short_int <span> &emsp; [ int16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_char <span> &emsp; [ int8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_int <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_long <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_long_int <span> &emsp; [ int32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_long_long <span> &emsp; [ int64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_long_long_int <span> &emsp; [ int64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_short <span> &emsp; [ int16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>signed_short_int <span> &emsp; [ int16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>size_t <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ssize_t <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint8_t <span> &emsp; [ uint8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint16_t <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint32_t <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint64_t <span> &emsp; [ uint64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uintptr <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uintptr_t <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ulonglong <span> &emsp; [ uint64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_char <span> &emsp; [ uint8 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_int <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_long <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_long_int <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_long_long <span> &emsp; [ uint64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_long_long_int <span> &emsp; [ uint64 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_short <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>unsigned_short_int <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>wchar <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>wchar_t <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>word <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>time_t <span> &emsp; [ pointer ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>uint <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ulong <span> &emsp; [ uint32 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>ushort <span> &emsp; [ uint16 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>CTYPE_NAMES <span> &emsp; [ { ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>L_NAME <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>L_LNX_64 <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>L_LNX_32 <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>L_WIN_64 <span> &emsp; [ 4 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>L_WIN_32 <span> &emsp; [ 5 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>F_NAME <span> &emsp; [ 1 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>F_INPUT <span> &emsp; [ 2 ]</span></h3>
+          <p></p>
+        </li>
+        <li>
+          <h3>F_OUTPUT <span> &emsp; [ 3 ]</span></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>write_structure <span>(atom, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+        <li>
+sequence def          <p></p>
+        </li>
+        <li>
+sequence values          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>writes data in memory according to a structure definition<br>automatically sizes structure to EU version and OS Architecture<br></p>
+      <b>Example:</b><br>
+          <code>writeStructure(p, {pointer, int, int}, {hwnd, 12, 25} )<br></code><br>
+        </li>
+        <li>
+          <h3>free_structure <span>(atom, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+        <li>
+sequence def          <p></p>
+        </li>
+        <li>
+sequence values          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>frees memory according to a structure definition<br>automatically frees pointers included in the structure<br>according to EU version and OS Architecture<br></p>
+      <b>Example:</b><br>
+          <code>freeStructure(p, {pointer, int, int}, {hwnd, 12, 25} )<br></code><br>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>size_of <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom ctype          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>? size_of(pointer)<br></code><br>
+        </li>
+        <li>
+          <h3>allocate_structure <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+        <li>
+sequence def          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>allocates memory according to a structure definition<br>automatically sizes structure to EU version and OS Architecture<br></p>
+      <b>Example:</b><br>
+          <code>atom p = NULL<br>p = allocateStructure(p, {pointer, int, int} )<br></code><br>
+        </li>
+        <li>
+          <h3>read_structure <span>(atom, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom p          <p></p>
+        </li>
+        <li>
+sequence def          <p></p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>reads data in memory according to a structure definition<br>automatically sizes structure to EU version and OS Architecture<br></p>
+      <b>Example:</b><br>
+          <code>sequence s = readStructure(p, {pointer, int, int} )<br></code><br>
+        </li>
+        <li>
+          <h3>register_library <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence name          <p></p>
+        </li>
+        <li>
+sequence library_definition          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>constant CURL_LIBRARY_DEFINITION = {<br>{<br>"libcurl",                                -- L_NAME<br>"/usr/lib/x86_64-linux-gnu/libcurl.so.4", -- L_LNX_64<br>"/usr/lib/i386-linux-gnu/libcurl.so.4",   -- L_LNX_32<br>0,                                        -- L_WIN_64<br>InitialDir & "\\libcurl.dll"              -- L_WIN_32<br>}<br>}<br><br>libcurl = register_library("libcurl", CURL_LIBRARY_DEFINITION)<br></code><br>
+        </li>
+        <li>
+          <h3>register_routine <span>(atom, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom lib          <p></p>
+        </li>
+        <li>
+sequence name          <p></p>
+        </li>
+        <li>
+sequence function_definition          <p></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>constant CURL_ROUTINE_DEFINITION = {<br>{"+curl_getenv",       {pointer}, pointer},<br>{"+curl_version_info", {pointer}, pointer}<br>}<br><br>xcurl_version_info = register_routine(libcurl, "+curl_version_info",<br>CURL_ROUTINE_DEFINITION)<br><br>p = c_func(xcurl_version_info, {3})<br>? peek_string(p)  --> {3}<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

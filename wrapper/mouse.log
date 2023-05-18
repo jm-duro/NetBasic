@@ -1,0 +1,3 @@
+{FUNC, "get_mouse", {} },
+{PROC, "mouse_events", {INTEGER} },
+{PROC, "mouse_pointer", {INTEGER} },

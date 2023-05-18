@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_http_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_http_</div>
+    <div class="main">
+      <p>-- _http_.e<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>html_to_ascii <span>(sequence)</span></h3>
+          <p>converts an HTML string to an ASCII string</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence<br></p>
+      <b>Example:</b><br>
+          <code>s = html_to_ascii("&amp;lt;tag&amp;nbsp;string=&amp;quot;&amp;eacute;l&amp;eacute;gant&amp;quot;&amp;nbsp;/&amp;gt;")<br>s is "&lt;tag&nbsp;string=&quot;&eacute;l&eacute;gant&quot;&nbsp;/&gt;"<br></code><br>
+      <b>See also:</b>
+          <p>html_to_utf8(), ascii_to_html(), utf8_to_html()</p>
+        </li>
+        <li>
+          <h3>ascii_to_html <span>(sequence)</span></h3>
+          <p>converts an ASCII string to an HTML string</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>s = ascii_to_html("&lt;tag&nbsp;string=&quot;&eacute;l&eacute;gant&quot;&nbsp;/&gt;")<br>s is &amp;lt;tag&amp;nbsp;string=&amp;quot;&amp;eacute;l&amp;eacute;gant&amp;quot;&amp;nbsp;/&amp;gt;<br></code><br>
+      <b>See also:</b>
+          <p>html_to_ascii(), html_to_utf8(), utf8_to_html()</p>
+        </li>
+        <li>
+          <h3>html_to_utf8 <span>(sequence)</span></h3>
+          <p>converts an HTML string to an UTF-8 string</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>s = html_to_utf8("&amp;lt;tag&amp;nbsp;string=&amp;quot;&amp;eacute;l&amp;eacute;gant&amp;quot;&amp;nbsp;/&amp;gt;")<br>s is "&lt;tag&nbsp;string=&quot;&Atilde;&#x81;l&Atilde;&#x81;gant&quot;&nbsp;/&gt;" (ascii)<br>s is "&lt;tag&nbsp;string=&quot;&eacute;l&eacute;gant&quot;&nbsp;/&gt;" (utf-8)<br></code><br>
+      <b>See also:</b>
+          <p>html_to_ascii(), ascii_to_html(), utf8_to_html()</p>
+        </li>
+        <li>
+          <h3>utf8_to_html <span>(sequence)</span></h3>
+          <p>converts an UTF-8 string to an HTML string</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to convert</p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>s2 = "&lt;tag&nbsp;string=&quot;&Atilde;&#x81;l&Atilde;&#x81;gant&quot;&nbsp;/&gt;" (ascii)<br>s2 = "&lt;tag&nbsp;string=&quot;&eacute;l&eacute;gant&quot;&nbsp;/&gt;" (utf-8)<br>s = utf8_to_html(s2)<br>s is &amp;lt;tag&amp;nbsp;string=&amp;quot;&amp;eacute;l&amp;eacute;gant&amp;quot;&amp;nbsp;/&amp;gt;<br></code><br>
+      <b>See also:</b>
+          <p>html_to_ascii(), html_to_utf8(), ascii_to_html()</p>
+        </li>
+        <li>
+          <h3>encode_url <span>(sequence, integer)</span></h3>
+          <p>encodes and URL</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to ancode</p>
+        </li>
+        <li>
+integer utf8          <p>encode result in UTF-8 if present<br></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>request = "https://www.google.fr/search?q=&eacute;l&eacute;gant"<br>s = encode_url(request)<br>s is https%3A%2F%2Fwww%2Egoogle%2Efr%2Fsearch%3Fq%3D%E9l%E9gant<br>s = encode_url(request, 1)<br>s is https%3A%2F%2Fwww%2Egoogle%2Efr%2Fsearch%3Fq%3D%C3%A9l%C3%A9gant<br></code><br>
+      <b>See also:</b>
+          <p>decode_url()</p>
+        </li>
+        <li>
+          <h3>decode_url <span>(sequence, integer)</span></h3>
+          <p>decodes an URL</p>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to decode</p>
+        </li>
+        <li>
+integer utf8          <p>decode UTF-8 url if present<br></p>
+        </li>
+      </ul>
+      <b>Example:</b><br>
+          <code>s = https%3A%2F%2Fwww%2Egoogle%2Efr%2Fsearch%3Fq%3D%E9l%E9gant<br>s2 = decode_url(s)<br>s2 is https://www.google.fr/search?q=&eacute;l&eacute;gant<br>s = https%3A%2F%2Fwww%2Egoogle%2Efr%2Fsearch%3Fq%3D%C3%A9l%C3%A9gant<br>s2 = decode_url(s, 1)<br>s2 is:<br>https://www.google.fr/search?q=&Atilde;&#x81;l&Atilde;&#x81;gant (ascii)<br>https://www.google.fr/search?q=&eacute;l&eacute;gant (utf-8)<br></code><br>
+      <b>See also:</b>
+          <p>encode_url</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

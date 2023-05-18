@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_eumem_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_eumem_</div>
+    <div class="main">
+      <p>-- OpenEuphoria's std/eumem.e<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>variable</h2>
+      <p>Following global variables are defined:</p>
+      <ul>
+        <li>
+          <h3>sequence ram_space</h3>
+          <p>The (pseudo) RAM heap space. Use <b>memAlloc</b> to gain ownership to a heap<br>location and <b>memFree</b> to release it back to the system.<br></p>
+        </li>
+        <li>
+          <h3>integer free_rid</h3>
+          <p>handle of routine memFree()</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>procedure</h2>
+      <p>Following global procedures are defined:</p>
+      <ul>
+        <li>
+          <h3>memFree <span>(atom)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+atom mem_p          <p>The handle to a previously acquired <i>ram_space</i> location.</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>This allows the location to be used by other parts of your application. You<br>should no longer access this location again because it could be acquired by<br>some other process in your application.<br></p>
+      <b>Example:</b><br>
+          <code>atom my_spot, my_spot2<br><br>my_spot = memAlloc("")<br>my_spot2 = memAlloc(4)<br><br>do some stuff ...<br><br>memFree(my_spot2)<br>memFree(my_spot)<br></code><br>
+      <b>See also:</b>
+          <p>memAlloc</p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>memAlloc <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object mem_struct_p          <p>The initial structure (sequence) to occupy the allocated block.<br>If this is an integer, a sequence of zero this long is used. The default<br>is the number 1, meaning that the default initial structure is {0}<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>A <i>handle</i>, to the acquired block. Once you acquire this, you can use it<br>as you need to.<br></p>
+      <b>Example:</b><br>
+          <code>atom my_spot, my_spot2<br><br>my_spot = memAlloc("")<br>my_spot2 = memAlloc(4)<br><br>ram_space[my_spot] = "to be or not to be"<br>puts(1, ram_space[my_spot] & "\n")<br>-- to be or not to be<br><br>ram_space[my_spot2] = 1024<br>? ram_space[my_spot2]<br>-- 1024<br><br>puts(1, ram_space[my_spot] & "\n")<br>-- to be or not to be<br>? ram_space[my_spot2]<br>-- 1024<br><br>memFree(my_spot2)<br>memFree(my_spot)<br></code><br>
+      <b>See also:</b>
+          <p>memFree</p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,6 @@
+{PROC, "abortErr", {SEQUENCE} },
+{PROC, "warnErr", {SEQUENCE} },
+{PROC, "setWarning", {INTEGER} },
+{FUNC, "attachCleanUp", {INTEGER} },
+{FUNC, "detachCleanUp", {INTEGER} },
+{PROC, "Init_UI_Msgs", {SEQUENCE} },

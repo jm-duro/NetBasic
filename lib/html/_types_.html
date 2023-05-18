@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_types_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_types_</div>
+    <div class="main">
+      <p>-- _types_.e<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>constant</h2>
+      <p>Following global constants are defined:</p>
+      <ul>
+        <li>
+          <h3>DIGITS <span> &emsp; [ "0123456789ABCDEF" ]</span></h3>
+          <p></p>
+        </li>
+      </ul>
+    </div>
+    <div class="block">
+      <h2>eu_type</h2>
+      <p>Following global eu_types are defined:</p>
+      <ul>
+        <li>
+          <h3>positive <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object x          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>x</b> >=0</p>
+        </li>
+        <li>
+          <h3>is_space <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object n          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>n</b> is a space, tab, vtab, cr, lf of ff</p>
+        </li>
+        <li>
+          <h3>is_alpha <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object n          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>n</b> is within [a-z] or [A-Z]</p>
+        </li>
+        <li>
+          <h3>is_digit <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object n          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>test if <b>n</b> is within [0-9]</p>
+        </li>
+        <li>
+          <h3>is_string <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object x          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>x</b> is a string</p>
+        </li>
+        <li>
+          <h3>is_integer <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object s          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>s</b> represents an integer</p>
+        </li>
+        <li>
+          <h3>is_number <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object s          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>s</b> represents a number</p>
+        </li>
+        <li>
+          <h3>is_date <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object s          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>s</b> represents a date<br>"[.]./[.]./[..].."<br></p>
+        </li>
+        <li>
+          <h3>is_hex <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object s          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>s</b> represents a hexadecimal number</p>
+        </li>
+        <li>
+          <h3>is_identifier <span>(object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+object s          <p>object to check</p>
+        </li>
+      </ul>
+      <b>Description:</b>
+          <p>checks if <b>s</b> represents an identifier<br>begins with '_' or  [a-z] or [A-Z]<br>contains '_' or  [a-z] or [A-Z] or [0-9]<br></p>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>

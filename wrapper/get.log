@@ -1,0 +1,6 @@
+{FUNC, "wait_key", {} },
+{FUNC, "get", {INTEGER} },
+{FUNC, "value", {SEQUENCE} },
+{FUNC, "prompt_number", {SEQUENCE, SEQUENCE} },
+{FUNC, "prompt_string", {SEQUENCE} },
+{FUNC, "get_bytes", {INTEGER, INTEGER} },

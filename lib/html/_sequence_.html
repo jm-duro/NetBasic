@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html>
+  <head profile="http://dublincore.org/documents/dcq-html">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>
+_sequence_</title>
+    <style type="text/css">
+      html,body{
+        padding: 0;
+        margin: 0;
+        background: #FFFFFF;
+        color: #262626;
+      }
+      body{
+        font-family: "Lucida Grande", Verdana, Arial, sans-serif;
+        font-size: 12px;
+        line-height: 180%;
+      }
+      *{
+        padding: 0;
+        margin: 0;
+      }
+      .header {
+        background-color: #323335;
+        color: white;
+        padding: 10px 40px;
+        font-size: 18px;
+        font-family: 'Lucida Grande', 'Verdana', sans-serif;
+        border-bottom: 4px solid #3d72c9;;
+      }
+      a:link,
+      a:visited{
+        text-decoration: underline;
+        color: #444444;
+      }
+      a:hover,
+      a:active{
+        text-decoration: underline;
+        color: #3D72C9;
+      }
+      h1{
+        color: white;
+        font-size: 14px;
+      }
+      h2{
+        color: #3D72C9;
+        font-size: 14px;
+      }
+      h3{
+        font-size: 12px;
+        font-weight: bold;
+        color: #000000;
+      }
+      h3 span{
+        font-weight: bold;
+        font-size: 11px;
+      }
+      p{
+        margin: 12px 0;
+        max-width: 800px;
+      }
+      ul{
+        list-style: square;
+        padding-left: 16px;
+        color: #565656;
+      }
+      li{
+        margin-bottom: 10px;
+      }
+      li p{
+        color: black;
+        margin: 0;
+      }
+      pre,
+      code{
+        font-family: Consolas, "Bitstream Vera Sans Mono", "Courier New", monospace;
+        font-size: 11px;
+        line-height: 160%;
+        padding: 1px 4px;
+      }
+      .main{
+        background: #F0F0F0;
+        padding: 16px 40px;
+      }
+      .main pre,
+      .main code{
+        background: #FFFFFF;
+      }
+      .block pre,
+      .block code{
+        background: #F0F0F0;
+      }
+      .block{
+        margin: 16px 40px;
+        margin-top: 40px;
+      }
+      .hide, .publish {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+_sequence_</div>
+    <div class="main">
+      <p>-- _sequence_.e<br>
+</p>
+    </div>
+    <div class="block">
+      <h2>function</h2>
+      <p>Following global functions are defined:</p>
+      <ul>
+        <li>
+          <h3>trim_spaces <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to modify</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>modified string<br></p>
+      <b>Description:</b>
+          <p>remove space chars from both ends of a string<br>and removes exceeding space chars between words<br>tab spaces are converted to normal spaces before removal<br></p>
+      <b>See also:</b>
+          <p>trim_head(), trim_tail(), trim()</p>
+        </li>
+        <li>
+          <h3>left <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to look at</p>
+        </li>
+        <li>
+integer n          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: extracted sub-string<br></p>
+      <b>See also:</b>
+          <p>mid(), right()</p>
+        </li>
+        <li>
+          <h3>right <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>string to look at</p>
+        </li>
+        <li>
+integer n          <p></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: extracted sub-string<br></p>
+      <b>See also:</b>
+          <p>left(), mid()</p>
+        </li>
+        <li>
+          <h3>split_string <span>(sequence, object, integer, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence str          <p>string to split</p>
+        </li>
+        <li>
+object sep          <p>separator<br>either an object or a sequence<br>if separator is a sequence then:<br>* if as_is is set then the whole string is the separator<br>* is as_is is not set then each character of the string is considered<br></p>
+        </li>
+        <li>
+integer as_is          <p>indicates that separator is the whole string instead of each character<br>separately. Defaults to 0 (each character separately).<br></p>
+        </li>
+        <li>
+integer keep          <p>indicates that separator is kept in result. Defaults to 0 (no).<br></p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>splitted sequence<br></p>
+      <b>Example:</b><br>
+          <code>analyze_object(split_string("my name is Bond", ' '), "split_string")<br>split_string =<br>.  [1] "my"<br>.  [2] "name"<br>.  [3] "is"<br>.  [4] "Bond"<br>analyze_object(split_string("my name is Bond", ' ', , 1), "split_string")<br>split_string =<br>.  [1] "my"<br>.  [2] " "<br>.  [3] "name"<br>.  [4] " "<br>.  [5] "is"<br>.  [6] " "<br>.  [7] "Bond"<br>analyze_object(split_string("my name is: Bond", ": "), "split_string")<br>split_string =<br>.  [1] "my"<br>.  [2] "name"<br>.  [3] "is"<br>.  [4] "Bond"<br>analyze_object(split_string("my name is: Bond", ": ", 1), "split_string")<br>split_string =<br>.  [1] "my name is"<br>.  [2] "Bond"<br></code><br>
+        </li>
+        <li>
+          <h3>unescape <span>(sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence str          <p>string to convert escaped chars from</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>unescaped sequence<br></p>
+      <b>Example:</b><br>
+          <code>unescape(\"string1\\string2\") => "string1\string2"<br>unescape(\'char\') => 'char'<br>unescape(col1\tcol2) => col1[tab]col2<br>unescape(line1\rline2) => line1[cr]line2<br>unescape(line1\nline2) => line1[lf]line2<br>unescape(line\n) => line[lf]<br></code><br>
+        </li>
+        <li>
+          <h3>split_n_convert <span>(sequence, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence str          <p>string to split</p>
+        </li>
+        <li>
+object sep          <p>separator</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>splitted sequence<br></p>
+      <b>Description:</b>
+          <p>splitted elements are converted to atoms when possible<br></p>
+      <b>Example:</b><br>
+          <code>analyze_object(split_n_convert("my,code,is,7", ","), "split_n_convert")<br>split_n_convert =<br>.  [1] "my"<br>.  [2] "code"<br>.  [3] "is"<br>.  [4] 7<br></code><br>
+      <b>See also:</b>
+          <p>convert_n_join()</p>
+        </li>
+        <li>
+          <h3>convert_n_join <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>sequence of objects</p>
+        </li>
+        <li>
+sequence sep          <p>separator</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>merged string<br></p>
+      <b>Description:</b>
+          <p>objects are converted to strings before being joined<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, convert_n_join({"my","code","is", 7}, ",") & "\n")<br>"my","code","is",7<br></code><br>
+      <b>See also:</b>
+          <p>split_n_merge()</p>
+        </li>
+        <li>
+          <h3>replace_all <span>(sequence, sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence target          <p>sequence to replace in</p>
+        </li>
+        <li>
+sequence old          <p>sub-sequence to be replaced</p>
+        </li>
+        <li>
+sequence new          <p>new sub-sequence</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>modified sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, replace_all("atoms, integers and objects", "s", "") & "\n")<br>atom, integer and object<br></code><br>
+        </li>
+        <li>
+          <h3>append_if_new <span>(sequence, object)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>sequence to append to</p>
+        </li>
+        <li>
+object o          <p>object to append</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>modified sequence<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, append_if_new("abcdefghij", 'a') & "\n")<br>abcdefghij<br>puts(1, append_if_new("abcdefghij", 'k') & "\n")<br>abcdefghijk<br></code><br>
+      <b>See also:</b>
+          <p>append()</p>
+        </li>
+        <li>
+          <h3>extract_column <span>(sequence, integer)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence array          <p>array to extract column from</p>
+        </li>
+        <li>
+integer column          <p>column to be extracted from array</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: selected column of array<br></p>
+      <b>Description:</b>
+          <p>this is fetch function from OpenEuphoria 4<br></p>
+      <b>Example:</b><br>
+          <code>puts(1, extract_column({"Start","Tank","Own","Patent"}, 1) & "\n")<br>STOP<br></code><br>
+      <b>See also:</b>
+          <p>store()</p>
+        </li>
+        <li>
+          <h3>parse_sequence <span>(sequence, sequence)</span></h3>
+      <b>Params:</b>
+      <ul>
+        <li>
+sequence s          <p>sequence to be parsed</p>
+        </li>
+        <li>
+sequence template          <p>reference template</p>
+        </li>
+      </ul>
+      <b>Return:</b>
+          <p>sequence: list of pairs {name, value} of all encountered variables in string<br></p>
+      <b>Description:</b>
+          <p>Variables are encoded as XML tags in the template<br>Example: "http://<url>:<port>/search?q=<query>"<br></p>
+      <b>Example:</b><br>
+          <code>parse_sequence("http://www.google.com:80/search?q=euphoria",<br>"http://<url>:<port>/search?q=<query>")<br>will return<br>{{"<url>", "www.google.com"}, {"<port>", "80"}, {"<query>", "euphoria"}}<br></code><br>
+        </li>
+      </ul>
+    </div>
+  </body>
+</html>
